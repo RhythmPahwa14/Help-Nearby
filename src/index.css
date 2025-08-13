@@ -1,0 +1,590 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Open Sans font globally */
+* {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+body, html {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+/* Hindi text support - must come after Tailwind */
+.hindi-text, 
+[lang="hi"],
+.break-hindi {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  white-space: normal !important;
+  line-height: 1.6 !important;
+}
+
+/* Selective text wrapping for longer text elements only */
+h1, h2, h3, h4, h5, h6, p {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+/* Prevent text breaking in buttons and short labels */
+button, .theme-selector, .nav-item, .dropdown-item {
+  word-break: normal !important;
+  white-space: nowrap !important;
+}
+
+/* Allow normal text flow in flex containers */
+.flex span, .flex div {
+  word-break: normal !important;
+  white-space: normal !important;
+}
+
+/* Theme selector specific fixes */
+.theme-dropdown {
+  word-break: normal !important;
+  white-space: normal !important;
+}
+
+.theme-dropdown span,
+.theme-dropdown div {
+  word-break: normal !important;
+  white-space: normal !important;
+  display: inline-block !important;
+}
+
+/* Navigation text fixes */
+.nav-link, .nav-button, .dropdown-menu {
+  word-break: normal !important;
+  white-space: nowrap !important;
+}
+
+.nav-link span, .nav-button span {
+  word-break: normal !important;
+  white-space: nowrap !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Enhanced Text Visibility */
+body, #root {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-primary) !important;
+}
+
+/* Ensure all text is visible with better contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+p, span, div, label {
+  color: #f1f5f9 !important;
+}
+
+/* Form elements visibility */
+input, textarea, select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Card and container visibility */
+.card, .container, .content {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* Link visibility */
+a {
+  color: #60A5FA !important;
+}
+
+a:hover {
+  color: #93C5FD !important;
+}
+
+/* Button text visibility */
+button {
+  color: inherit !important;
+}
+
+/* Specific improvements for light theme */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] div,
+[data-theme="light"] label {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #718096 !important;
+}
+
+/* Theme Variables */
+:root {
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-tertiary: #4a5568;
+  --text-primary: #ffffff;
+  --text-secondary: #f1f5f9;
+  --text-muted: #e2e8f0;
+  --accent-primary: #4299e1;
+  --accent-secondary: #9f7aea;
+  --border-primary: #4a5568;
+  --border-secondary: #718096;
+  
+  /* RGB Values for transparency */
+  --bg-primary-rgb: 26, 32, 44;
+  --bg-secondary-rgb: 45, 55, 72;
+  --bg-tertiary-rgb: 74, 85, 104;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1a202c;
+  --text-secondary: #2d3748;
+  --text-muted: #4a5568;
+  --accent-primary: #2563eb;
+  --accent-secondary: #7c3aed;
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  
+  /* RGB Values for transparency */
+  --bg-primary-rgb: 255, 255, 255;
+  --bg-secondary-rgb: 248, 250, 252;
+  --bg-tertiary-rgb: 241, 245, 249;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-tertiary: #4a5568;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #cbd5e1;
+  --accent-primary: #4299e1;
+  --accent-secondary: #9f7aea;
+  --border-primary: #4a5568;
+  --border-secondary: #718096;
+  
+  /* RGB Values for transparency */
+  --bg-primary-rgb: 26, 32, 44;
+  --bg-secondary-rgb: 45, 55, 72;
+  --bg-tertiary-rgb: 74, 85, 104;
+}
+
+[data-theme="system"] {
+  --bg-primary: #1e293b;
+  --bg-secondary: #334155;
+  --bg-tertiary: #475569;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-primary: #0ea5e9;
+  --accent-secondary: #8b5cf6;
+  --border-primary: #475569;
+  --border-secondary: #64748b;
+  
+  /* RGB Values for transparency */
+  --bg-primary-rgb: 30, 41, 59;
+  --bg-secondary-rgb: 51, 65, 85;
+  --bg-tertiary-rgb: 71, 85, 105;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modern UI Enhancements */
+.backdrop-blur-sm {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Smooth hover animations */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Glass morphism effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient animations */
+@keyframes gradient-x {
+  0%, 100% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(96, 165, 250, 0.6);
+  }
+}
+
+.pulse-glow:hover {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Smooth animations */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(var(--bg-secondary-rgb), 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.4);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slide in animations */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.slide-in-bottom {
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+/* Button hover effects */
+.btn-primary {
+  background: linear-gradient(135deg, #95b5a6 0%, #d4b894 100%);
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(212, 184, 148, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 184, 148, 0.4);
+  background: linear-gradient(135deg, #a8c99a 0%, #c8b598 100%);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, rgba(149, 181, 166, 0.2) 0%, rgba(168, 201, 154, 0.2) 100%);
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 2px solid rgba(212, 184, 148, 0.3);
+  box-shadow: 0 4px 15px rgba(149, 181, 166, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(149, 181, 166, 0.3);
+  border-color: rgba(212, 184, 148, 0.5);
+  background: linear-gradient(135deg, rgba(168, 201, 154, 0.3) 0%, rgba(200, 181, 152, 0.3) 100%);
+}
+
+/* Card styles */
+.card {
+  background: rgba(149, 181, 166, 0.2);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 184, 148, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(149, 181, 166, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(212, 184, 148, 0.2);
+  border-color: rgba(212, 184, 148, 0.5);
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(149, 181, 166, 0.1);
+  border: 1px solid rgba(212, 184, 148, 0.3);
+  border-radius: 12px;
+  color: #2c3e50;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: rgba(44, 62, 80, 0.6);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: rgba(212, 184, 148, 0.6);
+  box-shadow: 0 0 0 3px rgba(212, 184, 148, 0.2);
+  background: rgba(149, 181, 166, 0.15);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(212, 184, 148, 0.4);
+}
+
+.glow-cyan:hover {
+  box-shadow: 0 0 30px rgba(212, 184, 148, 0.6);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Parallax scrolling effect */
+.parallax {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #d4b894;
+  outline-offset: 2px;
+}
+
+/* Custom particle background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: linear-gradient(45deg, #95b5a6, #d4b894);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: particleFloat 20s infinite linear;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Service Cards - Override global text colors */
+.service-card .service-card-title {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.service-card .service-card-text {
+  color: #374151 !important;
+}
+
+/* ViewRequests Cards - Override global text colors for white card backgrounds */
+.request-card h3,
+.request-card .request-title {
+  color: #111827 !important;
+  font-weight: 700 !important;
+}
+
+.request-card p,
+.request-card span:not(.bg-green-600 span),
+.request-card div:not(.bg-green-600),
+.request-card .request-text {
+  color: #374151 !important;
+}
+
+.request-card .request-address {
+  color: #4B5563 !important;
+}
+
+.request-card .request-date {
+  color: #6B7280 !important;
+}
+
+.request-card svg {
+  color: #6B7280 !important;
+}

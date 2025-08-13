@@ -1,0 +1,81 @@
+/* src/App.css */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F5F0E1; /* Sandy Beige */
+  color: #333333;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+  background-color: #2f556b; /* Olive Green */
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-link {
+  color: #FFFFFF;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color:#2f556b; /* Lighter Olive for hover */
+}
+
+/* --- Main Content Container --- */
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- Headings --- */
+h1, h2 {
+  color:#2f556b;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* --- Buttons and Forms --- */
+.form-control, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; /* Important for padding and width */
+}
+
+.button {
+  width: 100%;
+  background-color: #1a86a1; /* Terracotta */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #B85A1A; /* Darker Terracotta */
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #556B2F;
+}
