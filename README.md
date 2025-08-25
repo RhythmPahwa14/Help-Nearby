@@ -88,6 +88,5 @@ Leaflet/React-Leaflet are used for location and map display. Ensure network acce
 - npm ERESOLVE peer-deps issues on CI/Vercel: keep `.npmrc` with `legacy-peer-deps=true` and TypeScript pinned to 4.9.5.
 - Firebase errors: verify `.env.local` values and that they are also set in your hosting provider.
 
-## License
 
 
