@@ -1,6 +1,6 @@
 # Help Nearby
 
-Connect people who need help with nearby volunteers. Built with React, Firebase, Leaflet, Tailwind CSS, and i18next (English + Hindi).
+Connect people who need help with nearby volunteers. Built with React, Firebase, Leaflet, Tailwind CSS.
 
 Repo: https://github.com/RhythmPahwa14/Help-Nearby
 
@@ -9,8 +9,6 @@ Repo: https://github.com/RhythmPahwa14/Help-Nearby
 - Post and view help requests
 - Map view with location using Leaflet
 - Firebase Auth (email/password) and Firestore storage
-- Localization: English and Hindi via i18next
-- Theme and background selection
 
 ## Tech Stack
 
@@ -19,7 +17,7 @@ Repo: https://github.com/RhythmPahwa14/Help-Nearby
 - Firebase v10 (Auth + Firestore)
 - Leaflet + React-Leaflet
 - Tailwind CSS 3
-- i18next + react-i18next
+
 
 ## Getting Started
 
@@ -60,7 +58,6 @@ src/
 	context/          # Auth, Theme, Background contexts
 	pages/            # Home, Login, Register, Requests, MapView
 	firebase.js       # Firebase init (reads .env.local)
-	i18n.js           # i18next setup (en/hi)
 	index.js, App.js  # App entry
 ```
 
@@ -81,10 +78,6 @@ src/
 Compatibility note:
 
 - This project pins TypeScript to 4.9.5 for CRA compatibility and uses an `.npmrc` with `legacy-peer-deps=true` to avoid peer-dependency conflicts on Vercel.
-
-## Localization
-
-Translations live in `src/i18n.js`. English (`en`) is default; Hindi (`hi`) is included. Keys are simple English strings.
 
 ## Maps
 
