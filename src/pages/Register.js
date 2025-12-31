@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { useAuth } from "../contexts/AuthContextNew";
 
 function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/login");
+      await register(name, email, password);
+      navigate("/");
     } catch (err) {
-      if (err.code === 'auth/email-already-in-use') {
+      if (err.message?.includes('email')) {
         setError('Email is already in use. Please try with a different email.');
-      } else if (err.code === 'auth/weak-password') {
+      } else if (err.message?.includes('password')) {
         setError('Password is too weak. Please choose a stronger password.');
       } else {
-        setError('Registration failed. Please try again.');
+        setError(err.message || 'Registration failed. Please try again.');
       }
     } finally {
       setIsLoading(false);
@@ -73,6 +74,20 @@ function Register() {
               )}
 
               <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-white mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
                 <div>
                   <label className="block text-sm font-semibold text-white mb-2">
                     Email Address

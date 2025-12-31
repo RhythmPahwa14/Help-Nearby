@@ -1,7 +1,6 @@
 // src/pages/Requests.js
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { requestsAPI } from "../services/api";
 import { useTheme } from '../context/ThemeContext';
 
 function Requests() {
@@ -15,9 +14,13 @@ function Requests() {
 
   useEffect(() => {
     const fetchRequests = async () => {
-      const querySnapshot = await getDocs(collection(db, "helpRequests"));
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setRequests(data);
+      try {
+        const data = await requestsAPI.getRequests();
+        setRequests(data);
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        setRequests([]);
+      }
     };
 
     fetchRequests();

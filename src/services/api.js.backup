@@ -1,0 +1,160 @@
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+// Helper function to handle API responses
+const handleResponse = async (response) => {
+  const data = await response.json();
+  
+  if (!response.ok) {
+    throw new Error(data.message || `HTTP error! status: ${response.status}`);
+  }
+  
+  return data;
+};
+
+// Helper function to get auth headers
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('authToken');
+  return {
+    'Content-Type': 'application/json',
+    ...(token && { 'Authorization': `Bearer ${token}` })
+  };
+};
+
+export const authAPI = {
+  register: async (userData) => {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
+    });
+    
+    const data = await handleResponse(response);
+    
+    // Store token and user data
+    if (data.token) {
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+    }
+    
+    return data;
+  },
+
+  login: async (credentials) => {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials)
+    });
+    
+    const data = await handleResponse(response);
+    
+    // Store token and user data
+    if (data.token) {
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+    }
+    
+    return data;
+  },
+
+  getCurrentUser: async () => {
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      headers: getAuthHeaders()
+    });
+    
+    return await handleResponse(response);
+  },
+
+  logout: () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+  }
+};
+
+export const requestsAPI = {
+  getRequests: async (filters = {}) => {
+    const params = new URLSearchParams();
+
+    // Add filters to query params
+    Object.keys(filters).forEach(key => {
+      if (filters[key] !== undefined && filters[key] !== null && filters[key] !== '') {
+        params.append(key, filters[key]);
+      }
+    });
+
+    const queryString = params.toString();
+    const url = `${API_BASE_URL}/requests${queryString ? `?${queryString}` : ''}`;
+
+    const response = await fetch(url, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await handleResponse(response);
+    return data.requests || []; // Return the requests array
+  },  createRequest: async (requestData) => {
+    const response = await fetch(`${API_BASE_URL}/requests`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(requestData)
+    });
+    
+    return await handleResponse(response);
+  },
+
+  getMyRequests: async () => {
+    const response = await fetch(`${API_BASE_URL}/requests/my-requests`, {
+      headers: getAuthHeaders()
+    });
+
+    const data = await handleResponse(response);
+    return data.requests || []; // Return the requests array
+  },
+
+  getUserRequests: async () => {
+    const response = await fetch(`${API_BASE_URL}/requests/my-requests`, {
+      headers: getAuthHeaders()
+    });
+
+    const data = await handleResponse(response);
+    return data.requests || []; // Return the requests array
+  },  updateRequestStatus: async (requestId, status) => {
+    const response = await fetch(`${API_BASE_URL}/requests/${requestId}/status`, {
+      method: 'PATCH',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ status })
+    });
+
+    return await handleResponse(response);
+  },
+
+  updateRequest: async (requestId, updates) => {
+    const response = await fetch(`${API_BASE_URL}/requests/${requestId}`, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(updates)
+    });
+
+    return await handleResponse(response);
+  },
+
+  deleteRequest: async (requestId) => {
+    const response = await fetch(`${API_BASE_URL}/requests/${requestId}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders()
+    });
+
+    return await handleResponse(response);
+  }
+};
+
+// Utility functions
+export const isAuthenticated = () => {
+  return !!localStorage.getItem('authToken');
+};
+
+export const getCurrentUser = () => {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+};
+
+export default { authAPI, requestsAPI };

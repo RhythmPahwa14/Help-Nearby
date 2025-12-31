@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { requestsAPI } from "../services/api";
 import L from "leaflet";
 
 // Fix for default Leaflet marker icon
@@ -22,9 +21,7 @@ function MapView() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const requestsQuery = query(collection(db, "helpRequests"), orderBy("createdAt", "desc"));
-        const querySnapshot = await getDocs(requestsQuery);
-        const allRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const allRequests = await requestsAPI.getRequests();
         setRequests(allRequests.filter(req => req.status !== 'in-progress'));
       } catch (error) {
         console.error("Error fetching requests for map:", error);

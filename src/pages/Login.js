@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { useAuth } from "../contexts/AuthContextNew";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -9,16 +8,17 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await login(email, password);
       navigate("/");
     } catch (err) {
-      setError('Login failed. Please check your credentials.');
+      setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
       setIsLoading(false);
     }

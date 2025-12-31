@@ -1,10 +1,10 @@
 // src/components/ProtectedRoute.js
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContextNew';
 
 const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { user: currentUser } = useAuth();
 
   // If there is no logged-in user, redirect to the /login page
   if (!currentUser) {

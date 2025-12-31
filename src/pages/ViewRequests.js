@@ -1,23 +1,24 @@
-import React, { useEffect, useState, useContext } from "react";
-import { db } from "../firebase";
-import { collection, getDocs, orderBy, query, doc, updateDoc } from "firebase/firestore";
-import { AuthContext } from "../context/AuthContext";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../contexts/AuthContextNew";
+import { requestsAPI } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function ViewRequests() {
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('all');
-  const { currentUser } = useContext(AuthContext);
+  const { user: currentUser } = useAuth();
   const navigate = useNavigate();
 
   const fetchRequests = async () => {
     setIsLoading(true);
-    const q = query(collection(db, "helpRequests"), orderBy("createdAt", "desc"));
-    const querySnapshot = await getDocs(q);
-    const allRequestsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    const openRequests = allRequestsData.filter(request => request.status !== 'in-progress');
-    setRequests(openRequests);
+    try {
+      const allRequestsData = await requestsAPI.getRequests();
+      const openRequests = allRequestsData.filter(request => request.status !== 'in-progress');
+      setRequests(openRequests);
+    } catch (error) {
+      console.error('Error fetching requests:', error);
+    }
     setIsLoading(false);
   };
 
@@ -35,12 +36,9 @@ function ViewRequests() {
       alert("You cannot accept your own request.");
       return;
     }
-    const requestRef = doc(db, "helpRequests", requestId);
     try {
-      await updateDoc(requestRef, {
-        status: 'in-progress',
-        volunteerId: currentUser.uid,
-        volunteerEmail: currentUser.email
+      await requestsAPI.updateRequest(requestId, {
+        status: 'in-progress'
       });
       fetchRequests(); 
     } catch (error) {

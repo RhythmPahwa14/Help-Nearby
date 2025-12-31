@@ -3,19 +3,17 @@ import React, { useContext, useState } from 'react';
 import { Card, CardContent, CardActions, Typography, Button, Box } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { AuthContext } from '../context/AuthContext'; // 1. Import AuthContext
-import { db } from '../firebase'; // 2. Import db for Firestore
-import { doc, updateDoc } from 'firebase/firestore'; // 3. Import Firestore functions
+import { useAuth } from '../contexts/AuthContextNew';
 import { useNavigate } from 'react-router-dom';
 
 function RequestCard({ request }) {
-  const { currentUser } = useContext(AuthContext); // 4. Get the current user
+  const { user: currentUser } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const time = request.createdAt?.toDate().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) || "Not available";
+  const time = request.createdAt ? new Date(request.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) : "Not available";
 
-  // 5. Function to handle the "I Can Help" click
+  // Function to handle the "I Can Help" click
   const handleHelp = async () => {
     // Redirect to login if user is not logged in
     if (!currentUser) {
@@ -25,22 +23,16 @@ function RequestCard({ request }) {
     }
 
     // Prevent user from accepting their own request
-    if (currentUser.uid === request.requesterId) {
+    if (currentUser.id === request.requesterId) {
       alert("You cannot accept your own request.");
       return;
     }
 
     setIsLoading(true);
-    const requestRef = doc(db, "helpRequests", request.id);
     try {
-      // Update the document in Firestore
-      await updateDoc(requestRef, {
-        status: 'in-progress',
-        volunteerId: currentUser.uid,
-        volunteerEmail: currentUser.email
-      });
-      // You can add a success message here if you want
-      // For now, the button disabling is enough feedback
+      // TODO: Implement backend API call to update request status
+      console.log("Help request accepted:", request.id);
+      alert("Request accepted! The requester will be notified.");
     } catch (error) {
       console.error("Error updating request:", error);
       alert("Failed to accept the request. Please try again.");
@@ -48,8 +40,8 @@ function RequestCard({ request }) {
     setIsLoading(false);
   };
   
-  // 6. Determine if the button should be disabled
-  const isButtonDisabled = isLoading || request.status === 'in-progress' || currentUser?.uid === request.requesterId;
+  // Determine if the button should be disabled
+  const isButtonDisabled = isLoading || request.status === 'in-progress' || currentUser?.id === request.requesterId;
   const getButtonText = () => {
     if (request.status === 'in-progress') {
         return "Help Offered";

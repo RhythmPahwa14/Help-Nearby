@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useAuth } from "./contexts/AuthContextNew";
 import "leaflet/dist/leaflet.css";
 
-import { AuthContext } from "./context/AuthContext";
+import { AuthProvider } from "./contexts/AuthContextNew";
 import { ThemeProvider } from "./context/ThemeContext";
-import { auth } from "./firebase";
 import Home from "./pages/Home";
 import HelpRequest from "./pages/HelpRequest";
 import ViewRequests from "./pages/ViewRequests";
@@ -16,15 +15,16 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
 function AppContent() {
-  const { i18n } = useTranslation();
-  const { currentUser } = useContext(AuthContext);
+  const { user: currentUser, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Using dark theme only
@@ -32,11 +32,7 @@ function AppContent() {
   const hoverColorClass = 'hover:text-green-300';
   // Clean App component without text shadows
   const handleLogout = () => {
-    auth.signOut();
-  };
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    logout();
   };
 
   return (
@@ -219,36 +215,7 @@ function AppContent() {
                   )}
                 </nav>
 
-                {/* Language Section */}
-                <div className="mt-6 pt-6 border-t border-white/20">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-sm font-medium">Language</span>
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => changeLanguage('en')}
-                        className={`px-3 py-1 rounded text-sm font-medium transition-all duration-200 nav-button ${
-                          i18n.language === 'en' 
-                            ? 'bg-blue-500 text-white' 
-                            : 'bg-white/10 text-white/70'
-                        }`}
-                        style={{ whiteSpace: 'nowrap' }}
-                      >
-                        EN
-                      </button>
-                      <button
-                        onClick={() => changeLanguage('hi')}
-                        className={`px-3 py-1 rounded text-sm font-medium transition-all duration-200 nav-button ${
-                          i18n.language === 'hi' 
-                            ? 'bg-blue-500 text-white' 
-                            : 'bg-white/10 text-white/70'
-                        }`}
-                        style={{ whiteSpace: 'nowrap' }}
-                      >
-                        हि
-                      </button>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           )}

@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
+import { requestsAPI } from "../services/api";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
@@ -15,7 +13,7 @@ L.Icon.Default.mergeOptions({
 });
 
 function HelpRequest() {
-  const { currentUser } = useContext(AuthContext);
+  // const { user } = useAuth(); // Commented out as not used currently
 
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("General");
@@ -27,9 +25,17 @@ function HelpRequest() {
   useEffect(() => {
     const locationOptions = {
       enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0 
+      timeout: 15000,
+      maximumAge: 300000,
     };
+
+    // Check if geolocation is supported
+    if (!navigator.geolocation) {
+      setStatus('Geolocation is not supported by this browser.');
+      return;
+    }
+
+    setStatus('Requesting location permission...');
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -43,27 +49,104 @@ function HelpRequest() {
           setAddress("Could not fetch address."); 
         }
       },
-      (error) => { 
+      (error) => {
         console.error("Geolocation error:", error);
-        setStatus('Location access denied. Please enable location access.'); 
+        let errorMessage = '';
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = "🔒 Location blocked! Click the lock icon (🔒) in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = "Location information unavailable. Please try again.";
+            break;
+          case error.TIMEOUT:
+            errorMessage = "Location request timed out. Please try again.";
+            break;
+          default:
+            errorMessage = "Unable to get location. Please enter address manually.";
+            break;
+        }
+        setStatus(errorMessage);
+        // Set a default location (Delhi) as fallback
+        setLocation({ lat: 28.6139, lng: 77.2090 });
+        setAddress("Please enter your address manually");
       },
       locationOptions
     );
   }, []);
+
+  const getCurrentLocation = () => {
+    const locationOptions = {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 300000,
+    };
+
+    if (!navigator.geolocation) {
+      setStatus('Geolocation is not supported by this browser.');
+      return;
+    }
+
+    setStatus('Requesting location permission...');
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ lat: latitude, lng: longitude });
+        setStatus('Location detected successfully!');
+        try {
+          // Using free Nominatim API instead of OpenCage
+          const response = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=16&addressdetails=1`,
+            {
+              headers: {
+                'User-Agent': 'Help-Nearby-App'
+              }
+            }
+          );
+          if (response.data && response.data.display_name) {
+            setAddress(response.data.display_name);
+          } else {
+            setAddress(`Location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+          }
+        } catch (error) {
+          console.error("Address lookup error:", error);
+          setAddress(`Coordinates: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+        }
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        let errorMessage = '';
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = "🔒 Location blocked! Click the lock icon (🔒) in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = "📡 Location unavailable. Check your internet connection or enter location manually below.";
+            break;
+          case error.TIMEOUT:
+            errorMessage = "⏰ Location timeout. Enter your coordinates manually below or try again.";
+            break;
+          default:
+            errorMessage = "❌ Auto-location failed. Please enter your location manually below.";
+            break;
+        }
+        setStatus(errorMessage);
+      },
+      locationOptions
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setStatus('Submitting your request...');
     try {
-      await addDoc(collection(db, "helpRequests"), {
+      await requestsAPI.createRequest({
         description,
         category,
         location,
-        address,
-        createdAt: serverTimestamp(),
-        requesterId: currentUser.uid,
-        requesterEmail: currentUser.email
+        address
       });
       setStatus('Request posted successfully!');
       setDescription("");
@@ -154,9 +237,29 @@ function HelpRequest() {
 
                 {/* Location Display */}
                 <div>
-                  <label className="block text-white font-semibold mb-3 text-lg">
-                    Your Location
+                  <label className="block text-white font-semibold mb-4 text-lg">
+                    📍 Your Location 
                   </label>
+                  
+                  {/* Location Help Guide */}
+                  {!location && (
+                    <div className="mb-4 p-4 bg-blue-500/20 border border-blue-500/30 rounded-xl">
+                      <h4 className="text-white font-semibold mb-2">🔧 Enable Location Detection:</h4>
+                      <ul className="text-white/80 text-sm space-y-1 mb-3">
+                        <li>• Click 🔒 (lock icon) in browser address bar</li>
+                        <li>• Select "Allow" for Location permission</li>
+                        <li>• Click button below to retry</li>
+                        <li>• Or enter coordinates manually below ⬇️</li>
+                      </ul>
+                      <button
+                        type="button"
+                        onClick={getCurrentLocation}
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
+                      >
+                        🌍 Try Location Again
+                      </button>
+                    </div>
+                  )}
                   <div className="bg-white/10 border border-white/20 rounded-xl p-4">
                     <div className="flex items-start">
                       <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,10 +274,48 @@ function HelpRequest() {
                   </div>
                 </div>
 
+                {/* Manual Location Input (if auto-detect fails) */}
+                {!location && (
+                  <div>
+                    <label className="block text-white font-semibold mb-4 text-lg">
+                      📍 Enter Your Location Manually
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <input
+                        type="number"
+                        placeholder="Latitude (e.g. 28.6139)"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        onChange={(e) => {
+                          const lat = parseFloat(e.target.value);
+                          if (!isNaN(lat)) {
+                            setLocation(prev => ({ ...prev, lat }));
+                            setAddress("Manual location set");
+                          }
+                        }}
+                      />
+                      <input
+                        type="number"
+                        placeholder="Longitude (e.g. 77.2090)"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        onChange={(e) => {
+                          const lng = parseFloat(e.target.value);
+                          if (!isNaN(lng)) {
+                            setLocation(prev => ({ ...prev, lng }));
+                            setAddress("Manual location set");
+                          }
+                        }}
+                      />
+                    </div>
+                    <p className="text-white/70 text-sm mt-2">
+                      💡 Tip: Use Google Maps to find your coordinates or enable location permission
+                    </p>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isLoading || !address}
+                  disabled={isLoading || (!location && !address)}
                   className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isLoading ? (
