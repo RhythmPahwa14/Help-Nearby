@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Help Nearby
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Connect people who need help with nearby volunteers. Built with React, Firebase, Leaflet, Tailwind CSS.
 
-## Available Scripts
+Repo: https://github.com/RhythmPahwa14/Help-Nearby
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Post and view help requests
+- Map view with location using Leaflet
+- Firebase Auth (email/password) and Firestore storage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React 18 (Create React App, `react-scripts@5`)
+- React Router v6
+- Firebase v10 (Auth + Firestore)
+- Leaflet + React-Leaflet
+- Tailwind CSS 3
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+Prerequisites: Node.js 18+ and npm.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1) Clone and install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```powershell
+git clone https://github.com/RhythmPahwa14/Help-Nearby.git
+cd Help-Nearby
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2) Configure environment variables in `.env.local`
 
-### `npm run eject`
+```env
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3) Run the app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```powershell
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+App runs at http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project Structure
 
-## Learn More
+```
+src/
+	components/       # UI components
+	context/          # Auth, Theme, Background contexts
+	pages/            # Home, Login, Register, Requests, MapView
+	firebase.js       # Firebase init (reads .env.local)
+	index.js, App.js  # App entry
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start` – start dev server
+- `npm run build` – production build to `build/`
+- `npm test` – run tests
+- `npm run eject` – CRA eject (irreversible)
 
-### Code Splitting
+## Deployment (Vercel)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Install Command: `npm install`
+- Build Command: `npm run build`
+- Output Directory: `build`
+- Add the same Firebase env vars in Vercel Project Settings → Environment Variables
 
-### Analyzing the Bundle Size
+Compatibility note:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- This project pins TypeScript to 4.9.5 for CRA compatibility and uses an `.npmrc` with `legacy-peer-deps=true` to avoid peer-dependency conflicts on Vercel.
 
-### Making a Progressive Web App
+## Maps
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Leaflet/React-Leaflet are used for location and map display. Ensure network access to tile providers in your deployment environment.
 
-### Advanced Configuration
+## Troubleshooting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- npm ERESOLVE peer-deps issues on CI/Vercel: keep `.npmrc` with `legacy-peer-deps=true` and TypeScript pinned to 4.9.5.
+- Firebase errors: verify `.env.local` values and that they are also set in your hosting provider.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

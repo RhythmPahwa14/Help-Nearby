@@ -12,8 +12,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // If Firebase auth isn't initialized, skip listener and render app
+    if (!auth) {
+      setLoading(false);
+      return () => {};
+    }
+
     // This listener fires whenever the user's login state changes
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
