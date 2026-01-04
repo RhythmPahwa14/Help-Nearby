@@ -43,8 +43,34 @@ function HelpRequest() {
         setLocation({ lat: latitude, lng: longitude });
         setStatus('Location detected successfully!');
         try {
-          const res = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_OPENCAGE_API_KEY}`);
-          setAddress(res.data.results[0]?.formatted || "Address not found.");
+          // Using FREE Nominatim API (OpenStreetMap) - no API key required
+          const res = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1&zoom=18`,
+            { headers: { 'User-Agent': 'HelpNearbyApp/1.0' } }
+          );
+          
+          // Build detailed address from address components
+          const addr = res.data.address || {};
+          const parts = [];
+          
+          // Add most specific location details first
+          if (addr.house_number) parts.push(`House No. ${addr.house_number}`);
+          if (addr.building || addr.amenity) parts.push(addr.building || addr.amenity);
+          if (addr.road || addr.street) parts.push(addr.road || addr.street);
+          if (addr.neighbourhood) parts.push(addr.neighbourhood);
+          if (addr.suburb && addr.suburb !== addr.neighbourhood) parts.push(addr.suburb);
+          
+          // Add city/town (pick one to avoid duplicates)
+          const cityName = addr.city || addr.town || addr.village || addr.state_district;
+          if (cityName) parts.push(cityName);
+          
+          if (addr.state) parts.push(addr.state);
+          if (addr.postcode) parts.push(addr.postcode);
+          
+          // Remove any duplicates
+          const uniqueParts = [...new Set(parts)];
+          const fullAddress = uniqueParts.length > 0 ? uniqueParts.join(', ') : res.data.display_name;
+          setAddress(fullAddress || "Address not found.");
         } catch (error) { 
           setAddress("Could not fetch address."); 
         }
@@ -166,9 +192,9 @@ function HelpRequest() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden -mt-16 pt-16">
       {/* Background with overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 z-10"></div>
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -177,7 +203,7 @@ function HelpRequest() {
       ></div>
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen pt-24 pb-8">
+      <div className="relative z-20 min-h-screen pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
@@ -210,8 +236,9 @@ function HelpRequest() {
                         className={`p-4 rounded-xl border transition-all duration-300 ${
                           category === cat.value
                             ? `bg-gradient-to-r ${cat.color} text-white border-transparent shadow-lg scale-105`
-                            : 'bg-white/10 text-white/80 border-white/20 hover:bg-white/20'
+                            : 'bg-white/10 border-white/20 hover:bg-white/20'
                         }`}
+                        style={category !== cat.value ? { color: '#000000' } : {}}
                       >
                         <div className="text-2xl mb-2">{cat.icon}</div>
                         <div className="text-sm font-semibold">{cat.value}</div>
@@ -237,39 +264,31 @@ function HelpRequest() {
 
                 {/* Location Display */}
                 <div>
-                  <label className="block text-white font-semibold mb-4 text-lg">
+                  <label className="block text-white font-semibold mb-2 text-sm">
                     📍 Your Location 
                   </label>
                   
                   {/* Location Help Guide */}
                   {!location && (
-                    <div className="mb-4 p-4 bg-blue-500/20 border border-blue-500/30 rounded-xl">
-                      <h4 className="text-white font-semibold mb-2">🔧 Enable Location Detection:</h4>
-                      <ul className="text-white/80 text-sm space-y-1 mb-3">
-                        <li>• Click 🔒 (lock icon) in browser address bar</li>
-                        <li>• Select "Allow" for Location permission</li>
-                        <li>• Click button below to retry</li>
-                        <li>• Or enter coordinates manually below ⬇️</li>
-                      </ul>
+                    <div className="mb-3 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                      <h4 className="text-white font-semibold text-sm mb-1">🔧 Enable Location:</h4>
+                      <p className="text-white/80 text-xs mb-2">Click 🔒 in address bar → Allow Location → Retry</p>
                       <button
                         type="button"
                         onClick={getCurrentLocation}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
+                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs transition-colors"
                       >
-                        🌍 Try Location Again
+                        🌍 Try Again
                       </button>
                     </div>
                   )}
-                  <div className="bg-white/10 border border-white/20 rounded-xl p-4">
-                    <div className="flex items-start">
-                      <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-white/10 border border-white/20 rounded-lg p-3">
+                    <div className="flex items-center">
+                      <svg className="w-4 h-4 text-blue-400 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
-                      <div>
-                        <div className="text-white font-medium">{address || status}</div>
-                        <div className="text-gray-400 text-sm mt-1">{status}</div>
-                      </div>
+                      <div className="text-white text-sm truncate">{address || status}</div>
                     </div>
                   </div>
                 </div>
@@ -277,14 +296,14 @@ function HelpRequest() {
                 {/* Manual Location Input (if auto-detect fails) */}
                 {!location && (
                   <div>
-                    <label className="block text-white font-semibold mb-4 text-lg">
-                      📍 Enter Your Location Manually
+                    <label className="block text-white font-semibold mb-2 text-sm">
+                      📍 Enter Manually
                     </label>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                       <input
                         type="number"
-                        placeholder="Latitude (e.g. 28.6139)"
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Latitude"
+                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         onChange={(e) => {
                           const lat = parseFloat(e.target.value);
                           if (!isNaN(lat)) {
@@ -295,8 +314,8 @@ function HelpRequest() {
                       />
                       <input
                         type="number"
-                        placeholder="Longitude (e.g. 77.2090)"
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Longitude"
+                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         onChange={(e) => {
                           const lng = parseFloat(e.target.value);
                           if (!isNaN(lng)) {
@@ -306,9 +325,6 @@ function HelpRequest() {
                         }}
                       />
                     </div>
-                    <p className="text-white/70 text-sm mt-2">
-                      💡 Tip: Use Google Maps to find your coordinates or enable location permission
-                    </p>
                   </div>
                 )}
 

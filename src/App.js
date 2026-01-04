@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 import { AuthProvider } from "./contexts/AuthContextNew";
 import { ThemeProvider } from "./context/ThemeContext";
+import { BackgroundProvider } from "./context/BackgroundContext";
 import Home from "./pages/Home";
 import HelpRequest from "./pages/HelpRequest";
 import ViewRequests from "./pages/ViewRequests";
@@ -17,7 +18,9 @@ function App() {
   return (
     <AuthProvider>
       <ThemeProvider>
-        <AppContent />
+        <BackgroundProvider>
+          <AppContent />
+        </BackgroundProvider>
       </ThemeProvider>
     </AuthProvider>
   );
@@ -39,10 +42,6 @@ function AppContent() {
     <Router>
       <div 
         className="font-sans min-h-screen transition-colors duration-300 relative"
-        style={{
-          backgroundColor: 'var(--bg-primary)',
-          color: 'var(--text-primary)'
-        }}
       >
           {/* Modern Clean Navigation */}
           <header className="fixed top-0 left-0 w-full z-50 bg-black/10 backdrop-blur-sm border-b border-white/10">
@@ -94,14 +93,18 @@ function AppContent() {
                     </NavLink>
                   </nav>
 
-                  <div className="flex items-center space-x-6">
+                  <div className="flex items-center space-x-8">
 
                     {/* User Authentication */}
                     {currentUser ? (
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-8">
                         <NavLink 
                           to="/post-request" 
-                          className="px-6 py-2 rounded-lg text-blue-400 font-semibold transition-all duration-300 hover:text-blue-300 hover:scale-105 nav-button"
+                          className={({ isActive }) =>
+                            `font-medium transition-colors duration-200 nav-link ${
+                              isActive ? 'text-green-300' : textColorClass
+                            } ${hoverColorClass}`
+                          }
                           style={{ whiteSpace: 'nowrap' }}
                         >
                           ＰＯＳＴ ＲＥＱＵＥＳＴ
@@ -220,7 +223,7 @@ function AppContent() {
             </div>
           )}
 
-          <main className="pt-20">
+          <main className="pt-16">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

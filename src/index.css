@@ -87,6 +87,21 @@ p, span, div, label {
   color: #f1f5f9 !important;
 }
 
+/* Map Legend - Force dark text on white background */
+.map-legend-box {
+  color: #000000 !important;
+}
+
+.map-legend-box h3,
+.map-legend-box span {
+  color: #000000 !important;
+}
+
+/* Don't override the colored dots */
+.map-legend-box .rounded-full {
+  color: inherit !important;
+}
+
 /* Form elements visibility */
 input, textarea, select {
   background-color: rgba(255, 255, 255, 0.1) !important;
@@ -587,4 +602,91 @@ textarea:focus {
 
 .request-card svg {
   color: #6B7280 !important;
+}
+
+/* Leaflet Map Container Fix */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  z-index: 0 !important;
+}
+
+.leaflet-tile-pane {
+  opacity: 1 !important;
+}
+
+/* Leaflet Zoom Controls Fix - Make +/- buttons visible */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-zoom a span,
+.leaflet-bar a {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border: 1px solid #ccc !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.leaflet-control-zoom a:hover,
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover,
+.leaflet-bar a:hover {
+  background-color: #e0e0e0 !important;
+  color: #000000 !important;
+}
+
+.leaflet-control-zoom-in {
+  border-radius: 8px 8px 0 0 !important;
+  border-bottom: none !important;
+}
+
+.leaflet-control-zoom-out {
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* Force the + and - text color */
+.leaflet-touch .leaflet-bar a,
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+  color: #333333 !important;
+  background: #ffffff !important;
+}
+
+/* Leaflet Popup Text Fix - Force dark text on white background */
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.leaflet-popup-content {
+  color: #1f2937 !important;
+  margin: 12px !important;
+}
+
+.leaflet-popup-content h3,
+.leaflet-popup-content p,
+.leaflet-popup-content span,
+.leaflet-popup-content div {
+  color: #374151 !important;
+}
+
+.leaflet-popup-content svg {
+  color: #6b7280 !important;
+  stroke: #6b7280 !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
 }

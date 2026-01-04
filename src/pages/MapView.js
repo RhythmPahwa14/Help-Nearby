@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap, CircleMarker } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import { requestsAPI } from "../services/api";
 import L from "leaflet";
@@ -12,13 +12,88 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
+// Component to update map center when it changes
+function ChangeMapView({ center }) {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.flyTo(center, 15, { duration: 1.5 });
+    }
+  }, [center, map]);
+  return null;
+}
+
 function MapView() {
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [mapCenter, setMapCenter] = useState([30.7333, 76.7794]);
+  const [userLocation, setUserLocation] = useState(null);
+  const [userAddress, setUserAddress] = useState('');
   const navigate = useNavigate();
 
+  // Extract lat/lng from various location formats
+  const extractLatLng = (req) => {
+    // Check for GeoJSON format: location.coordinates = [lng, lat]
+    if (req?.location?.coordinates && req.location.coordinates.length >= 2) {
+      return [req.location.coordinates[1], req.location.coordinates[0]];
+    }
+    // Check for lat/lng format stored directly
+    if (req?.location?.lat && req?.location?.lng) {
+      return [req.location.lat, req.location.lng];
+    }
+    return null;
+  };
+
   useEffect(() => {
+    // Get user's location first
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const { latitude, longitude } = pos.coords;
+          setMapCenter([latitude, longitude]);
+          setUserLocation([latitude, longitude]);
+          
+          // Fetch address using free Nominatim API
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1&zoom=18`,
+              { headers: { 'User-Agent': 'HelpNearbyApp/1.0' } }
+            );
+            const data = await res.json();
+            
+            // Build detailed address from address components
+            const addr = data.address || {};
+            const parts = [];
+            
+            // Add most specific location details first
+            if (addr.house_number) parts.push(`House No. ${addr.house_number}`);
+            if (addr.building || addr.amenity) parts.push(addr.building || addr.amenity);
+            if (addr.road || addr.street) parts.push(addr.road || addr.street);
+            if (addr.neighbourhood) parts.push(addr.neighbourhood);
+            if (addr.suburb && addr.suburb !== addr.neighbourhood) parts.push(addr.suburb);
+            
+            // Add city/town (pick one to avoid duplicates)
+            const cityName = addr.city || addr.town || addr.village || addr.state_district;
+            if (cityName) parts.push(cityName);
+            
+            if (addr.state) parts.push(addr.state);
+            if (addr.postcode) parts.push(addr.postcode);
+            
+            // Remove any duplicates
+            const uniqueParts = [...new Set(parts)];
+            const fullAddress = uniqueParts.length > 0 ? uniqueParts.join(', ') : data.display_name;
+            setUserAddress(fullAddress || 'Your location');
+          } catch (err) {
+            setUserAddress('Your location');
+          }
+        },
+        (err) => console.log("Geolocation not available:", err),
+        { enableHighAccuracy: true, timeout: 5000 }
+      );
+    }
+
+    // Fetch requests
     const fetchRequests = async () => {
       try {
         const allRequests = await requestsAPI.getRequests();
@@ -113,8 +188,9 @@ function MapView() {
                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                   filter === category
                     ? 'bg-green-600 text-white shadow-lg scale-105'
-                    : 'bg-white/10 text-white/80 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:scale-105'
+                    : 'bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:scale-105'
                 }`}
+                style={filter !== category ? { color: '#000000' } : {}}
               >
                 {category === 'all' ? 'All Requests' : `${getCategoryIcon(category)} ${category}`}
               </button>
@@ -124,21 +200,47 @@ function MapView() {
       </div>
 
       {/* Map - Adjusted for header */}
-      <div className="pt-32 h-full w-full">
+      <div className="absolute top-32 bottom-0 left-0 right-0">
         <MapContainer 
-          center={[30.7333, 76.7794]} 
-          zoom={12} 
+          center={mapCenter} 
+          zoom={13} 
           className="h-full w-full z-0"
-          style={{ background: 'linear-gradient(45deg, #1e293b, #334155)' }}
+          style={{ height: '100%', width: '100%', background: 'linear-gradient(45deg, #1e293b, #334155)' }}
         >
+          <ChangeMapView center={userLocation || mapCenter} />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           
-          {filteredRequests.map((req) =>
-            req.location?.lat && req.location?.lng ? (
-              <Marker key={req.id} position={[req.location.lat, req.location.lng]}>
+          {/* User location marker - Green pulsing circle */}
+          {userLocation && (
+            <CircleMarker 
+              center={userLocation} 
+              radius={12} 
+              pathOptions={{ 
+                color: '#22c55e', 
+                fillColor: '#22c55e', 
+                fillOpacity: 0.6,
+                weight: 3
+              }}
+            >
+              <Popup>
+                <div className="text-center p-2 max-w-[250px]">
+                  <span className="text-2xl">📍</span>
+                  <p className="font-bold text-gray-800 text-base mb-1">You are here</p>
+                  <p className="text-gray-600 text-sm leading-tight">{userAddress || 'Fetching address...'}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          )}
+          
+          {filteredRequests.map((req) => {
+            const latlng = extractLatLng(req);
+            if (!latlng) return null;
+            
+            return (
+              <Marker key={req._id || req.id} position={latlng}>
                 <Popup>
                   <div className="min-w-[250px] p-2">
                     {/* Category Badge */}
@@ -161,7 +263,7 @@ function MapView() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
-                      <span className="text-sm">{req.address}</span>
+                      <span className="text-sm">{req.location?.address || req.address || 'Address not provided'}</span>
                     </div>
                     
                     {/* Timestamp */}
@@ -169,19 +271,19 @@ function MapView() {
                       <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      {req.createdAt?.toDate().toLocaleDateString()}
+                      {req.createdAt ? new Date(req.createdAt).toLocaleDateString() : ''}
                     </div>
                   </div>
                 </Popup>
               </Marker>
-            ) : null
-          )}
+            );
+          })}
         </MapContainer>
       </div>
 
       {/* Legend */}
-      <div className="absolute bottom-6 right-6 z-[1000] bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl">
-        <h3 className="text-white font-semibold mb-2 text-sm">Map Legend</h3>
+      <div className="map-legend-box absolute bottom-6 right-6 z-[1000] bg-white rounded-2xl p-4 border border-gray-300 shadow-2xl">
+        <h3 className="font-bold mb-2 text-sm">Map Legend</h3>
         <div className="space-y-1">
           {categories.slice(1).map((category) => (
             <div key={category} className="flex items-center text-xs">
@@ -189,7 +291,7 @@ function MapView() {
                 className="w-3 h-3 rounded-full mr-2"
                 style={{ backgroundColor: getCategoryColor(category) }}
               ></div>
-              <span className="text-white/80">{category}</span>
+              <span>{category}</span>
             </div>
           ))}
         </div>

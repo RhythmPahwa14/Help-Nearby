@@ -61,9 +61,9 @@ function ViewRequests() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden -mt-16 pt-16">
       {/* Background with overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 z-10"></div>
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -72,7 +72,7 @@ function ViewRequests() {
       ></div>
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen pt-24 pb-8">
+      <div className="relative z-20 min-h-screen pt-24 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
@@ -109,8 +109,9 @@ function ViewRequests() {
                   className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                     filter === category
                       ? 'bg-green-600 text-white shadow-lg scale-105'
-                      : 'bg-white/10 text-white/80 hover:bg-white/20 backdrop-blur-md border border-white/20'
+                      : 'bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20'
                   }`}
+                  style={filter !== category ? { color: '#000000' } : {}}
                 >
                   {category === 'all' ? 'All Requests' : `${getCategoryIcon(category)} ${category}`}
                 </button>
@@ -140,7 +141,7 @@ function ViewRequests() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredRequests.map((req, index) => {
                 const isButtonDisabled = currentUser?.uid === req.requesterId;
                 const getButtonText = () => {
@@ -151,40 +152,40 @@ function ViewRequests() {
                 return (
                   <div 
                     key={req.id} 
-                    className="bg-white rounded-3xl p-6 shadow-2xl hover:scale-105 transition-all duration-300 group border border-gray-200 request-card"
+                    className="bg-white rounded-2xl p-4 shadow-xl hover:scale-[1.02] transition-all duration-300 group border border-gray-200 request-card"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Category Badge */}
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="bg-green-600 text-white text-sm font-bold px-4 py-2 rounded-xl">
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">
                         {getCategoryIcon(req.category)} {req.category}
                       </div>
-                      <div className="text-gray-500 text-sm request-date">
-                        {req.createdAt?.toDate().toLocaleDateString()}
+                      <div className="text-gray-500 text-xs request-date">
+                        {req.createdAt ? new Date(req.createdAt).toLocaleDateString() : ''}
                       </div>
                     </div>
 
                     {/* Card Content */}
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4 line-clamp-3 request-title">
+                    <div className="mb-3">
+                      <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2 request-title">
                         {req.description}
                       </h3>
                       
-                      <div className="flex items-start text-gray-700 mb-3 request-address">
-                        <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex items-start text-gray-700 mb-2 request-address">
+                        <svg className="w-4 h-4 mr-1.5 flex-shrink-0 mt-0.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span className="text-sm request-text">
+                        <span className="text-xs request-text line-clamp-2">
                           {req.address}
                         </span>
                       </div>
                       
-                      <div className="flex items-center text-gray-600 text-sm request-date">
-                        <svg className="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex items-center text-gray-600 text-xs request-date">
+                        <svg className="w-3.5 h-3.5 mr-1.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span className="request-text">Posted: {req.createdAt?.toDate().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</span>
+                        <span className="request-text">{req.createdAt ? new Date(req.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) : ''}</span>
                       </div>
                     </div>
 
@@ -192,15 +193,15 @@ function ViewRequests() {
                     <button
                       onClick={() => handleHelp(req.id, req.requesterId)}
                       disabled={isButtonDisabled}
-                      className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                      className={`w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${
                         isButtonDisabled
                           ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          : 'bg-green-600 text-white hover:bg-green-700 hover:scale-105 shadow-lg'
+                          : 'bg-green-600 text-white hover:bg-green-700 shadow-lg'
                       }`}
                     >
                       <span className="flex items-center justify-center">
                         {!isButtonDisabled && (
-                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                           </svg>
                         )}
