@@ -21,6 +21,7 @@ function HelpRequest() {
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState('Detecting your location...');
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const locationOptions = {
@@ -174,11 +175,14 @@ function HelpRequest() {
         location,
         address
       });
-      setStatus('Request posted successfully!');
+      setShowSuccess(true);
+      setStatus('✅ Help request posted successfully!');
       setDescription("");
       setCategory("General");
+      // Hide success message after 5 seconds
+      setTimeout(() => setShowSuccess(false), 5000);
     } catch (error) { 
-      setStatus('Failed to post request. Please try again.'); 
+      setStatus('❌ Failed to post request. Please try again.'); 
     }
     setIsLoading(false);
   };
@@ -217,6 +221,21 @@ function HelpRequest() {
               Let your community know how they can help you today
             </p>
           </div>
+
+          {/* Success Message */}
+          {showSuccess && (
+            <div className="mb-8 p-6 bg-green-500/20 border border-green-500/50 rounded-2xl backdrop-blur-md animate-pulse">
+              <div className="flex items-center justify-center">
+                <svg className="w-8 h-8 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h3 className="text-green-400 font-bold text-xl">Help Request Posted Successfully! 🎉</h3>
+                  <p className="text-green-300 text-sm">Your request is now visible to nearby helpers</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Form Section */}

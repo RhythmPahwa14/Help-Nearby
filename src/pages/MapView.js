@@ -13,13 +13,15 @@ L.Icon.Default.mergeOptions({
 });
 
 // Component to update map center when it changes
-function ChangeMapView({ center }) {
+function ChangeMapView({ center, userLocation }) {
   const map = useMap();
   useEffect(() => {
-    if (center) {
-      map.flyTo(center, 15, { duration: 1.5 });
+    // Prioritize user location, then center
+    const targetLocation = userLocation || center;
+    if (targetLocation) {
+      map.flyTo(targetLocation, 16, { duration: 1.5 });
     }
-  }, [center, map]);
+  }, [center, userLocation, map]);
   return null;
 }
 
@@ -203,11 +205,11 @@ function MapView() {
       <div className="absolute top-32 bottom-0 left-0 right-0">
         <MapContainer 
           center={mapCenter} 
-          zoom={13} 
+          zoom={16} 
           className="h-full w-full z-0"
           style={{ height: '100%', width: '100%', background: 'linear-gradient(45deg, #1e293b, #334155)' }}
         >
-          <ChangeMapView center={userLocation || mapCenter} />
+          <ChangeMapView center={mapCenter} userLocation={userLocation} />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
