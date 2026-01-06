@@ -18,8 +18,12 @@ function ChangeMapView({ userLocation }) {
   
   useEffect(() => {
     if (userLocation && userLocation[0] && userLocation[1]) {
-      // Fly to user location with zoom 16
-      map.flyTo(userLocation, 16, { duration: 2 });
+      // Small delay to ensure map is ready, then fly to user location
+      const timer = setTimeout(() => {
+        map.invalidateSize(); // Force map to recalculate size
+        map.flyTo(userLocation, 16, { duration: 1.5 });
+      }, 500);
+      return () => clearTimeout(timer);
     }
   }, [userLocation, map]);
   
