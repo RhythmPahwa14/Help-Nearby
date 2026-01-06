@@ -29,7 +29,6 @@ function ChangeMapView({ userLocation }) {
 function MapView() {
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [locationLoading, setLocationLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [mapCenter, setMapCenter] = useState([30.7333, 76.7794]);
   const [userLocation, setUserLocation] = useState(null);
@@ -95,12 +94,9 @@ function MapView() {
         },
         (err) => {
           console.log("Geolocation not available:", err);
-          setLocationLoading(false);
         },
-        { enableHighAccuracy: true, timeout: 10000 }
+        { enableHighAccuracy: true, timeout: 5000 }
       );
-    } else {
-      setLocationLoading(false);
     }
 
     // Fetch requests
@@ -142,12 +138,12 @@ function MapView() {
     return colors[category] || "#6b7280";
   };
 
-  if (isLoading || locationLoading) {
+  if (isLoading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-black/90 via-black/80 to-black/90">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-white/20 border-t-green-500 rounded-full animate-spin mx-auto mb-6"></div>
-          <p className="text-white text-xl">{locationLoading ? 'Getting your location...' : 'Loading Map...'}</p>
+          <p className="text-white text-xl">Loading Map...</p>
         </div>
       </div>
     );
