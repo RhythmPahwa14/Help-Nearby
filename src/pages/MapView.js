@@ -56,7 +56,6 @@ function MapView() {
           const { latitude, longitude } = pos.coords;
           setMapCenter([latitude, longitude]);
           setUserLocation([latitude, longitude]);
-          setLocationLoading(false);
           
           // Fetch address using free Nominatim API
           try {
