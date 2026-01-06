@@ -13,21 +13,23 @@ L.Icon.Default.mergeOptions({
 });
 
 // Component to update map center when it changes
-function ChangeMapView({ center, userLocation }) {
+function ChangeMapView({ userLocation }) {
   const map = useMap();
+  
   useEffect(() => {
-    // Prioritize user location, then center
-    const targetLocation = userLocation || center;
-    if (targetLocation) {
-      map.flyTo(targetLocation, 16, { duration: 1.5 });
+    if (userLocation && userLocation[0] && userLocation[1]) {
+      // Fly to user location with zoom 16
+      map.flyTo(userLocation, 16, { duration: 2 });
     }
-  }, [center, userLocation, map]);
+  }, [userLocation, map]);
+  
   return null;
 }
 
 function MapView() {
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [locationLoading, setLocationLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [mapCenter, setMapCenter] = useState([30.7333, 76.7794]);
   const [userLocation, setUserLocation] = useState(null);
@@ -55,6 +57,7 @@ function MapView() {
           const { latitude, longitude } = pos.coords;
           setMapCenter([latitude, longitude]);
           setUserLocation([latitude, longitude]);
+          setLocationLoading(false);
           
           // Fetch address using free Nominatim API
           try {
@@ -90,9 +93,14 @@ function MapView() {
             setUserAddress('Your location');
           }
         },
-        (err) => console.log("Geolocation not available:", err),
-        { enableHighAccuracy: true, timeout: 5000 }
+        (err) => {
+          console.log("Geolocation not available:", err);
+          setLocationLoading(false);
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
       );
+    } else {
+      setLocationLoading(false);
     }
 
     // Fetch requests
@@ -134,12 +142,12 @@ function MapView() {
     return colors[category] || "#6b7280";
   };
 
-  if (isLoading) {
+  if (isLoading || locationLoading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-black/90 via-black/80 to-black/90">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-white/20 border-t-green-500 rounded-full animate-spin mx-auto mb-6"></div>
-          <p className="text-white text-xl">Loading Map...</p>
+          <p className="text-white text-xl">{locationLoading ? 'Getting your location...' : 'Loading Map...'}</p>
         </div>
       </div>
     );
@@ -205,11 +213,11 @@ function MapView() {
       <div className="absolute top-32 bottom-0 left-0 right-0">
         <MapContainer 
           center={mapCenter} 
-          zoom={16} 
+          zoom={14} 
           className="h-full w-full z-0"
           style={{ height: '100%', width: '100%', background: 'linear-gradient(45deg, #1e293b, #334155)' }}
         >
-          <ChangeMapView center={mapCenter} userLocation={userLocation} />
+          <ChangeMapView userLocation={userLocation} />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
