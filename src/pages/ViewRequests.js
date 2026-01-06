@@ -177,7 +177,7 @@ function ViewRequests() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                         <span className="text-xs request-text line-clamp-2">
-                          {req.address}
+                          {req.location?.address || req.address || 'Location not specified'}
                         </span>
                       </div>
                       
