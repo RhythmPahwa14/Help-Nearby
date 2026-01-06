@@ -81,7 +81,7 @@ function HelpRequest() {
         let errorMessage = '';
         switch(error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = "🔒 Location blocked! Click the lock icon (🔒) in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
+            errorMessage = "Location blocked! Click the lock icon in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
             break;
           case error.POSITION_UNAVAILABLE:
             errorMessage = "Location information unavailable. Please try again.";
@@ -146,16 +146,16 @@ function HelpRequest() {
         let errorMessage = '';
         switch(error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = "🔒 Location blocked! Click the lock icon (🔒) in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
+            errorMessage = "Location blocked! Click the lock icon in address bar → Allow Location → Refresh page OR enter coordinates manually below.";
             break;
           case error.POSITION_UNAVAILABLE:
-            errorMessage = "📡 Location unavailable. Check your internet connection or enter location manually below.";
+            errorMessage = "Location unavailable. Check your internet connection or enter location manually below.";
             break;
           case error.TIMEOUT:
-            errorMessage = "⏰ Location timeout. Enter your coordinates manually below or try again.";
+            errorMessage = "Location timeout. Enter your coordinates manually below or try again.";
             break;
           default:
-            errorMessage = "❌ Auto-location failed. Please enter your location manually below.";
+            errorMessage = "Auto-location failed. Please enter your location manually below.";
             break;
         }
         setStatus(errorMessage);
@@ -176,13 +176,13 @@ function HelpRequest() {
         address
       });
       setShowSuccess(true);
-      setStatus('✅ Help request posted successfully!');
+      setStatus('Help request posted successfully!');
       setDescription("");
       setCategory("General");
       // Hide success message after 5 seconds
       setTimeout(() => setShowSuccess(false), 5000);
     } catch (error) { 
-      setStatus('❌ Failed to post request. Please try again.'); 
+      setStatus('Failed to post request. Please try again.'); 
     }
     setIsLoading(false);
   };
@@ -230,7 +230,7 @@ function HelpRequest() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="text-green-400 font-bold text-xl">Help Request Posted Successfully! 🎉</h3>
+                  <h3 className="text-green-400 font-bold text-xl">Help Request Posted Successfully!</h3>
                   <p className="text-green-300 text-sm">Your request is now visible to nearby helpers</p>
                 </div>
               </div>
