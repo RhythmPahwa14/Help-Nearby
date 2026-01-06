@@ -15,17 +15,34 @@ L.Icon.Default.mergeOptions({
 // Component to update map center when it changes
 function ChangeMapView({ userLocation }) {
   const map = useMap();
+  const [hasCentered, setHasCentered] = React.useState(false);
   
   useEffect(() => {
-    if (userLocation && userLocation[0] && userLocation[1]) {
-      // Small delay to ensure map is ready, then fly to user location
-      const timer = setTimeout(() => {
-        map.invalidateSize(); // Force map to recalculate size
-        map.flyTo(userLocation, 16, { duration: 1.5 });
-      }, 500);
-      return () => clearTimeout(timer);
+    if (userLocation && userLocation[0] && userLocation[1] && !hasCentered) {
+      // Multiple attempts to ensure map centers properly
+      const centerMap = () => {
+        map.invalidateSize();
+        map.setView(userLocation, 16, { animate: true });
+      };
+      
+      // Immediate attempt
+      centerMap();
+      
+      // Delayed attempts for reliability
+      const timer1 = setTimeout(centerMap, 300);
+      const timer2 = setTimeout(centerMap, 800);
+      const timer3 = setTimeout(() => {
+        centerMap();
+        setHasCentered(true);
+      }, 1500);
+      
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
     }
-  }, [userLocation, map]);
+  }, [userLocation, map, hasCentered]);
   
   return null;
 }
