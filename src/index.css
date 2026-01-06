@@ -4,9 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal overflow */
+html, body, #root {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+}
+
 /* Apply Open Sans font globally */
 * {
   font-family: 'Open Sans', sans-serif !important;
+  box-sizing: border-box;
 }
 
 body, html {
