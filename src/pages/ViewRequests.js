@@ -291,7 +291,7 @@ function ViewRequests() {
           ></div>
           
           {/* Modal Content */}
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all" style={{ backgroundColor: '#ffffff', opacity: 1 }}>
+          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all" style={{ backgroundColor: '#ffffff' }}>
             {/* Close Button */}
             <button
               onClick={closeModal}
