@@ -238,25 +238,6 @@ function AppContent() {
               <Route path="/map" element={<MapView />} />
             </Routes>
           </main>
-
-          {/* Footer */}
-          <footer className="w-full bg-black/10 backdrop-blur-sm border-t border-white/10">
-            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-              <div className="flex items-center justify-center h-16">
-                <p className="text-white text-sm">
-                  Made with ❤️ by{' '}
-                  <a 
-                    href="https://github.com/RhythmPahwa14" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-green-400 hover:text-green-300 transition-colors duration-200 font-medium"
-                  >
-                    Rhythm Pahwa
-                  </a>
-                </p>
-              </div>
-            </div>
-          </footer>
         </div>
       </Router>
     );
