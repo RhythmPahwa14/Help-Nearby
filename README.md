@@ -159,52 +159,19 @@ src/
 
 ## Data Models
 
-### User Schema
-```javascript
-{
-  name: String,
-  email: String (unique),
-  phone: String,
-  password: String (hashed),
-  role: Enum ['user', 'helper', 'admin'],
-  location: {
-    type: Point,
-    coordinates: [longitude, latitude],
-    address: String
-  },
-  profilePicture: String,
-  rating: Number,
-  totalHelps: Number
-}
-```
+### User
+- name, email, phone, password (hashed)
+- role: user, helper, admin
+- location with GeoJSON Point coordinates
+- profilePicture, rating, totalHelps
 
-### Help Request Schema
-```javascript
-{
-  user: ObjectId (ref: User),
-  title: String,
-  description: String,
-  category: Enum ['medical', 'emergency', 'transport', 'food', 'shelter', 'assistance', 'other'],
-  priority: Enum ['low', 'medium', 'high', 'critical'],
-  location: {
-    type: Point,
-    coordinates: [longitude, latitude],
-    address: String
-  },
-  status: Enum ['pending', 'accepted', 'in-progress', 'completed', 'cancelled'],
-  helper: ObjectId (ref: User),
-  helpOffers: [{
-    user: ObjectId,
-    name: String,
-    phone: String,
-    email: String,
-    message: String,
-    offeredAt: Date
-  }],
-  rating: Number,
-  feedback: String
-}
-```
+### Help Request
+- user, title, description
+- category: medical, emergency, transport, food, shelter, assistance, other
+- priority: low, medium, high, critical
+- location with GeoJSON Point coordinates
+- status: pending, accepted, in-progress, completed, cancelled
+- helper, helpOffers array, rating, feedback
 
 ## Deployment
 
