@@ -309,8 +309,8 @@ function ViewRequests() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold" style={{ color: '#000000' }}>Offer Help</h2>
-              <p className="mt-2 font-medium" style={{ color: '#000000' }}>Provide your contact details so the requester can reach you</p>
+              <h2 style={{ color: '#000000', fontWeight: 'bold', fontSize: '1.5rem' }}>Offer Help</h2>
+              <p style={{ color: '#000000', fontWeight: '500', marginTop: '0.5rem' }}>Provide your contact details so the requester can reach you</p>
             </div>
 
             {submitSuccess ? (
@@ -332,58 +332,54 @@ function ViewRequests() {
                 )}
 
                 <div>
-                  <label className="block text-sm font-semibold mb-1" style={{ color: '#000000' }}>
-                    Your Name <span className="text-red-500">*</span>
+                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
+                    Your Name <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <input
                     type="text"
                     value={offerForm.name}
                     onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
                     placeholder="Enter your name"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-1" style={{ color: '#000000' }}>
-                    Phone Number <span className="text-red-500">*</span>
+                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
+                    Phone Number <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <input
                     type="tel"
                     value={offerForm.phone}
                     onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
                     placeholder="Enter your phone number"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-1" style={{ color: '#000000' }}>
+                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
                     Email (Optional)
                   </label>
                   <input
                     type="email"
                     value={offerForm.email}
                     onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
                     placeholder="Enter your email"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-1" style={{ color: '#000000' }}>
+                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
                     Message (Optional)
                   </label>
                   <textarea
                     value={offerForm.message}
                     onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none"
-                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', resize: 'none' }}
                     rows="3"
                     placeholder="Add a message for the requester..."
                   ></textarea>
