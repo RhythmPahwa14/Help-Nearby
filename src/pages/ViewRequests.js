@@ -339,7 +339,7 @@ function ViewRequests() {
                     type="text"
                     value={offerForm.name}
                     onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
                     placeholder="Enter your name"
                     required
                   />
@@ -353,7 +353,7 @@ function ViewRequests() {
                     type="tel"
                     value={offerForm.phone}
                     onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
                     placeholder="Enter your phone number"
                     required
                   />
@@ -367,7 +367,7 @@ function ViewRequests() {
                     type="email"
                     value={offerForm.email}
                     onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
                     placeholder="Enter your email"
                   />
                 </div>
@@ -379,7 +379,7 @@ function ViewRequests() {
                   <textarea
                     value={offerForm.message}
                     onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', resize: 'none' }}
+                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', resize: 'none', outline: 'none' }}
                     rows="3"
                     placeholder="Add a message for the requester..."
                   ></textarea>
