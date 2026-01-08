@@ -39,13 +39,14 @@ function ViewRequests() {
     fetchRequests();
   }, []);
 
-  const handleHelp = async (requestId, requesterId, requestUserId) => {
+  const handleHelp = async (requestId, requestOwnerId) => {
     if (!currentUser) {
       alert("Please log in to offer help.");
       navigate("/login");
       return;
     }
-    if (currentUser.uid === requesterId || currentUser.uid === requestUserId) {
+    const currentUserId = currentUser.id || currentUser._id;
+    if (currentUserId === requestOwnerId) {
       alert("You cannot offer help on your own request.");
       return;
     }
@@ -193,9 +194,11 @@ function ViewRequests() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredRequests.map((req, index) => {
-                const isButtonDisabled = currentUser?.uid === req.requesterId || currentUser?.uid === req.user?._id || currentUser?.uid === req.user;
+                const requestOwnerId = req.user?._id || req.user || req.requesterId;
+                const currentUserId = currentUser?.id || currentUser?._id;
+                const isButtonDisabled = currentUserId && currentUserId === requestOwnerId;
                 const getButtonText = () => {
-                  if (currentUser?.uid === req.requesterId || currentUser?.uid === req.user?._id || currentUser?.uid === req.user) return 'Your Request';
+                  if (isButtonDisabled) return 'Your Request';
                   return 'Offer Help';
                 };
 
@@ -241,7 +244,7 @@ function ViewRequests() {
 
                     {/* Action Button */}
                     <button
-                      onClick={() => handleHelp(req.id || req._id, req.requesterId, req.user?._id || req.user)}
+                      onClick={() => handleHelp(req.id || req._id, requestOwnerId)}
                       disabled={isButtonDisabled}
                       className={`w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${
                         isButtonDisabled
