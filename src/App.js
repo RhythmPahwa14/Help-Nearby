@@ -221,7 +221,7 @@ function AppContent() {
             </div>
           )}
 
-          <main className="pt-16 pb-16">
+          <main className="pt-16">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -240,7 +240,7 @@ function AppContent() {
           </main>
 
           {/* Footer */}
-          <footer className="fixed bottom-0 left-0 w-full z-40 bg-black/10 backdrop-blur-sm border-t border-white/10">
+          <footer className="w-full bg-black/10 backdrop-blur-sm border-t border-white/10">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
               <div className="flex items-center justify-center h-16">
                 <p className="text-white text-sm">
