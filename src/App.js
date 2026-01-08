@@ -221,7 +221,7 @@ function AppContent() {
             </div>
           )}
 
-          <main className="pt-16">
+          <main className="pt-16 pb-16">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -238,6 +238,23 @@ function AppContent() {
               <Route path="/map" element={<MapView />} />
             </Routes>
           </main>
+
+          {/* Footer */}
+          <footer className="fixed bottom-0 left-0 w-full bg-black/10 backdrop-blur-sm border-t border-white/10 py-3 z-40">
+            <div className="text-center">
+              <p className="text-white text-sm">
+                Made with ❤️ by{' '}
+                <a 
+                  href="https://github.com/RhythmPahwa14" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-green-400 hover:text-green-300 transition-colors duration-200 font-medium"
+                >
+                  Rhythm Pahwa
+                </a>
+              </p>
+            </div>
+          </footer>
         </div>
       </Router>
     );
