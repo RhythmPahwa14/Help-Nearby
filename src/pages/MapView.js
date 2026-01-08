@@ -13,36 +13,31 @@ L.Icon.Default.mergeOptions({
 });
 
 // Component to update map center when it changes
-function ChangeMapView({ userLocation }) {
+function ChangeMapView({ userLocation, allMarkers }) {
   const map = useMap();
   const [hasCentered, setHasCentered] = React.useState(false);
   
   useEffect(() => {
-    if (userLocation && userLocation[0] && userLocation[1] && !hasCentered) {
-      // Multiple attempts to ensure map centers properly
-      const centerMap = () => {
-        map.invalidateSize();
-        map.setView(userLocation, 16, { animate: true });
-      };
+    if (!hasCentered && allMarkers && allMarkers.length > 0) {
+      map.invalidateSize();
       
-      // Immediate attempt
-      centerMap();
-      
-      // Delayed attempts for reliability
-      const timer1 = setTimeout(centerMap, 300);
-      const timer2 = setTimeout(centerMap, 800);
-      const timer3 = setTimeout(() => {
-        centerMap();
-        setHasCentered(true);
-      }, 1500);
-      
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-      };
+      // If we have markers, fit bounds to show all of them
+      if (allMarkers.length > 0) {
+        const bounds = L.latLngBounds(allMarkers);
+        
+        // Add padding to the bounds
+        map.fitBounds(bounds, {
+          padding: [50, 50],
+          maxZoom: 15,
+          animate: true
+        });
+        
+        setTimeout(() => {
+          setHasCentered(true);
+        }, 1000);
+      }
     }
-  }, [userLocation, map, hasCentered]);
+  }, [allMarkers, map, hasCentered]);
   
   return null;
 }
@@ -123,7 +118,9 @@ function MapView() {
     const fetchRequests = async () => {
       try {
         const allRequests = await requestsAPI.getRequests();
-        setRequests(allRequests.filter(req => req.status !== 'in-progress'));
+        console.log('Total requests fetched:', allRequests.length);
+        // Show all requests, not filtering by status
+        setRequests(allRequests);
       } catch (error) {
         console.error("Error fetching requests for map:", error);
       } finally {
@@ -229,11 +226,17 @@ function MapView() {
       <div className="absolute top-32 bottom-0 left-0 right-0">
         <MapContainer 
           center={mapCenter} 
-          zoom={14} 
+          zoom={13} 
           className="h-full w-full z-0"
           style={{ height: '100%', width: '100%', background: 'linear-gradient(45deg, #1e293b, #334155)' }}
         >
-          <ChangeMapView userLocation={userLocation} />
+          <ChangeMapView 
+            userLocation={userLocation} 
+            allMarkers={[
+              ...(userLocation ? [userLocation] : []),
+              ...filteredRequests.map(req => extractLatLng(req)).filter(pos => pos !== null)
+            ]}
+          />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -261,9 +264,14 @@ function MapView() {
             </CircleMarker>
           )}
           
-          {filteredRequests.map((req) => {
+          {filteredRequests.map((req, index) => {
             const latlng = extractLatLng(req);
-            if (!latlng) return null;
+            if (!latlng) {
+              console.log(`Request ${index + 1} (${req._id || req.id}) has no valid location:`, req.location);
+              return null;
+            }
+            
+            console.log(`Request ${index + 1} marker at:`, latlng, req.description);
             
             return (
               <Marker key={req._id || req.id} position={latlng}>
