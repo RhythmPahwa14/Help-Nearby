@@ -310,7 +310,7 @@ function ViewRequests() {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-black">Offer Help</h2>
-              <p className="text-gray-800 mt-2 font-medium">Provide your contact details so the requester can reach you</p>
+              <p className="text-black mt-2 font-medium">Provide your contact details so the requester can reach you</p>
             </div>
 
             {submitSuccess ? (
@@ -320,8 +320,8 @@ function ViewRequests() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-                <p className="text-gray-600">Your offer has been submitted successfully. The requester will contact you soon.</p>
+                <h3 className="text-xl font-bold text-black mb-2">Thank You!</h3>
+                <p className="text-black">Your offer has been submitted successfully. The requester will contact you soon.</p>
               </div>
             ) : (
               <form onSubmit={handleOfferSubmit} className="space-y-4">
@@ -339,7 +339,7 @@ function ViewRequests() {
                     type="text"
                     value={offerForm.name}
                     onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-600"
                     placeholder="Enter your name"
                     required
                   />
@@ -353,7 +353,7 @@ function ViewRequests() {
                     type="tel"
                     value={offerForm.phone}
                     onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-600"
                     placeholder="Enter your phone number"
                     required
                   />
@@ -367,7 +367,7 @@ function ViewRequests() {
                     type="email"
                     value={offerForm.email}
                     onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-black placeholder-gray-600"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -379,7 +379,7 @@ function ViewRequests() {
                   <textarea
                     value={offerForm.message}
                     onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none text-black placeholder-gray-600"
                     rows="3"
                     placeholder="Add a message for the requester..."
                   ></textarea>
