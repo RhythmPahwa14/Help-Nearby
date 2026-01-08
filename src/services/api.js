@@ -160,6 +160,16 @@ export const requestsAPI = {
       headers: getAuthHeaders()
     });
     return await handleResponse(response);
+  },
+
+  offerHelp: async (requestId, offerData) => {
+    const response = await fetch(`${API_BASE_URL}/help-requests/${requestId}/offer-help`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(offerData)
+    });
+    const data = await handleResponse(response);
+    return data;
   }
 };
 

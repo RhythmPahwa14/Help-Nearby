@@ -10,6 +10,19 @@ function ViewRequests() {
   const { user: currentUser } = useAuth();
   const navigate = useNavigate();
 
+  // Modal state for offer help
+  const [showOfferModal, setShowOfferModal] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [offerForm, setOfferForm] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const fetchRequests = async () => {
     setIsLoading(true);
     try {
@@ -26,24 +39,61 @@ function ViewRequests() {
     fetchRequests();
   }, []);
 
-  const handleHelp = async (requestId, requesterId) => {
+  const handleHelp = async (requestId, requesterId, requestUserId) => {
     if (!currentUser) {
       alert("Please log in to offer help.");
       navigate("/login");
       return;
     }
-    if (currentUser.uid === requesterId) {
-      alert("You cannot accept your own request.");
+    if (currentUser.uid === requesterId || currentUser.uid === requestUserId) {
+      alert("You cannot offer help on your own request.");
       return;
     }
-    try {
-      await requestsAPI.updateRequest(requestId, {
-        status: 'in-progress'
-      });
-      fetchRequests(); 
-    } catch (error) {
-      console.error("Error updating request:", error);
+    // Open the offer help modal instead of directly updating
+    const request = requests.find(r => r.id === requestId || r._id === requestId);
+    setSelectedRequest(request);
+    setOfferForm({
+      name: currentUser.name || '',
+      phone: currentUser.phone || '',
+      email: currentUser.email || '',
+      message: ''
+    });
+    setSubmitError('');
+    setSubmitSuccess(false);
+    setShowOfferModal(true);
+  };
+
+  const handleOfferSubmit = async (e) => {
+    e.preventDefault();
+    if (!offerForm.name || !offerForm.phone) {
+      setSubmitError('Please provide your name and phone number');
+      return;
     }
+    
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      const requestId = selectedRequest.id || selectedRequest._id;
+      await requestsAPI.offerHelp(requestId, offerForm);
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        setShowOfferModal(false);
+        setSubmitSuccess(false);
+        fetchRequests();
+      }, 2000);
+    } catch (error) {
+      setSubmitError(error.message || 'Failed to submit offer. Please try again.');
+    }
+    setIsSubmitting(false);
+  };
+
+  const closeModal = () => {
+    setShowOfferModal(false);
+    setSelectedRequest(null);
+    setOfferForm({ name: '', phone: '', email: '', message: '' });
+    setSubmitError('');
+    setSubmitSuccess(false);
   };
 
   const categories = ['all', 'General', 'Groceries', 'Medical', 'Transport', 'Household'];
@@ -143,10 +193,10 @@ function ViewRequests() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredRequests.map((req, index) => {
-                const isButtonDisabled = currentUser?.uid === req.requesterId;
+                const isButtonDisabled = currentUser?.uid === req.requesterId || currentUser?.uid === req.user?._id || currentUser?.uid === req.user;
                 const getButtonText = () => {
-                  if (currentUser?.uid === req.requesterId) return 'Your Request';
-                  return 'I Can Help';
+                  if (currentUser?.uid === req.requesterId || currentUser?.uid === req.user?._id || currentUser?.uid === req.user) return 'Your Request';
+                  return 'Offer Help';
                 };
 
                 return (
@@ -191,7 +241,7 @@ function ViewRequests() {
 
                     {/* Action Button */}
                     <button
-                      onClick={() => handleHelp(req.id, req.requesterId)}
+                      onClick={() => handleHelp(req.id || req._id, req.requesterId, req.user?._id || req.user)}
                       disabled={isButtonDisabled}
                       className={`w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${
                         isButtonDisabled
@@ -227,6 +277,142 @@ function ViewRequests() {
           )}
         </div>
       </div>
+
+      {/* Offer Help Modal */}
+      {showOfferModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={closeModal}
+          ></div>
+          
+          {/* Modal Content */}
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">Offer Help</h2>
+              <p className="text-gray-600 mt-2">Provide your contact details so the requester can reach you</p>
+            </div>
+
+            {submitSuccess ? (
+              <div className="text-center py-8">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                <p className="text-gray-600">Your offer has been submitted successfully. The requester will contact you soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleOfferSubmit} className="space-y-4">
+                {submitError && (
+                  <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
+                    {submitError}
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Your Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={offerForm.name}
+                    onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    value={offerForm.phone}
+                    onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email (Optional)
+                  </label>
+                  <input
+                    type="email"
+                    value={offerForm.email}
+                    onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Message (Optional)
+                  </label>
+                  <textarea
+                    value={offerForm.message}
+                    onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none"
+                    rows="3"
+                    placeholder="Add a message for the requester..."
+                  ></textarea>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 px-4 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Submitting...
+                      </span>
+                    ) : (
+                      'Submit Offer'
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
