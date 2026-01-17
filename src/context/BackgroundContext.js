@@ -46,7 +46,7 @@ const backgroundImages = [
 export const BackgroundProvider = ({ children }) => {
   const [currentBackground, setCurrentBackground] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true); // Enable auto-rotate by default
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded] = useState(true);
 
   // Save background preference
   useEffect(() => {
