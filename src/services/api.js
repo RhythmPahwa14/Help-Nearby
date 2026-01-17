@@ -200,4 +200,5 @@ export const getCurrentUser = () => {
   return user ? JSON.parse(user) : null;
 };
 
-export default { authAPI, requestsAPI, usersAPI };
+const api = { authAPI, requestsAPI, usersAPI };
+export default api;
