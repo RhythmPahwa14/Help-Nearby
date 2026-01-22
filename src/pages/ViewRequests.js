@@ -283,7 +283,7 @@ function ViewRequests() {
 
       {/* Offer Help Modal */}
       {showOfferModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ color: '#000', fontFamily: 'inherit', fontWeight: 'normal' }}>
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -291,7 +291,7 @@ function ViewRequests() {
           ></div>
           
           {/* Modal Content */}
-          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all" style={{ backgroundColor: '#ffffff' }}>
+          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all bg-white" style={{ color: '#000' }}>
             {/* Close Button */}
             <button
               onClick={closeModal}
@@ -309,8 +309,8 @@ function ViewRequests() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h2 style={{ color: '#000000', fontWeight: 'bold', fontSize: '1.5rem' }}>Offer Help</h2>
-              <p style={{ color: '#000000', fontWeight: '500', marginTop: '0.5rem' }}>Provide your contact details so the requester can reach you</p>
+              <h2 className="text-gray-900 font-bold text-2xl">Offer Help</h2>
+              <p className="text-gray-900 font-medium mt-2">Provide your contact details so the requester can reach you</p>
             </div>
 
             {submitSuccess ? (
@@ -320,8 +320,8 @@ function ViewRequests() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">Thank You!</h3>
-                <p className="text-black">Your offer has been submitted successfully. The requester will contact you soon.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                <p className="text-gray-900">Your offer has been submitted successfully. The requester will contact you soon.</p>
               </div>
             ) : (
               <form onSubmit={handleOfferSubmit} className="space-y-4">
@@ -332,54 +332,54 @@ function ViewRequests() {
                 )}
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
-                    Your Name <span style={{ color: '#dc2626' }}>*</span>
+                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                    Your Name <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
                     value={offerForm.name}
                     onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
+                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
                     placeholder="Enter your name"
                     required
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
-                    Phone Number <span style={{ color: '#dc2626' }}>*</span>
+                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                    Phone Number <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="tel"
                     value={offerForm.phone}
                     onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
+                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
                     placeholder="Enter your phone number"
                     required
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
+                  <label className="block text-sm font-bold text-gray-900 mb-1">
                     Email (Optional)
                   </label>
                   <input
                     type="email"
                     value={offerForm.email}
                     onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', outline: 'none' }}
+                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
                     placeholder="Enter your email"
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#000000', marginBottom: '0.25rem' }}>
+                  <label className="block text-sm font-bold text-gray-900 mb-1">
                     Message (Optional)
                   </label>
                   <textarea
                     value={offerForm.message}
                     onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    style={{ width: '100%', padding: '0.75rem 1rem', border: '2px solid #16a34a', borderRadius: '0.5rem', color: '#000000', backgroundColor: '#ffffff', fontWeight: '600', resize: 'none', outline: 'none' }}
+                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold resize-none outline-none"
                     rows="3"
                     placeholder="Add a message for the requester..."
                   ></textarea>
@@ -389,8 +389,7 @@ function ViewRequests() {
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="flex-1 px-4 py-3 border border-gray-400 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
-                    style={{ color: '#000000' }}
+                    className="flex-1 px-4 py-3 border border-gray-400 font-semibold rounded-lg hover:bg-gray-100 transition-colors text-gray-900"
                   >
                     Cancel
                   </button>
