@@ -283,19 +283,20 @@ function ViewRequests() {
 
       {/* Offer Help Modal */}
       {showOfferModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ color: '#000', fontFamily: 'inherit', fontWeight: 'normal' }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             onClick={closeModal}
           ></div>
           
           {/* Modal Content */}
-          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all bg-white" style={{ color: '#000' }}>
+          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all bg-white border-4 border-green-500">
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-10 bg-gray-100 hover:bg-gray-200 rounded-full p-2"
+              aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -303,100 +304,104 @@ function ViewRequests() {
             </button>
 
             {/* Header */}
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center mb-8">
+              <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h2 className="text-gray-900 font-bold text-2xl">Offer Help</h2>
-              <p className="text-gray-900 font-medium mt-2">Provide your contact details so the requester can reach you</p>
+              <h2 className="text-gray-900 font-bold text-3xl mb-2">Offer Help</h2>
+              <p className="text-gray-700 font-medium text-base">Provide your contact details so the requester can reach you</p>
             </div>
 
             {submitSuccess ? (
               <div className="text-center py-8">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-                <p className="text-gray-900">Your offer has been submitted successfully. The requester will contact you soon.</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Thank You!</h3>
+                <p className="text-gray-700 text-lg">Your offer has been submitted successfully. The requester will contact you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleOfferSubmit} className="space-y-4">
+              <form onSubmit={handleOfferSubmit} className="space-y-5">
                 {submitError && (
-                  <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
+                  <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-lg text-sm font-semibold">
                     {submitError}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                  <label className="block text-base font-bold text-gray-900 mb-2">
                     Your Name <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
                     value={offerForm.name}
                     onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
+                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
                     placeholder="Enter your name"
                     required
+                    style={{ color: '#1a1a1a' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                  <label className="block text-base font-bold text-gray-900 mb-2">
                     Phone Number <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="tel"
                     value={offerForm.phone}
                     onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
+                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
                     placeholder="Enter your phone number"
                     required
+                    style={{ color: '#1a1a1a' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                  <label className="block text-base font-bold text-gray-900 mb-2">
                     Email (Optional)
                   </label>
                   <input
                     type="email"
                     value={offerForm.email}
                     onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold outline-none"
+                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
                     placeholder="Enter your email"
+                    style={{ color: '#1a1a1a' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">
+                  <label className="block text-base font-bold text-gray-900 mb-2">
                     Message (Optional)
                   </label>
                   <textarea
                     value={offerForm.message}
                     onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-green-600 rounded-lg text-gray-900 bg-white font-semibold resize-none outline-none"
-                    rows="3"
+                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium resize-none focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
+                    rows="4"
                     placeholder="Add a message for the requester..."
+                    style={{ color: '#1a1a1a' }}
                   ></textarea>
                 </div>
 
-                <div className="flex gap-3 pt-4">
+                <div className="flex gap-4 pt-4">
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="flex-1 px-4 py-3 border border-gray-400 font-semibold rounded-lg hover:bg-gray-100 transition-colors text-gray-900"
+                    className="flex-1 px-6 py-3 border-2 border-gray-500 font-bold rounded-lg hover:bg-gray-100 transition-colors text-gray-900 text-base shadow-md"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 px-4 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-md"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center">
