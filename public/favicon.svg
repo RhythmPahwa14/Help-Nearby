@@ -1,0 +1,7 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+  <rect width='64' height='64' fill='#16a34a'/>
+  <path d='M20 28c-1 0-2 1-2 2v8c0 1 1 2 2 2h2l2 6c0.5 1 1.5 2 2.5 2h3c1 0 2-1 2-2v-2h4v2c0 1 1 2 2 2h3c1 0 2-1 2.5-2l2-6h2c1 0 2-1 2-2v-8c0-1-1-2-2-2h-6c-1-2-3-4-5-4h-4c-2 0-4 2-5 4h-6z' fill='white' opacity='0.95'/>
+  <ellipse cx='28' cy='26' rx='4' ry='3' fill='#fbbf24'/>
+  <ellipse cx='36' cy='26' rx='4' ry='3' fill='#fbbf24'/>
+  <path d='M26 30c0 0 2 2 6 2s6-2 6-2' stroke='#16a34a' stroke-width='1.5' fill='none' stroke-linecap='round'/>
+</svg>
