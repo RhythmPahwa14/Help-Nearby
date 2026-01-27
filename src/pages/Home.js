@@ -9,12 +9,9 @@ function Home() {
   const { getCurrentBackground } = useBackground();
   const currentBg = getCurrentBackground();
   const [isVisible, setIsVisible] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
-    const timer = setTimeout(() => setStatsVisible(true), 500);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
