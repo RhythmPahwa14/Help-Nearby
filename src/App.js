@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import { useAuth } from "./contexts/AuthContextNew";
+import { useAuth } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
 
-import { AuthProvider } from "./contexts/AuthContextNew";
+import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Home from "./pages/Home";
 import HelpRequest from "./pages/HelpRequest";
