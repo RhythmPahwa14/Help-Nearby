@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import { useAuth } from "./context/AuthContext";
+import { useAuth, AuthProvider } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
-
-import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { BackgroundProvider } from "./context/BackgroundContext";
 import Home from "./pages/Home";
 import HelpRequest from "./pages/HelpRequest";
 import ViewRequests from "./pages/ViewRequests";
@@ -17,14 +16,16 @@ function App() {
   return (
     <AuthProvider>
       <ThemeProvider>
-        <AppContent />
+        <BackgroundProvider>
+          <AppContent />
+        </BackgroundProvider>
       </ThemeProvider>
     </AuthProvider>
   );
 }
 
 function AppContent() {
-  const { user: currentUser, logout } = useAuth();
+  const { user: currentUser, logout, loading } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Using dark theme only
@@ -34,6 +35,15 @@ function AppContent() {
   const handleLogout = () => {
     logout();
   };
+
+  // Show loading screen while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <Router>
