@@ -6,6 +6,60 @@ body {
   color: #333333;
 }
 
+/* ===== OFFER HELP MODAL FIX ===== */
+/* Ensure all input/textarea text is solid black */
+input,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Placeholder styling - visible gray */
+::placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+}
+
+::-webkit-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+}
+
+::-moz-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+/* Labels always visible and bold */
+label {
+  color: #000000 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
+/* Fix autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+/* ===== END MODAL FIX ===== */
+
 /* --- Navigation Bar --- */
 .navbar {
   background-color: #2f556b; /* Olive Green */

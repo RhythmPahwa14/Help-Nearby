@@ -4,6 +4,64 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix placeholder text visibility */
+::placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+}
+
+::-webkit-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+}
+
+:-ms-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+::-moz-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+/* Ensure input text is solid black */
+input,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  caret-color: #000000 !important;
+}
+
+/* Keep placeholder gray while typed text is black */
+input:not(:placeholder-shown),
+textarea:not(:placeholder-shown) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+/* Fix for autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Ensure labels are fully visible */
+label {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
 /* Prevent horizontal overflow */
 html, body, #root {
   overflow-x: hidden !important;
