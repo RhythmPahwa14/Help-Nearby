@@ -281,143 +281,278 @@ function ViewRequests() {
         </div>
       </div>
 
-      {/* Offer Help Modal */}
       {showOfferModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/70"
-            onClick={closeModal}
-          ></div>
-          
-          {/* Modal Content */}
-          <div 
-            className="relative w-full max-w-lg mx-auto rounded-3xl shadow-2xl overflow-hidden"
-            style={{ 
-              background: 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)',
-              border: '3px solid #16a34a'
-            }}
-          >
-            {/* Green Header Banner */}
-            <div className="bg-gradient-to-r from-green-600 to-green-500 px-6 py-5 text-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+          padding: '16px'
+        }}>
+          <div style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '16px',
+            width: '100%',
+            maxWidth: '450px',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+            overflow: 'hidden'
+          }}>
+            {/* Header */}
+            <div style={{
+              backgroundColor: '#16a34a',
+              padding: '24px',
+              textAlign: 'center',
+              position: 'relative'
+            }}>
+              <button
+                onClick={closeModal}
+                style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '12px',
+                  backgroundColor: 'rgba(255,255,255,0.2)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontSize: '20px'
+                }}
+              >
+                ✕
+              </button>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                backgroundColor: '#ffffff',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px',
+                fontSize: '28px'
+              }}>
+                💚
               </div>
-              <h2 className="text-white font-bold text-2xl mb-1">Offer Your Help</h2>
-              <p className="text-green-100 text-sm">Share your contact details with the requester</p>
+              <h2 style={{
+                color: '#ffffff',
+                fontSize: '24px',
+                fontWeight: 'bold',
+                margin: '0 0 4px 0'
+              }}>Offer Your Help</h2>
+              <p style={{
+                color: 'rgba(255,255,255,0.9)',
+                fontSize: '14px',
+                margin: 0
+              }}>Share your contact details with the requester</p>
             </div>
 
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white hover:text-green-200 transition-colors z-10 bg-green-700/50 hover:bg-green-700 rounded-full p-1.5"
-              aria-label="Close modal"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Form Content */}
-            <div className="px-6 py-6">
+            {/* Body */}
+            <div style={{ padding: '24px', backgroundColor: '#ffffff' }}>
               {submitSuccess ? (
-                <div className="text-center py-6">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5 border-4 border-green-500">
-                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
+                <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    backgroundColor: '#dcfce7',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 16px',
+                    fontSize: '40px',
+                    border: '4px solid #22c55e'
+                  }}>
+                    ✓
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h3>
-                  <p className="text-gray-600 text-base">Your offer has been submitted successfully.<br/>The requester will contact you soon.</p>
+                  <h3 style={{ color: '#111827', fontSize: '22px', fontWeight: 'bold', margin: '0 0 8px 0' }}>
+                    Thank You!
+                  </h3>
+                  <p style={{ color: '#374151', fontSize: '15px', margin: 0 }}>
+                    Your offer has been submitted successfully.<br/>The requester will contact you soon.
+                  </p>
                 </div>
               ) : (
-                <form onSubmit={handleOfferSubmit} className="space-y-4">
+                <form onSubmit={handleOfferSubmit}>
                   {submitError && (
-                    <div className="bg-red-50 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-r-lg text-sm font-medium">
+                    <div style={{
+                      backgroundColor: '#fef2f2',
+                      border: '1px solid #fecaca',
+                      borderRadius: '8px',
+                      padding: '12px',
+                      marginBottom: '16px',
+                      color: '#dc2626',
+                      fontSize: '14px'
+                    }}>
                       ⚠️ {submitError}
                     </div>
                   )}
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
-                      Your Name <span className="text-red-500">*</span>
+                  <div style={{ marginBottom: '16px' }}>
+                    <label style={{
+                      display: 'block',
+                      color: '#111827',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      marginBottom: '6px'
+                    }}>
+                      Your Name <span style={{ color: '#dc2626' }}>*</span>
                     </label>
                     <input
                       type="text"
                       value={offerForm.name}
                       onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
                       placeholder="Enter your full name"
                       required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        border: '2px solid #d1d5db',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        color: '#111827',
+                        backgroundColor: '#ffffff',
+                        boxSizing: 'border-box',
+                        outline: 'none'
+                      }}
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
-                      Phone Number <span className="text-red-500">*</span>
+                  <div style={{ marginBottom: '16px' }}>
+                    <label style={{
+                      display: 'block',
+                      color: '#111827',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      marginBottom: '6px'
+                    }}>
+                      Phone Number <span style={{ color: '#dc2626' }}>*</span>
                     </label>
                     <input
                       type="tel"
                       value={offerForm.phone}
                       onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
                       placeholder="Enter your phone number"
                       required
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        border: '2px solid #d1d5db',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        color: '#111827',
+                        backgroundColor: '#ffffff',
+                        boxSizing: 'border-box',
+                        outline: 'none'
+                      }}
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
-                      Email <span className="text-gray-400 font-normal">(Optional)</span>
+                  <div style={{ marginBottom: '16px' }}>
+                    <label style={{
+                      display: 'block',
+                      color: '#111827',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      marginBottom: '6px'
+                    }}>
+                      Email <span style={{ color: '#6b7280', fontWeight: 'normal' }}>(Optional)</span>
                     </label>
                     <input
                       type="email"
                       value={offerForm.email}
                       onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
                       placeholder="Enter your email address"
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        border: '2px solid #d1d5db',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        color: '#111827',
+                        backgroundColor: '#ffffff',
+                        boxSizing: 'border-box',
+                        outline: 'none'
+                      }}
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
-                      Message <span className="text-gray-400 font-normal">(Optional)</span>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{
+                      display: 'block',
+                      color: '#111827',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      marginBottom: '6px'
+                    }}>
+                      Message <span style={{ color: '#6b7280', fontWeight: 'normal' }}>(Optional)</span>
                     </label>
                     <textarea
                       value={offerForm.message}
                       onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base resize-none focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
-                      rows="3"
                       placeholder="Add a message for the requester..."
-                    ></textarea>
+                      rows="3"
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        border: '2px solid #d1d5db',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        color: '#111827',
+                        backgroundColor: '#ffffff',
+                        boxSizing: 'border-box',
+                        outline: 'none',
+                        resize: 'none',
+                        fontFamily: 'inherit'
+                      }}
+                    />
                   </div>
 
-                  <div className="flex gap-3 pt-3">
+                  <div style={{ display: 'flex', gap: '12px' }}>
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="flex-1 px-5 py-3 bg-gray-100 border-2 border-gray-300 font-semibold rounded-xl hover:bg-gray-200 transition-all text-gray-700 text-base"
+                      style={{
+                        flex: 1,
+                        padding: '14px 20px',
+                        backgroundColor: '#f3f4f6',
+                        border: '2px solid #d1d5db',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        color: '#374151',
+                        cursor: 'pointer'
+                      }}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex-1 px-5 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-lg shadow-green-200"
+                      style={{
+                        flex: 1,
+                        padding: '14px 20px',
+                        backgroundColor: '#16a34a',
+                        border: 'none',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        color: '#ffffff',
+                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        opacity: isSubmitting ? 0.7 : 1
+                      }}
                     >
-                      {isSubmitting ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Submitting...
-                        </span>
-                      ) : (
-                        '💚 Submit Offer'
-                      )}
+                      {isSubmitting ? 'Submitting...' : '💚 Submit Offer'}
                     </button>
                   </div>
                 </form>
