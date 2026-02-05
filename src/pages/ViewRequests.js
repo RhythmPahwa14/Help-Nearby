@@ -286,138 +286,143 @@ function ViewRequests() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70"
             onClick={closeModal}
           ></div>
           
           {/* Modal Content */}
-          <div className="relative rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all bg-white border-4 border-green-500">
+          <div 
+            className="relative w-full max-w-lg mx-auto rounded-3xl shadow-2xl overflow-hidden"
+            style={{ 
+              background: 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)',
+              border: '3px solid #16a34a'
+            }}
+          >
+            {/* Green Header Banner */}
+            <div className="bg-gradient-to-r from-green-600 to-green-500 px-6 py-5 text-center">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h2 className="text-white font-bold text-2xl mb-1">Offer Your Help</h2>
+              <p className="text-green-100 text-sm">Share your contact details with the requester</p>
+            </div>
+
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-10 bg-gray-100 hover:bg-gray-200 rounded-full p-2"
+              className="absolute top-4 right-4 text-white hover:text-green-200 transition-colors z-10 bg-green-700/50 hover:bg-green-700 rounded-full p-1.5"
               aria-label="Close modal"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            {/* Header */}
-            <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h2 className="text-gray-900 font-bold text-3xl mb-2">Offer Help</h2>
-              <p className="text-gray-700 font-medium text-base">Provide your contact details so the requester can reach you</p>
-            </div>
-
-            {submitSuccess ? (
-              <div className="text-center py-8">
-                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Thank You!</h3>
-                <p className="text-gray-700 text-lg">Your offer has been submitted successfully. The requester will contact you soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleOfferSubmit} className="space-y-5">
-                {submitError && (
-                  <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-lg text-sm font-semibold">
-                    {submitError}
+            {/* Form Content */}
+            <div className="px-6 py-6">
+              {submitSuccess ? (
+                <div className="text-center py-6">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5 border-4 border-green-500">
+                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                )}
-
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">
-                    Your Name <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    value={offerForm.name}
-                    onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
-                    placeholder="Enter your name"
-                    required
-                    style={{ color: '#1a1a1a' }}
-                  />
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h3>
+                  <p className="text-gray-600 text-base">Your offer has been submitted successfully.<br/>The requester will contact you soon.</p>
                 </div>
+              ) : (
+                <form onSubmit={handleOfferSubmit} className="space-y-4">
+                  {submitError && (
+                    <div className="bg-red-50 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-r-lg text-sm font-medium">
+                      ⚠️ {submitError}
+                    </div>
+                  )}
 
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">
-                    Phone Number <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    value={offerForm.phone}
-                    onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
-                    placeholder="Enter your phone number"
-                    required
-                    style={{ color: '#1a1a1a' }}
-                  />
-                </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                      Your Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={offerForm.name}
+                      onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">
-                    Email (Optional)
-                  </label>
-                  <input
-                    type="email"
-                    value={offerForm.email}
-                    onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
-                    placeholder="Enter your email"
-                    style={{ color: '#1a1a1a' }}
-                  />
-                </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                      Phone Number <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={offerForm.phone}
+                      onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
+                      placeholder="Enter your phone number"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">
-                    Message (Optional)
-                  </label>
-                  <textarea
-                    value={offerForm.message}
-                    onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
-                    className="w-full px-4 py-3 border-2 border-gray-400 rounded-lg text-gray-900 bg-white font-medium resize-none focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none transition-all placeholder-gray-500"
-                    rows="4"
-                    placeholder="Add a message for the requester..."
-                    style={{ color: '#1a1a1a' }}
-                  ></textarea>
-                </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                      Email <span className="text-gray-400 font-normal">(Optional)</span>
+                    </label>
+                    <input
+                      type="email"
+                      value={offerForm.email}
+                      onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
 
-                <div className="flex gap-4 pt-4">
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="flex-1 px-6 py-3 border-2 border-gray-500 font-bold rounded-lg hover:bg-gray-100 transition-colors text-gray-900 text-base shadow-md"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-md"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Submitting...
-                      </span>
-                    ) : (
-                      'Submit Offer'
-                    )}
-                  </button>
-                </div>
-              </form>
-            )}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                      Message <span className="text-gray-400 font-normal">(Optional)</span>
+                    </label>
+                    <textarea
+                      value={offerForm.message}
+                      onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 font-medium text-base resize-none focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition-all"
+                      rows="3"
+                      placeholder="Add a message for the requester..."
+                    ></textarea>
+                  </div>
+
+                  <div className="flex gap-3 pt-3">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="flex-1 px-5 py-3 bg-gray-100 border-2 border-gray-300 font-semibold rounded-xl hover:bg-gray-200 transition-all text-gray-700 text-base"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="flex-1 px-5 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-lg shadow-green-200"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Submitting...
+                        </span>
+                      ) : (
+                        '💚 Submit Offer'
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       )}
