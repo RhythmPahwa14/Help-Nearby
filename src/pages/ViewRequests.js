@@ -521,7 +521,10 @@ function ViewRequests() {
                         outline: 'none',
                         resize: 'none',
                         fontFamily: 'inherit',
-                        opacity: 1
+                        opacity: 1,
+                        position: 'relative',
+                        zIndex: 1,
+                        pointerEvents: 'auto'
                       }}
                     />
                   </div>
