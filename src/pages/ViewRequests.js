@@ -401,10 +401,11 @@ function ViewRequests() {
                   <div style={{ marginBottom: '16px' }}>
                     <label style={{
                       display: 'block',
-                      color: '#111827',
+                      color: '#000000',
                       fontSize: '14px',
-                      fontWeight: '600',
-                      marginBottom: '6px'
+                      fontWeight: '700',
+                      marginBottom: '6px',
+                      opacity: 1
                     }}>
                       Your Name <span style={{ color: '#dc2626' }}>*</span>
                     </label>
@@ -417,13 +418,14 @@ function ViewRequests() {
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid #d1d5db',
+                        border: '2px solid #6b7280',
                         borderRadius: '10px',
                         fontSize: '15px',
-                        color: '#111827',
+                        color: '#000000',
                         backgroundColor: '#ffffff',
                         boxSizing: 'border-box',
-                        outline: 'none'
+                        outline: 'none',
+                        opacity: 1
                       }}
                     />
                   </div>
@@ -431,10 +433,11 @@ function ViewRequests() {
                   <div style={{ marginBottom: '16px' }}>
                     <label style={{
                       display: 'block',
-                      color: '#111827',
+                      color: '#000000',
                       fontSize: '14px',
-                      fontWeight: '600',
-                      marginBottom: '6px'
+                      fontWeight: '700',
+                      marginBottom: '6px',
+                      opacity: 1
                     }}>
                       Phone Number <span style={{ color: '#dc2626' }}>*</span>
                     </label>
@@ -447,13 +450,14 @@ function ViewRequests() {
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid #d1d5db',
+                        border: '2px solid #6b7280',
                         borderRadius: '10px',
                         fontSize: '15px',
-                        color: '#111827',
+                        color: '#000000',
                         backgroundColor: '#ffffff',
                         boxSizing: 'border-box',
-                        outline: 'none'
+                        outline: 'none',
+                        opacity: 1
                       }}
                     />
                   </div>
@@ -461,10 +465,11 @@ function ViewRequests() {
                   <div style={{ marginBottom: '16px' }}>
                     <label style={{
                       display: 'block',
-                      color: '#111827',
+                      color: '#000000',
                       fontSize: '14px',
-                      fontWeight: '600',
-                      marginBottom: '6px'
+                      fontWeight: '700',
+                      marginBottom: '6px',
+                      opacity: 1
                     }}>
                       Email <span style={{ color: '#6b7280', fontWeight: 'normal' }}>(Optional)</span>
                     </label>
@@ -476,13 +481,14 @@ function ViewRequests() {
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid #d1d5db',
+                        border: '2px solid #6b7280',
                         borderRadius: '10px',
                         fontSize: '15px',
-                        color: '#111827',
+                        color: '#000000',
                         backgroundColor: '#ffffff',
                         boxSizing: 'border-box',
-                        outline: 'none'
+                        outline: 'none',
+                        opacity: 1
                       }}
                     />
                   </div>
@@ -490,10 +496,11 @@ function ViewRequests() {
                   <div style={{ marginBottom: '20px' }}>
                     <label style={{
                       display: 'block',
-                      color: '#111827',
+                      color: '#000000',
                       fontSize: '14px',
-                      fontWeight: '600',
-                      marginBottom: '6px'
+                      fontWeight: '700',
+                      marginBottom: '6px',
+                      opacity: 1
                     }}>
                       Message <span style={{ color: '#6b7280', fontWeight: 'normal' }}>(Optional)</span>
                     </label>
@@ -505,15 +512,16 @@ function ViewRequests() {
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid #d1d5db',
+                        border: '2px solid #6b7280',
                         borderRadius: '10px',
                         fontSize: '15px',
-                        color: '#111827',
+                        color: '#000000',
                         backgroundColor: '#ffffff',
                         boxSizing: 'border-box',
                         outline: 'none',
                         resize: 'none',
-                        fontFamily: 'inherit'
+                        fontFamily: 'inherit',
+                        opacity: 1
                       }}
                     />
                   </div>
@@ -525,12 +533,12 @@ function ViewRequests() {
                       style={{
                         flex: 1,
                         padding: '14px 20px',
-                        backgroundColor: '#f3f4f6',
-                        border: '2px solid #d1d5db',
+                        backgroundColor: '#e5e7eb',
+                        border: '2px solid #9ca3af',
                         borderRadius: '10px',
                         fontSize: '15px',
-                        fontWeight: '600',
-                        color: '#374151',
+                        fontWeight: '700',
+                        color: '#000000',
                         cursor: 'pointer'
                       }}
                     >
