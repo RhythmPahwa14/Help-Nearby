@@ -415,6 +415,7 @@ function ViewRequests() {
                       onChange={(e) => setOfferForm({ ...offerForm, name: e.target.value })}
                       placeholder="Enter your full name"
                       required
+                      className="modal-input"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -447,6 +448,7 @@ function ViewRequests() {
                       onChange={(e) => setOfferForm({ ...offerForm, phone: e.target.value })}
                       placeholder="Enter your phone number"
                       required
+                      className="modal-input"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -478,6 +480,7 @@ function ViewRequests() {
                       value={offerForm.email}
                       onChange={(e) => setOfferForm({ ...offerForm, email: e.target.value })}
                       placeholder="Enter your email address"
+                      className="modal-input"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -509,6 +512,7 @@ function ViewRequests() {
                       onChange={(e) => setOfferForm({ ...offerForm, message: e.target.value })}
                       placeholder="Add a message for the requester..."
                       rows="3"
+                      className="modal-input"
                       style={{
                         width: '100%',
                         padding: '12px 16px',

@@ -6,46 +6,42 @@ body {
   color: #333333;
 }
 
-/* ===== OFFER HELP MODAL FIX ===== */
-/* Ensure all input/textarea text is solid black */
-input,
-textarea,
-input[type="text"],
-input[type="email"],
-input[type="tel"] {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  opacity: 1 !important;
-}
+/* ===== FIX OFFER HELP MODAL TEXT VISIBILITY ===== */
 
-/* Placeholder styling - visible gray */
-::placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-  -webkit-text-fill-color: #6b7280 !important;
-}
-
-::-webkit-input-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-  -webkit-text-fill-color: #6b7280 !important;
-}
-
-::-moz-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-}
-
-:-ms-input-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-}
-
-/* Labels always visible and bold */
+/* Labels */
 label {
-  color: #000000 !important;
+  color: #111827 !important;
   opacity: 1 !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+}
+
+/* Input & textarea text - only for white background inputs */
+.modal-input,
+input.modal-input,
+textarea.modal-input {
+  color: #111827 !important;
+  opacity: 1 !important;
+}
+
+/* Placeholder text for modal inputs */
+.modal-input::placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+.modal-input::-webkit-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+.modal-input:-ms-input-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+.modal-input::-moz-placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
 }
 
 /* Fix autofill styling */
@@ -53,11 +49,33 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-text-fill-color: #000000 !important;
-  color: #000000 !important;
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
   background-color: #ffffff !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* LOGIN PAGE - Keep white placeholders consistent */
+.placeholder-white\/60::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important;
+}
+
+.placeholder-white\/60::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important;
+}
+
+.placeholder-white\/60:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important;
+}
+
+.placeholder-white\/60::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important;
+}
+
 /* ===== END MODAL FIX ===== */
 
 /* --- Navigation Bar --- */
