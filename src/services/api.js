@@ -1,11 +1,12 @@
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
 const handleResponse = async (response) => {
+  const clonedResponse = response.clone();
   let data;
   try {
     data = await response.json();
   } catch (err) {
-    const text = await response.text();
+    const text = await clonedResponse.text();
     throw new Error(`Invalid JSON response (status ${response.status}): ${text.slice(0, 200)}`);
   }
 
@@ -116,10 +117,11 @@ export const requestsAPI = {
     return data.data || [];
   },
 
-  acceptRequest: async (requestId) => {
+  acceptRequest: async (requestId, offerData) => {
     const response = await fetch(`${API_BASE_URL}/help-requests/${requestId}/accept`, {
       method: 'PUT',
-      headers: getAuthHeaders()
+      headers: getAuthHeaders(),
+      body: JSON.stringify(offerData)
     });
     const data = await handleResponse(response);
     return data.data;
@@ -163,8 +165,8 @@ export const requestsAPI = {
   },
 
   offerHelp: async (requestId, offerData) => {
-    const response = await fetch(`${API_BASE_URL}/help-requests/${requestId}/offer-help`, {
-      method: 'POST',
+    const response = await fetch(`${API_BASE_URL}/help-requests/${requestId}/accept`, {
+      method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify(offerData)
     });
