@@ -4,46 +4,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix placeholder text visibility */
+/* Fix placeholder text visibility - default for light backgrounds */
 ::placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-  -webkit-text-fill-color: #6b7280 !important;
+  color: #6b7280;
+  opacity: 1;
+  -webkit-text-fill-color: #6b7280;
 }
 
 ::-webkit-input-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
-  -webkit-text-fill-color: #6b7280 !important;
+  color: #6b7280;
+  opacity: 1;
+  -webkit-text-fill-color: #6b7280;
 }
 
 :-ms-input-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
+  color: #6b7280;
+  opacity: 1;
 }
 
 ::-moz-placeholder {
-  color: #6b7280 !important;
-  opacity: 1 !important;
+  color: #6b7280;
+  opacity: 1;
 }
 
-/* Ensure input text is solid black */
+/* Ensure input text is solid black - default for light backgrounds */
 input,
 textarea,
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  opacity: 1 !important;
-  caret-color: #000000 !important;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+  opacity: 1;
+  caret-color: #000000;
 }
 
 /* Keep placeholder gray while typed text is black */
 input:not(:placeholder-shown),
 textarea:not(:placeholder-shown) {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+}
+
+/* ===== DARK BACKGROUND INPUTS (Login/Register pages) ===== */
+/* Inputs with placeholder-gray-400 class (used on dark backgrounds) */
+.placeholder-gray-400::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+.placeholder-gray-400::-webkit-input-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+.placeholder-gray-400:-ms-input-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+.placeholder-gray-400::-moz-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+/* White text for inputs on dark backgrounds */
+input.text-white,
+textarea.text-white {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+input.text-white:not(:placeholder-shown),
+textarea.text-white:not(:placeholder-shown) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* Fix for autofill styles */
