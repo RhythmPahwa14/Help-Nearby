@@ -100,6 +100,43 @@ label {
   opacity: 1 !important;
 }
 
+/* ===== MODAL FORM OVERRIDES ===== */
+/* Override global styles for modal forms with white backgrounds */
+.modal-input,
+input.modal-input,
+textarea.modal-input {
+  background-color: #ffffff !important;
+  border: 2px solid #6b7280 !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+.modal-input::placeholder,
+input.modal-input::placeholder,
+textarea.modal-input::placeholder {
+  color: #6b7280 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+.modal-input::-webkit-input-placeholder,
+input.modal-input::-webkit-input-placeholder,
+textarea.modal-input::-webkit-input-placeholder {
+  color: #6b7280 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+/* Modal labels - force black text */
+.modal-label,
+form label {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+/* ===== END MODAL FORM OVERRIDES ===== */
+
 /* Prevent horizontal overflow */
 html, body, #root {
   overflow-x: hidden !important;
@@ -187,8 +224,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
 }
 
-p, span, div, label {
-  color: #f1f5f9 !important;
+/* Default dark theme text - scoped to avoid affecting modals with white backgrounds */
+p:not(form p), span:not(form span), div:not(form div) {
+  color: #f1f5f9;
+}
+
+/* Modal/Form labels must be dark on white background */
+form label {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
 }
 
 /* Map Legend - Force dark text on white background */
@@ -206,15 +250,16 @@ p, span, div, label {
   color: inherit !important;
 }
 
-/* Form elements visibility */
-input, textarea, select {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: #ffffff !important;
+/* Form elements visibility - dark theme default */
+/* Exclude modal-input class which has its own styles */
+input:not(.modal-input), textarea:not(.modal-input), select:not(.modal-input) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 
-input::placeholder, textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6) !important;
+input:not(.modal-input)::placeholder, textarea:not(.modal-input)::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Card and container visibility */
