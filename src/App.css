@@ -8,14 +8,6 @@ body {
 
 /* ===== FIX OFFER HELP MODAL TEXT VISIBILITY ===== */
 
-/* Labels - force dark text on white modal backgrounds */
-label {
-  color: #111827 !important;
-  -webkit-text-fill-color: #111827 !important;
-  opacity: 1 !important;
-  font-weight: 600 !important;
-}
-
 /* Input & textarea text - only for white background inputs */
 .modal-input,
 input.modal-input,

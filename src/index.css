@@ -94,14 +94,20 @@ textarea:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Ensure labels are fully visible */
+/* Ensure labels are fully visible - default inherits from parent */
 label {
-  color: #000000 !important;
   opacity: 1 !important;
 }
 
 /* ===== MODAL FORM OVERRIDES ===== */
-/* Override global styles for modal forms with white backgrounds */
+/* Offer Help modal - black labels on white background */
+.offer-help-form label {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
 .modal-input,
 input.modal-input,
 textarea.modal-input {
@@ -125,14 +131,6 @@ input.modal-input::-webkit-input-placeholder,
 textarea.modal-input::-webkit-input-placeholder {
   color: #6b7280 !important;
   -webkit-text-fill-color: #6b7280 !important;
-  opacity: 1 !important;
-}
-
-/* Modal labels - force black text */
-.modal-label,
-form label {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
 }
 /* ===== END MODAL FORM OVERRIDES ===== */

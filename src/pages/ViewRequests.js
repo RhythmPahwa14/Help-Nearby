@@ -383,7 +383,7 @@ function ViewRequests() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleOfferSubmit}>
+                <form onSubmit={handleOfferSubmit} className="offer-help-form">
                   {submitError && (
                     <div style={{
                       backgroundColor: '#fef2f2',
