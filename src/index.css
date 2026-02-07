@@ -227,10 +227,17 @@ p:not(form p), span:not(form span), div:not(form div) {
   color: #f1f5f9;
 }
 
-/* Modal/Form labels must be dark on white background */
-form label {
+/* Modal/Form labels - dark on white modal backgrounds only */
+.offer-help-form label,
+.modal-form label {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
+}
+
+/* Form labels on dark backgrounds (Login, Register, HelpRequest pages) */
+form label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* Map Legend - Force dark text on white background */
@@ -456,22 +463,23 @@ button:hover {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - matches blue theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: linear-gradient(180deg, #3b82f6, #60a5fa);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-secondary);
+  background: linear-gradient(180deg, #2563eb, #3b82f6);
 }
 
 /* Smooth animations */

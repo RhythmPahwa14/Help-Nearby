@@ -255,9 +255,8 @@ function HelpRequest() {
                         className={`p-4 rounded-xl border transition-all duration-300 ${
                           category === cat.value
                             ? `bg-gradient-to-r ${cat.color} text-white border-transparent shadow-lg scale-105`
-                            : 'bg-white/10 border-white/20 hover:bg-white/20'
+                            : 'bg-white/10 border-white/20 hover:bg-white/20 text-white'
                         }`}
-                        style={category !== cat.value ? { color: '#000000' } : {}}
                       >
                         <div className="text-2xl mb-2">{cat.icon}</div>
                         <div className="text-sm font-semibold">{cat.value}</div>
