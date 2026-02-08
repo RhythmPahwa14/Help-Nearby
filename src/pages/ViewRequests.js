@@ -21,7 +21,6 @@ function ViewRequests() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const fetchRequests = async () => {
     setIsLoading(true);
@@ -60,7 +59,6 @@ function ViewRequests() {
       message: ''
     });
     setSubmitError('');
-    setSubmitSuccess(false);
     setShowOfferModal(true);
   };
 
@@ -77,12 +75,11 @@ function ViewRequests() {
     try {
       const requestId = selectedRequest.id || selectedRequest._id;
       await requestsAPI.offerHelp(requestId, offerForm);
-      setSubmitSuccess(true);
-      setTimeout(() => {
-        setShowOfferModal(false);
-        setSubmitSuccess(false);
-        fetchRequests();
-      }, 2000);
+      // Close modal immediately after successful submission
+      setShowOfferModal(false);
+      setSelectedRequest(null);
+      setOfferForm({ name: '', phone: '', email: '', message: '' });
+      fetchRequests();
     } catch (error) {
       setSubmitError(error.message || 'Failed to submit offer. Please try again.');
     }
@@ -94,7 +91,6 @@ function ViewRequests() {
     setSelectedRequest(null);
     setOfferForm({ name: '', phone: '', email: '', message: '' });
     setSubmitError('');
-    setSubmitSuccess(false);
   };
 
   const categories = ['all', 'General', 'Groceries', 'Medical', 'Transport', 'Household'];
@@ -197,8 +193,14 @@ function ViewRequests() {
                 const requestOwnerId = req.user?._id || req.user || req.requesterId;
                 const currentUserId = currentUser?.id || currentUser?._id;
                 const isButtonDisabled = currentUserId && currentUserId === requestOwnerId;
+                const helperCount = req.helperOffers?.length || 0;
+                const hasUserOffered = req.helperOffers?.some(
+                  offer => offer.user === currentUserId || offer.user?._id === currentUserId
+                );
                 const getButtonText = () => {
                   if (isButtonDisabled) return 'Your Request';
+                  if (hasUserOffered) return `Help offered by ${helperCount} ${helperCount === 1 ? 'person' : 'people'}`;
+                  if (helperCount > 0) return `Offer Help (${helperCount} ${helperCount === 1 ? 'offer' : 'offers'})`;
                   return 'Offer Help';
                 };
 
@@ -245,17 +247,22 @@ function ViewRequests() {
                     {/* Action Button */}
                     <button
                       onClick={() => handleHelp(req.id || req._id, requestOwnerId)}
-                      disabled={isButtonDisabled}
+                      disabled={isButtonDisabled || hasUserOffered}
                       className={`w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                        isButtonDisabled
+                        isButtonDisabled || hasUserOffered
                           ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                           : 'bg-green-600 text-white hover:bg-green-700 shadow-lg'
                       }`}
                     >
                       <span className="flex items-center justify-center">
-                        {!isButtonDisabled && (
+                        {!isButtonDisabled && !hasUserOffered && (
                           <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                          </svg>
+                        )}
+                        {hasUserOffered && (
+                          <svg className="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                           </svg>
                         )}
                         {getButtonText()}
@@ -359,31 +366,7 @@ function ViewRequests() {
 
             {/* Body */}
             <div style={{ padding: '24px', backgroundColor: '#ffffff' }}>
-              {submitSuccess ? (
-                <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                  <div style={{
-                    width: '80px',
-                    height: '80px',
-                    backgroundColor: '#dcfce7',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px',
-                    fontSize: '40px',
-                    border: '4px solid #22c55e'
-                  }}>
-                    ✓
-                  </div>
-                  <h3 style={{ color: '#111827', fontSize: '22px', fontWeight: 'bold', margin: '0 0 8px 0' }}>
-                    Thank You!
-                  </h3>
-                  <p style={{ color: '#374151', fontSize: '15px', margin: 0 }}>
-                    Your offer has been submitted successfully.<br/>The requester will contact you soon.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleOfferSubmit} className="offer-help-form">
+              <form onSubmit={handleOfferSubmit} className="offer-help-form">
                   {submitError && (
                     <div style={{
                       backgroundColor: '#fef2f2',
@@ -571,7 +554,6 @@ function ViewRequests() {
                     </button>
                   </div>
                 </form>
-              )}
             </div>
           </div>
         </div>
