@@ -141,8 +141,8 @@ function ViewRequests() {
             >
               LEARN MORE
             </button>
-            <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 hover:scale-105 shadow-lg">
-              OUR SERVICES
+            <button className="group px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:border-green-600 transition-all duration-300 hover:scale-105 shadow-lg">
+              <span className="group-hover:text-gray-900">OUR SERVICES</span>
             </button>
           </div>
 
