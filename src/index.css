@@ -133,6 +133,13 @@ textarea.modal-input::-webkit-input-placeholder {
   -webkit-text-fill-color: #6b7280 !important;
   opacity: 1 !important;
 }
+
+/* Modal cancel button - ensure dark text on light background */
+.offer-help-form button[type="button"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
 /* ===== END MODAL FORM OVERRIDES ===== */
 
 /* Prevent horizontal overflow */
