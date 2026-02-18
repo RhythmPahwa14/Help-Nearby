@@ -92,13 +92,26 @@ function ViewRequests() {
     setSubmitError('');
   };
 
+  // SVG Icons for categories
+  const CategoryIcon = ({ type, className = "w-5 h-5" }) => {
+    const icons = {
+      all: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>,
+      General: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+      Groceries: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>,
+      Medical: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
+      Transport: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h8m-8 5h8m-4-9v18m-7-4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>,
+      Household: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    };
+    return icons[type] || icons.General;
+  };
+
   const categories = [
-    { key: 'all', label: 'All Requests', icon: '🌟', color: 'from-purple-500 to-indigo-600' },
-    { key: 'General', label: 'General', icon: '🔧', color: 'from-gray-500 to-gray-600' },
-    { key: 'Groceries', label: 'Groceries', icon: '🛒', color: 'from-green-500 to-emerald-600' },
-    { key: 'Medical', label: 'Medical', icon: '🏥', color: 'from-red-500 to-rose-600' },
-    { key: 'Transport', label: 'Transport', icon: '🚗', color: 'from-blue-500 to-cyan-600' },
-    { key: 'Household', label: 'Household', icon: '🏠', color: 'from-orange-500 to-amber-600' }
+    { key: 'all', label: 'All Requests', color: 'from-slate-500 to-slate-600' },
+    { key: 'General', label: 'General', color: 'from-gray-500 to-gray-600' },
+    { key: 'Groceries', label: 'Groceries', color: 'from-green-500 to-emerald-600' },
+    { key: 'Medical', label: 'Medical', color: 'from-red-500 to-rose-600' },
+    { key: 'Transport', label: 'Transport', color: 'from-blue-500 to-cyan-600' },
+    { key: 'Household', label: 'Household', color: 'from-orange-500 to-amber-600' }
   ];
 
   const getCategoryInfo = (categoryKey) => {
@@ -149,21 +162,11 @@ function ViewRequests() {
 
   return (
     <div className="min-h-screen relative overflow-hidden -mt-16 pt-16">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-0">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-          <div className="absolute -bottom-8 right-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-6000"></div>
-        </div>
+      {/* Clean Dark Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 z-0"></div>
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-800/50 via-transparent to-transparent"></div>
       </div>
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 z-0"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
-        }}
-      ></div>
 
       {/* Content */}
       <div className="relative z-20 min-h-screen pt-20 pb-12">
@@ -190,21 +193,27 @@ function ViewRequests() {
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <div className="flex items-center px-5 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 backdrop-blur-md rounded-2xl border border-red-500/30">
-                <span className="text-2xl mr-3">🔥</span>
+                <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">{stats.urgent}</div>
                   <div className="text-xs text-red-300">Urgent</div>
                 </div>
               </div>
               <div className="flex items-center px-5 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-2xl border border-green-500/30">
-                <span className="text-2xl mr-3">💚</span>
+                <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">{stats.helped}</div>
                   <div className="text-xs text-green-300">Receiving Help</div>
                 </div>
               </div>
               <div className="flex items-center px-5 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-md rounded-2xl border border-blue-500/30">
-                <span className="text-2xl mr-3">📍</span>
+                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">{stats.total}</div>
                   <div className="text-xs text-blue-300">Total Active</div>
@@ -285,7 +294,7 @@ function ViewRequests() {
                   }`}
                 >
                   <span className="relative z-10 flex items-center">
-                    <span className="text-lg mr-2">{category.icon}</span>
+                    <span className="mr-2"><CategoryIcon type={category.key} className="w-5 h-5" /></span>
                     {category.label}
                     {filter === category.key && (
                       <span className="ml-2 px-2 py-0.5 bg-white/20 rounded-full text-xs">
@@ -315,7 +324,7 @@ function ViewRequests() {
             <div className="text-center py-20">
               <div className="bg-white/5 backdrop-blur-md rounded-3xl p-12 max-w-lg mx-auto border border-white/10">
                 <div className="w-24 h-24 bg-gradient-to-br from-gray-500/20 to-gray-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-5xl">🔍</span>
+                  <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">No Requests Found</h3>
                 <p className="text-gray-400 mb-6">
@@ -377,7 +386,7 @@ function ViewRequests() {
                       {/* Top Section */}
                       <div className="flex items-start justify-between mb-4">
                         <div className={`inline-flex items-center px-3 py-1.5 bg-gradient-to-r ${categoryInfo.color} rounded-xl text-white text-sm font-semibold`}>
-                          <span className="mr-1.5">{categoryInfo.icon}</span>
+                          <span className="mr-1.5"><CategoryIcon type={req.category} className="w-4 h-4" /></span>
                           {req.category}
                         </div>
                         <div className="flex items-center text-gray-400 text-sm">
@@ -410,7 +419,7 @@ function ViewRequests() {
                           <div className="flex -space-x-2">
                             {[...Array(Math.min(helperCount, 3))].map((_, i) => (
                               <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 border-2 border-white/20 flex items-center justify-center">
-                                <span className="text-xs text-white">👤</span>
+                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                               </div>
                             ))}
                             {helperCount > 3 && (
@@ -482,11 +491,11 @@ function ViewRequests() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <div className="flex items-center px-4 py-2 bg-white/5 rounded-full">
-                    <span className="text-2xl mr-2">📊</span>
+                    <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
                     <span className="text-white font-medium">{filteredRequests.length} requests available</span>
                   </div>
                   <div className="flex items-center px-4 py-2 bg-white/5 rounded-full">
-                    <span className="text-2xl mr-2">🤝</span>
+                    <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                     <span className="text-white font-medium">Join the helpers</span>
                   </div>
                 </div>
@@ -511,7 +520,7 @@ function ViewRequests() {
                 </svg>
               </button>
               <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl">💚</span>
+                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
               </div>
               <h2 className="text-2xl font-bold text-white">Offer Your Help</h2>
               <p className="text-green-100 text-sm mt-1">Share your contact details with the requester</p>
@@ -603,7 +612,7 @@ function ViewRequests() {
                       </span>
                     ) : (
                       <span className="flex items-center justify-center">
-                        <span className="mr-2">💚</span>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                         Submit Offer
                       </span>
                     )}
@@ -617,24 +626,6 @@ function ViewRequests() {
 
       {/* CSS for animations */}
       <style>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        .animation-delay-6000 {
-          animation-delay: 6s;
-        }
         .animation-delay-150 {
           animation-delay: 150ms;
         }
