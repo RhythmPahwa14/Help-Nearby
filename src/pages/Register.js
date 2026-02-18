@@ -2,6 +2,30 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+// Password strength calculator
+const getPasswordStrength = (password) => {
+  let strength = 0;
+  const checks = {
+    length: password.length >= 8,
+    lowercase: /[a-z]/.test(password),
+    uppercase: /[A-Z]/.test(password),
+    number: /[0-9]/.test(password),
+    special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+  };
+  
+  strength = Object.values(checks).filter(Boolean).length;
+  
+  return { strength, checks };
+};
+
+const getStrengthLabel = (strength) => {
+  if (strength === 0) return { label: '', color: 'bg-gray-500' };
+  if (strength <= 2) return { label: 'Weak', color: 'bg-red-500' };
+  if (strength <= 3) return { label: 'Fair', color: 'bg-yellow-500' };
+  if (strength <= 4) return { label: 'Good', color: 'bg-blue-500' };
+  return { label: 'Strong', color: 'bg-green-500' };
+};
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +34,9 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { register } = useAuth();
+  
+  const { strength, checks } = getPasswordStrength(password);
+  const { label: strengthLabel, color: strengthColor } = getStrengthLabel(strength);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -114,6 +141,43 @@ function Register() {
                     placeholder="Create a password"
                     required
                   />
+                  
+                  {/* Password Strength Indicator */}
+                  {password && (
+                    <div className="mt-3 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-300">Password Strength</span>
+                        <span className={`text-xs font-semibold ${strength <= 2 ? 'text-red-400' : strength <= 3 ? 'text-yellow-400' : strength <= 4 ? 'text-blue-400' : 'text-green-400'}`}>
+                          {strengthLabel}
+                        </span>
+                      </div>
+                      <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((level) => (
+                          <div
+                            key={level}
+                            className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${level <= strength ? strengthColor : 'bg-gray-600'}`}
+                          />
+                        ))}
+                      </div>
+                      <ul className="text-xs space-y-1 mt-2">
+                        <li className={`flex items-center gap-2 ${checks.length ? 'text-green-400' : 'text-gray-400'}`}>
+                          {checks.length ? '✓' : '○'} At least 8 characters
+                        </li>
+                        <li className={`flex items-center gap-2 ${checks.lowercase ? 'text-green-400' : 'text-gray-400'}`}>
+                          {checks.lowercase ? '✓' : '○'} Lowercase letter
+                        </li>
+                        <li className={`flex items-center gap-2 ${checks.uppercase ? 'text-green-400' : 'text-gray-400'}`}>
+                          {checks.uppercase ? '✓' : '○'} Uppercase letter
+                        </li>
+                        <li className={`flex items-center gap-2 ${checks.number ? 'text-green-400' : 'text-gray-400'}`}>
+                          {checks.number ? '✓' : '○'} Number
+                        </li>
+                        <li className={`flex items-center gap-2 ${checks.special ? 'text-green-400' : 'text-gray-400'}`}>
+                          {checks.special ? '✓' : '○'} Special character (!@#$%^&*)
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
 
