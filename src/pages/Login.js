@@ -54,7 +54,7 @@ function Login() {
           
           {/* Main Heading */}
           <h1 className="font-bold text-white mb-4 leading-tight">
-            <span className="text-4xl">Welcome Back, </span><span className="text-5xl">Neighbor</span>
+            <span className="text-4xl">Welcome Back, </span><span className="text-4xl">Neighbor</span>
           </h1>
           
           {/* Tagline */}
