@@ -845,3 +845,29 @@ textarea:focus {
 .leaflet-popup-tip {
   background: #ffffff !important;
 }
+
+/* ===== LOGIN PAGE INPUT TEXT FIX ===== */
+/* Ensure login page inputs have visible dark text */
+input.login-input,
+input.login-input[type="email"],
+input.login-input[type="password"],
+input.login-input[type="text"] {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+input.login-input:not(:placeholder-shown) {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+input.login-input:-webkit-autofill,
+input.login-input:-webkit-autofill:hover,
+input.login-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
