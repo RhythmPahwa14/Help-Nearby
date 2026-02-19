@@ -27,14 +27,23 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex -mt-16">
-      {/* Left Side - Background Image with Content */}
+    <div className="min-h-screen flex -mt-16 relative">
+      {/* Full Screen Background Image (visible on all screens) */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+        style={{
+          backgroundImage: 'url(/background.jpg)'
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-black/50 lg:hidden"></div>
+
+      {/* Left Side - Background Image with Content (Desktop Only) */}
       <div className="hidden lg:flex lg:w-1/2 relative">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
+            backgroundImage: 'url(/background.jpg)'
           }}
         ></div>
         {/* Dark Overlay */}
@@ -65,7 +74,7 @@ function Login() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-gradient-to-b from-amber-50/80 to-amber-100/60">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-gradient-to-b from-amber-50/80 to-amber-100/60 relative z-10">
         <div className="w-full max-w-md">
           {/* Mobile Logo - Only visible on small screens */}
           <div className="flex items-center justify-center mb-8 lg:hidden">
@@ -74,7 +83,7 @@ function Login() {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
               </svg>
             </div>
-            <span className="text-gray-800 text-xl font-bold">Help Nearby</span>
+            <span className="text-white text-xl font-bold drop-shadow-md lg:text-gray-800">Help Nearby</span>
           </div>
 
           {/* Login Card */}
