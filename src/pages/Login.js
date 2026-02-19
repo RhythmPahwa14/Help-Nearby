@@ -65,7 +65,7 @@ function Login() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-gradient-to-b from-amber-50/80 to-amber-100/60 relative z-10">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 relative z-10">
         <div className="w-full max-w-md">
           {/* Mobile Logo - Only visible on small screens */}
           <div className="flex items-center justify-center mb-8 lg:hidden">
@@ -104,6 +104,7 @@ function Login() {
                     className="login-input w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                     placeholder="neighbor@example.com"
                     required
+                    style={{ color: '#111827', WebkitTextFillColor: '#111827' }}
                   />
                 </div>
               </div>
@@ -131,6 +132,7 @@ function Login() {
                     className="login-input w-full pl-12 pr-12 py-3 bg-white border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                     placeholder="••••••••"
                     required
+                    style={{ color: '#111827', WebkitTextFillColor: '#111827' }}
                   />
                   <button
                     type="button"
