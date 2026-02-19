@@ -28,34 +28,25 @@ function Login() {
 
   return (
     <div className="min-h-screen flex -mt-16 relative">
-      {/* Full Screen Background Image (visible on all screens) */}
+      {/* Full Screen Background Image covering entire page */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url(/background.jpg)'
         }}
       ></div>
-      <div className="absolute inset-0 bg-black/50 lg:hidden"></div>
+      {/* Dark Overlay for better readability */}
+      <div className="fixed inset-0 bg-black/40"></div>
 
-      {/* Left Side - Background Image with Content (Desktop Only) */}
+      {/* Left Side - Content (Desktop Only) */}
       <div className="hidden lg:flex lg:w-1/2 relative">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/background.jpg)'
-          }}
-        ></div>
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
-        
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center px-12 py-16">
           {/* Logo */}
           <div className="flex items-center mb-8">
             <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-3">
-              <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             </div>
             <span className="text-white text-2xl font-bold">Help Nearby</span>
@@ -79,8 +70,8 @@ function Login() {
           {/* Mobile Logo - Only visible on small screens */}
           <div className="flex items-center justify-center mb-8 lg:hidden">
             <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center mr-2">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             </div>
             <span className="text-white text-xl font-bold drop-shadow-md lg:text-gray-800">Help Nearby</span>
@@ -110,7 +101,7 @@ function Login() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+                    className="login-input w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                     placeholder="neighbor@example.com"
                     required
                   />
@@ -137,7 +128,7 @@ function Login() {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+                    className="login-input w-full pl-12 pr-12 py-3 bg-white border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                     placeholder="••••••••"
                     required
                   />
