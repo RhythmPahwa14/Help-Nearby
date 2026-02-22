@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink, Link } from "react-router-dom";
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -10,6 +10,7 @@ import ViewRequests from "./pages/ViewRequests";
 import MapView from "./pages/MapView";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -233,6 +234,7 @@ function AppContent() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route
                 path="/post-request"
                 element={
@@ -245,6 +247,25 @@ function AppContent() {
               <Route path="/map" element={<MapView />} />
             </Routes>
           </main>
+
+          {/* Footer with Attribution */}
+          <footer className="bg-black/20 backdrop-blur-sm border-t border-white/10 py-6 mt-12">
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <p className="text-gray-300 text-sm">
+                Built by <strong className="text-white">Rhythm Pahwa</strong> – Chandigarh University
+              </p>
+              <p className="text-gray-400 text-xs mt-2">
+                Academic Project © 2026 – For Educational Purposes Only
+              </p>
+              <p className="text-gray-500 text-xs mt-2">
+                <Link to="/privacy-policy" className="hover:text-gray-300 underline">Privacy Policy</Link>
+                {' • '}
+                <a href="https://github.com/RhythmPahwa14" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 underline">
+                  GitHub
+                </a>
+              </p>
+            </div>
+          </footer>
         </div>
       </Router>
     );

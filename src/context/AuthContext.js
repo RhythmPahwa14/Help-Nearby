@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         if (isAuthenticated()) {
-          // Verify token is still valid
+          // Check if token is still valid
           const userData = await authAPI.getCurrentUser();
           setUser(userData.user);
         }

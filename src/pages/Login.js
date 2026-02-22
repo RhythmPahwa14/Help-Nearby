@@ -54,13 +54,23 @@ function Login() {
           
           {/* Main Heading */}
           <h1 className="font-bold text-white mb-4 leading-tight">
-            <span className="text-4xl">Welcome Back, </span><span className="text-4xl">Neighbor</span>
+            <span className="text-4xl">Sign in to access </span><span className="text-4xl">help requests</span>
           </h1>
           
           {/* Tagline */}
           <p className="text-white/90 text-lg max-w-md leading-relaxed">
-            Connecting communities, one hand at a time. Sign in to see how you can help or find support today.
+            Connect with your community. View and respond to help requests in your area.
           </p>
+
+          {/* Student Attribution */}
+          <div className="mt-8 pt-6 border-t border-white/20">
+            <p className="text-white/70 text-sm">
+              Built by <strong className="text-white">Rhythm Pahwa</strong>
+            </p>
+            <p className="text-white/60 text-xs mt-1">
+              Chandigarh University – Academic Project
+            </p>
+          </div>
         </div>
       </div>
 
@@ -79,6 +89,23 @@ function Login() {
 
           {/* Login Card */}
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+            
+            {/* Academic Project Disclaimer */}
+            <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-4 mb-6">
+              <div className="flex items-start">
+                <svg className="w-6 h-6 text-yellow-600 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <h3 className="font-bold text-yellow-800 text-sm mb-1">⚠ Student Academic Project</h3>
+                  <p className="text-yellow-700 text-xs leading-relaxed">
+                    This is a <strong>student project for educational purposes</strong>. 
+                    Do NOT use real passwords. This website is not affiliated with any financial institution.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <form onSubmit={handleLogin} className="space-y-5">
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600 text-center text-sm">
@@ -233,6 +260,16 @@ function Login() {
                   >
                     Create an account
                   </Link>
+                </p>
+                <p className="text-gray-500 text-xs mt-3">
+                  <Link 
+                    to="/privacy-policy" 
+                    className="hover:text-gray-700 underline transition-colors duration-200"
+                  >
+                    Privacy Policy
+                  </Link>
+                  {' • '}
+                  <span>Built by Rhythm Pahwa – Chandigarh University</span>
                 </p>
               </div>
             </form>
