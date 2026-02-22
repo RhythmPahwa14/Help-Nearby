@@ -19,10 +19,8 @@ function Home() {
       {/* Dynamic Background with enhanced overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/88 via-black/75 to-black/88 z-10"></div>
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
-        style={{
-          backgroundImage: currentBg ? `url("${currentBg.url}")` : 'url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
-        }}
+        className="absolute inset-0 bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 transition-all duration-1000"
+        style={currentBg ? {backgroundImage: `url("${currentBg.url}")`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'} : {}}
       ></div>
 
       {/* Animated gradient orbs */}
@@ -38,11 +36,9 @@ function Home() {
           {/* Logo/Icon with animation */}
           <div className="mb-4">
             <div className="w-20 h-20 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform duration-300 border-2 border-white/20">
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKmU9dSLiRVEXb4zI0EqhwJg3LCrW_HdvLH6IP7_K_74Fi2lMh9nyBkYIGiD8elEKSRyw&usqp=CAU" 
-                alt="Help Nearby Logo" 
-                className="w-full h-full object-cover"
-              />
+              <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
             </div>
           </div>
 
