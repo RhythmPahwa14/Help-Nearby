@@ -50,7 +50,7 @@ function AppContent() {
   return (
       <div className="font-sans min-h-screen relative">
           {/* Green Transparent Navigation */}
-          <header className="fixed top-0 left-0 w-full z-50 px-6 lg:px-20 py-3">
+          <header className="absolute top-0 left-0 w-full z-50 px-6 lg:px-20 py-3">
             <nav className="max-w-7xl mx-auto flex items-center justify-between">
               <NavLink to="/" className="flex items-center gap-3">
                 <div className="text-primary">
