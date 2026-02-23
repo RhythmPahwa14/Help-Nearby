@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Home() {
@@ -212,7 +212,7 @@ function Home() {
               </div>
             </div>
             <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-              <p>© 2023 Help Nearby. All rights reserved.</p>
+              <p>© 2026 Help Nearby. All rights reserved.</p>
               <div className="flex gap-6">
                 <span>Made with love for the community</span>
               </div>
