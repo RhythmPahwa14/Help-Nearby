@@ -12,7 +12,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -mt-16">
+    <div className="relative min-h-screen -mt-16">
       {/* Full Screen Background */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-top" 
@@ -24,7 +24,7 @@ function Home() {
       </div>
       
       {/* Content Container */}
-      <div className="relative min-h-screen flex flex-col overflow-y-auto pt-16">
+      <div className="relative min-h-screen flex flex-col pt-24">
 
         {/* Main Content Area */}
         <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pb-24">
