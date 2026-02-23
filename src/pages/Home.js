@@ -205,15 +205,15 @@ function Home() {
                   A platform dedicated to bringing neighbors together through acts of kindness and community support.
                 </p>
                 <div className="flex gap-4">
-                  <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                  <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Visit website">
                     <span className="material-symbols-outlined text-lg">public</span>
-                  </a>
-                  <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                  </button>
+                  <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Send email">
                     <span className="material-symbols-outlined text-lg">mail</span>
-                  </a>
-                  <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                  </button>
+                  <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Share">
                     <span className="material-symbols-outlined text-lg">share</span>
-                  </a>
+                  </button>
                 </div>
               </div>
               <div>
