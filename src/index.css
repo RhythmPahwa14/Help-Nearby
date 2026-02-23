@@ -891,3 +891,15 @@ input.login-input:-webkit-autofill:focus {
 .login-page h1 {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+/* ===== HELP NEARBY HOME PAGE STYLES ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-overlay {
+  background: linear-gradient(rgba(44, 74, 68, 0.6), rgba(25, 27, 23, 0.8));
+}
