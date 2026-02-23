@@ -12,22 +12,22 @@ function Home() {
   }, []);
 
   return (
-    <div className="font-display text-slate-900 dark:text-slate-100">
-      <div className="relative min-h-screen flex flex-col">
-        {/* Hero Background Container */}
-        <div className="absolute inset-0 z-0">
-          <div 
-            className="w-full h-full bg-cover bg-top" 
-            style={{ 
-              backgroundImage: "url('/annie-spratt-9VpI3gQ1iUo-unsplash.jpg')" 
-            }}
-          >
-            <div className="w-full h-full hero-overlay"></div>
-          </div>
-        </div>
+    <div className="fixed inset-0 -mt-16">
+      {/* Full Screen Background */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-top" 
+        style={{ 
+          backgroundImage: "url('/annie-spratt-9VpI3gQ1iUo-unsplash.jpg')" 
+        }}
+      >
+        <div className="w-full h-full hero-overlay"></div>
+      </div>
+      
+      {/* Content Container */}
+      <div className="relative min-h-screen flex flex-col overflow-y-auto pt-16">
 
         {/* Main Content Area */}
-        <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pt-12 pb-24">
+        <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pb-24">
           {/* Hero Content */}
           <div className={`max-w-3xl mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
