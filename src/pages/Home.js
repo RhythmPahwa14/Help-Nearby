@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Home() {
@@ -25,52 +25,6 @@ function Home() {
             <div className="w-full h-full hero-overlay"></div>
           </div>
         </div>
-
-        {/* Header/Navigation */}
-        <header className="relative z-20 px-6 lg:px-20 py-6">
-          <nav className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
-                </svg>
-              </div>
-              <h1 className="text-white text-2xl font-extrabold tracking-tight">Help Nearby</h1>
-            </div>
-            <div className="hidden md:flex items-center gap-10">
-              <div className="flex gap-8">
-                <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/requests">Requests</Link>
-                <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/map">Map</Link>
-                {!user ? (
-                  <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/login">Login</Link>
-                ) : (
-                  <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/privacy-policy">Contact Us</Link>
-                )}
-              </div>
-              {!user ? (
-                <button 
-                  onClick={() => navigate('/register')}
-                  className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
-                >
-                  Get Started
-                </button>
-              ) : (
-                <button 
-                  onClick={() => navigate('/post-request')}
-                  className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
-                >
-                  Post Request
-                </button>
-              )}
-            </div>
-            {/* Mobile Menu Button */}
-            <button className="md:hidden text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </nav>
-        </header>
 
         {/* Main Content Area */}
         <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pt-12 pb-24">

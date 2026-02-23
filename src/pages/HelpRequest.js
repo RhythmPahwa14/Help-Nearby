@@ -207,15 +207,12 @@ function HelpRequest() {
       ></div>
 
       {/* Content */}
-      <div className="relative z-20 min-h-screen pt-24 pb-8">
+      <div className="relative z-20 min-h-screen pt-8 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-              Request
-              <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Help
-              </span>
+              Request Help
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Let your community know how they can help you today
