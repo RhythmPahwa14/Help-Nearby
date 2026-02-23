@@ -41,7 +41,7 @@ function Home() {
                 <>
                   <button 
                     onClick={() => navigate('/login')}
-                    className="bg-primary hover:bg-primary/90 text-deep-teal px-10 py-4 rounded-xl text-base font-extrabold transition-all shadow-lg shadow-primary/20"
+                    className="bg-primary hover:bg-primary/90 text-black px-10 py-4 rounded-xl text-base font-extrabold transition-all shadow-lg shadow-primary/20"
                   >
                     Get Started
                   </button>
@@ -125,7 +125,7 @@ function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="text-primary font-bold uppercase tracking-widest text-xs">How it works</span>
-              <h2 className="text-4xl font-extrabold mt-4 mb-6 text-slate-900">Simple, safe, and secure help.</h2>
+              <h2 className="text-4xl font-extrabold mt-4 mb-6 text-black">Simple, safe, and secure help.</h2>
               <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 Our platform is designed to make neighborly assistance effortless. Whether you need a hand with groceries, technical help, or just a quick check-in, Help Nearby connects verified neighbors safely.
               </p>

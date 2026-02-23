@@ -61,32 +61,12 @@ function Login() {
           <p className="text-white/90 text-lg max-w-md leading-relaxed">
             Connect with your community. View and respond to help requests in your area.
           </p>
-
-          {/* Student Attribution */}
-          <div className="mt-8 pt-6 border-t border-white/20">
-            <p className="text-white/70 text-sm">
-              Built by <strong className="text-white">Rhythm Pahwa</strong>
-            </p>
-            <p className="text-white/60 text-xs mt-1">
-              Chandigarh University – Academic Project
-            </p>
-          </div>
         </div>
       </div>
 
       {/* Right Side - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 relative z-10">
         <div className="w-full max-w-md">
-          {/* Mobile Logo - Only visible on small screens */}
-          <div className="flex items-center justify-center mb-8 lg:hidden">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center mr-2" style={{ backgroundColor: '#638cd9' }}>
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </div>
-            <span className="text-white text-xl font-bold drop-shadow-md lg:text-gray-800">Help Nearby</span>
-          </div>
-
           {/* Login Card */}
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
             
@@ -97,7 +77,7 @@ function Login() {
                   <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
                 <div>
-                  <h3 className="font-bold text-yellow-800 text-sm mb-1">⚠ Student Academic Project</h3>
+                  <h3 className="font-bold text-yellow-900 text-sm mb-1">Student Academic Project</h3>
                   <p className="text-yellow-700 text-xs leading-relaxed">
                     This is a <strong>student project for educational purposes</strong>. 
                     Do NOT use real passwords. This website is not affiliated with any financial institution.
@@ -268,8 +248,6 @@ function Login() {
                   >
                     Privacy Policy
                   </Link>
-                  {' • '}
-                  <span>Built by Rhythm Pahwa – Chandigarh University</span>
                 </p>
               </div>
             </form>

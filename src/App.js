@@ -52,7 +52,7 @@ function AppContent() {
         }}
       >
           {/* Green Transparent Navigation */}
-          <header className="fixed top-0 left-0 w-full z-50 bg-black/10 backdrop-blur-sm px-6 lg:px-20 py-3">
+          <header className="fixed top-0 left-0 w-full z-50 px-6 lg:px-20 py-3">
             <nav className="max-w-7xl mx-auto flex items-center justify-between">
               <NavLink to="/" className="flex items-center gap-3">
                 <div className="text-primary">
@@ -75,7 +75,7 @@ function AppContent() {
                 {!currentUser ? (
                   <NavLink 
                     to="/register"
-                    className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                    className="bg-primary hover:bg-primary/90 text-black px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
                   >
                     Get Started
                   </NavLink>
@@ -83,7 +83,7 @@ function AppContent() {
                   <div className="flex items-center gap-3">
                     <NavLink 
                       to="/post-request"
-                      className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                      className="bg-primary hover:bg-primary/90 text-black px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
                     >
                       Post Request
                     </NavLink>
