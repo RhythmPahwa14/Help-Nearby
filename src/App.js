@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from "react-router-dom";
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -27,6 +27,8 @@ function App() {
 function AppContent() {
   const { user: currentUser, logout, loading } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   // Using dark theme only
   const textColorClass = 'text-white';
@@ -54,7 +56,8 @@ function AppContent() {
           color: 'var(--text-primary)'
         }}
       >
-          {/* Modern Clean Navigation */}
+          {/* Modern Clean Navigation - Hidden on Home page */}
+          {!isHomePage && (
           <header className="fixed top-0 left-0 w-full z-50 bg-black/10 backdrop-blur-sm border-b border-white/10">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
               <div className="flex items-center justify-between h-16">
@@ -162,9 +165,10 @@ function AppContent() {
               </div>
             </div>
           </header>
+          )}
 
           {/* Mobile Menu */}
-          {isMenuOpen && (
+          {!isHomePage && isMenuOpen && (
             <div className="fixed inset-0 z-40 md:hidden" onClick={() => setIsMenuOpen(false)}>
               <div className="fixed top-16 left-0 right-0 bg-black/90 backdrop-blur-md border-t border-white/10 p-6">
                 <nav className="space-y-4">
