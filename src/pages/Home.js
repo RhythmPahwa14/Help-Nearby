@@ -41,7 +41,7 @@ function Home() {
                 <>
                   <button 
                     onClick={() => navigate('/login')}
-                    className="bg-primary hover:bg-primary/90 text-black px-10 py-4 rounded-xl text-base font-extrabold transition-all shadow-lg shadow-primary/20"
+                    className="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-xl text-base font-extrabold transition-all shadow-lg shadow-primary/20"
                   >
                     Get Started
                   </button>
@@ -124,9 +124,9 @@ function Home() {
         <section className="relative z-10 bg-background-light dark:bg-background-dark py-24 px-6 lg:px-20 border-t border-muted-grey/10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-primary font-bold uppercase tracking-widest text-xs">How it works</span>
-              <h2 className="text-4xl font-extrabold mt-4 mb-6 text-black">Simple, safe, and secure help.</h2>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+              <span className="text-primary font-bold uppercase tracking-widest text-sm">How it works</span>
+              <h2 className="text-5xl font-extrabold mt-4 mb-6 text-black">Simple, safe, and secure help.</h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed text-lg">
                 Our platform is designed to make neighborly assistance effortless. Whether you need a hand with groceries, technical help, or just a quick check-in, Help Nearby connects verified neighbors safely.
               </p>
               <ul className="space-y-4">
@@ -198,23 +198,23 @@ function Home() {
                   <li><Link className="hover:text-primary transition-colors" to="/requests">Requests</Link></li>
                   <li><Link className="hover:text-primary transition-colors" to="/map">Map Search</Link></li>
                   <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Community Guidelines</Link></li>
-                  <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Trust &amp; Safety</Link></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/trust-and-safety">Trust &amp; Safety</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="text-white font-bold mb-6">Support</h4>
                 <ul className="space-y-4 text-sm">
                   <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Privacy Policy</Link></li>
-                  <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Terms of Service</Link></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/terms-of-service">Terms of Service</Link></li>
                   <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Cookie Policy</Link></li>
-                  <li><Link className="hover:text-primary transition-colors" to="/privacy-policy">Contact Us</Link></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/contact-us">Contact Us</Link></li>
                 </ul>
               </div>
             </div>
             <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
               <p>© 2026 Help Nearby. All rights reserved.</p>
               <div className="flex gap-6">
-                <span>Made with love for the community</span>
+                <span>Made with ❤️ by Rhythm Pahwa for educational purpose only</span>
               </div>
             </div>
           </div>

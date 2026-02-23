@@ -10,6 +10,10 @@ import ViewRequests from "./pages/ViewRequests";
 import MapView from "./pages/MapView";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import TrustAndSafety from "./pages/TrustAndSafety";
+import ContactUs from "./pages/ContactUs";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -69,7 +73,7 @@ function AppContent() {
                 {!currentUser ? (
                   <NavLink 
                     to="/register"
-                    className="bg-primary hover:bg-primary/90 text-black px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                    className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
                   >
                     Get Started
                   </NavLink>
@@ -77,7 +81,7 @@ function AppContent() {
                   <div className="flex items-center gap-3">
                     <NavLink 
                       to="/post-request"
-                      className="bg-primary hover:bg-primary/90 text-black px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                      className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
                     >
                       Post Request
                     </NavLink>
@@ -178,6 +182,10 @@ function AppContent() {
               />
               <Route path="/requests" element={<ViewRequests />} />
               <Route path="/map" element={<MapView />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/trust-and-safety" element={<TrustAndSafety />} />
+              <Route path="/contact-us" element={<ContactUs />} />
             </Routes>
           </main>
         </div>
