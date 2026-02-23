@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -29,7 +29,6 @@ function App() {
 function AppContent() {
   const { user: currentUser, logout, loading } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
 
   const handleLogout = () => {
     logout();
