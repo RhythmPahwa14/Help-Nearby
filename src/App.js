@@ -17,7 +17,9 @@ function App() {
     <AuthProvider>
       <ThemeProvider>
         <BackgroundProvider>
-          <AppContent />
+          <Router>
+            <AppContent />
+          </Router>
         </BackgroundProvider>
       </ThemeProvider>
     </AuthProvider>
@@ -48,7 +50,6 @@ function AppContent() {
   }
 
   return (
-    <Router>
       <div 
         className="font-sans min-h-screen transition-colors duration-300 relative"
         style={{
@@ -252,8 +253,7 @@ function AppContent() {
             </Routes>
           </main>
         </div>
-      </Router>
-    );
-  }
+  );
+}
 
 export default App;
