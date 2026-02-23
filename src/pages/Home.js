@@ -12,7 +12,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="font-display text-slate-900 dark:text-slate-100">
+    <div className="font-display text-slate-900 dark:text-slate-100 -mt-16 pt-16">
       <div className="relative min-h-screen flex flex-col">
         {/* Hero Background Container */}
         <div className="absolute inset-0 z-0">
@@ -25,50 +25,6 @@ function Home() {
             <div className="w-full h-full hero-overlay"></div>
           </div>
         </div>
-
-        {/* Header/Navigation */}
-        <header className="relative z-20 px-6 lg:px-20 py-6">
-          <nav className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
-                </svg>
-              </div>
-              <h1 className="text-white text-2xl font-extrabold tracking-tight">Help Nearby</h1>
-            </div>
-            <div className="hidden md:flex items-center gap-10">
-              <div className="flex gap-8">
-                <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/requests">Requests</Link>
-                <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/map">Map</Link>
-                {!user ? (
-                  <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/login">Login</Link>
-                ) : (
-                  <Link className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/privacy-policy">Contact Us</Link>
-                )}
-              </div>
-              {!user ? (
-                <button 
-                  onClick={() => navigate('/register')}
-                  className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
-                >
-                  Get Started
-                </button>
-              ) : (
-                <button 
-                  onClick={() => navigate('/post-request')}
-                  className="bg-primary hover:bg-primary/90 text-deep-teal px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
-                >
-                  Post Request
-                </button>
-              )}
-            </div>
-            {/* Mobile Menu Button */}
-            <button className="md:hidden text-white">
-              <span className="material-symbols-outlined">menu</span>
-            </button>
-          </nav>
-        </header>
 
         {/* Main Content Area */}
         <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pt-12 pb-24">
@@ -120,7 +76,9 @@ function Home() {
             {/* Feature 1 */}
             <div className="glass-card rounded-xl p-8 flex flex-col gap-4 transform hover:-translate-y-2 transition-all duration-300">
               <div className="bg-primary/20 text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">location_on</span>
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
               </div>
               <div>
                 <h3 className="text-white text-xl font-bold mb-2">Location Based</h3>
@@ -133,7 +91,9 @@ function Home() {
             {/* Feature 2 */}
             <div className="glass-card rounded-xl p-8 flex flex-col gap-4 transform hover:-translate-y-2 transition-all duration-300">
               <div className="bg-primary/20 text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">notifications_active</span>
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                </svg>
               </div>
               <div>
                 <h3 className="text-white text-xl font-bold mb-2">Real-time</h3>
@@ -146,7 +106,9 @@ function Home() {
             {/* Feature 3 */}
             <div className="glass-card rounded-xl p-8 flex flex-col gap-4 transform hover:-translate-y-2 transition-all duration-300">
               <div className="bg-primary/20 text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">groups</span>
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
               </div>
               <div>
                 <h3 className="text-white text-xl font-bold mb-2">Community</h3>
@@ -163,21 +125,27 @@ function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="text-primary font-bold uppercase tracking-widest text-xs">How it works</span>
-              <h2 className="text-4xl font-extrabold mt-4 mb-6 text-slate-900 dark:text-slate-100">Simple, safe, and secure help.</h2>
+              <h2 className="text-4xl font-extrabold mt-4 mb-6 text-slate-900">Simple, safe, and secure help.</h2>
               <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 Our platform is designed to make neighborly assistance effortless. Whether you need a hand with groceries, technical help, or just a quick check-in, Help Nearby connects verified neighbors safely.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <svg className="w-6 h-6 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
                   <span className="text-slate-700 dark:text-slate-300">Verified community members for safety</span>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <svg className="w-6 h-6 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
                   <span className="text-slate-700 dark:text-slate-300">Easy-to-use map interface for requests</span>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <svg className="w-6 h-6 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
                   <span className="text-slate-700 dark:text-slate-300">Private and secure communication channels</span>
                 </li>
               </ul>
@@ -185,8 +153,8 @@ function Home() {
             <div className="rounded-2xl overflow-hidden shadow-2xl h-[400px]">
               <img 
                 alt="Interactive map showing neighbor help requests" 
-                className="w-full h-full object-cover" 
-                src="/background.jpg"
+                className="w-full h-full object-contain bg-white" 
+                src="/map vector.png"
               />
             </div>
           </div>
@@ -198,7 +166,9 @@ function Home() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-2 mb-6 text-white">
-                  <span className="material-symbols-outlined text-primary">volunteer_activism</span>
+                  <svg className="w-7 h-7 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L8 5v6H5l3 4 4-1-1 1-1 1v7h2v-5l3-3h3v-2h-3l-2-2 2-1V5zm0 3.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                  </svg>
                   <span className="text-2xl font-bold tracking-tight">Help Nearby</span>
                 </div>
                 <p className="max-w-sm mb-8">
@@ -206,13 +176,19 @@ function Home() {
                 </p>
                 <div className="flex gap-4">
                   <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Visit website">
-                    <span className="material-symbols-outlined text-lg">public</span>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
                   </button>
                   <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Send email">
-                    <span className="material-symbols-outlined text-lg">mail</span>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
                   </button>
                   <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Share">
-                    <span className="material-symbols-outlined text-lg">share</span>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                    </svg>
                   </button>
                 </div>
               </div>
