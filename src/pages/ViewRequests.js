@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { requestsAPI } from "../services/api";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ViewRequests() {
   const [requests, setRequests] = useState([]);
@@ -107,11 +107,6 @@ function ViewRequests() {
   const getCategoryLabel = (categoryKey) => {
     const category = categories.find(c => c.key === categoryKey);
     return category ? category.label : categoryKey;
-  };
-
-  const getCategoryIcon = (categoryKey) => {
-    const category = categories.find(c => c.key === categoryKey);
-    return category ? category.icon : 'help';
   };
 
   const getTimeAgo = (createdAt) => {
