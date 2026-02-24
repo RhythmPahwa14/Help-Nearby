@@ -1,9 +1,7 @@
 /* src/App.css */
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #F5F0E1; /* Sandy Beige */
-  color: #333333;
+  font-family: 'Plus Jakarta Sans', 'Open Sans', sans-serif;
 }
 
 /* ===== FIX OFFER HELP MODAL TEXT VISIBILITY ===== */

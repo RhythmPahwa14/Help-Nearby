@@ -49,31 +49,31 @@ function AppContent() {
 
   return (
       <div className="font-sans min-h-screen relative">
-          {/* Green Transparent Navigation */}
-          <header className="absolute top-0 left-0 w-full z-50 px-6 lg:px-20 py-3">
-            <nav className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* White Navigation */}
+          <header className="sticky top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-neutral-soft">
+            <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
               <NavLink to="/" className="flex items-center gap-3">
-                <div className="text-primary">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                <div className="text-primary bg-primary/10 p-2 rounded-lg">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                   </svg>
                 </div>
-                <h1 className="text-white text-2xl font-extrabold tracking-tight">Help Nearby</h1>
+                <h1 className="text-slate-900 text-xl font-bold tracking-tight">Help Nearby</h1>
               </NavLink>
-              <div className="hidden md:flex items-center gap-10">
-                <div className="flex gap-8">
-                  <NavLink className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/requests">Requests</NavLink>
-                  <NavLink className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/map">Map</NavLink>
+              <div className="hidden md:flex items-center gap-8">
+                <div className="flex gap-6">
+                  <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/requests">Requests</NavLink>
+                  <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/map">Map</NavLink>
                   {!currentUser ? (
-                    <NavLink className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/login">Login</NavLink>
+                    <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/login">Login</NavLink>
                   ) : (
-                    <NavLink className="text-white/90 hover:text-primary text-sm font-semibold tracking-wide transition-colors uppercase" to="/privacy-policy">Contact Us</NavLink>
+                    <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/contact">Contact</NavLink>
                   )}
                 </div>
                 {!currentUser ? (
                   <NavLink 
                     to="/register"
-                    className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                    className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105 shadow-sm"
                   >
                     Get Started
                   </NavLink>
@@ -81,13 +81,13 @@ function AppContent() {
                   <div className="flex items-center gap-3">
                     <NavLink 
                       to="/post-request"
-                      className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                      className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105 shadow-sm"
                     >
                       Post Request
                     </NavLink>
                     <button
                       onClick={handleLogout}
-                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105"
+                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all transform hover:scale-105 shadow-sm"
                     >
                       Logout
                     </button>
@@ -97,7 +97,7 @@ function AppContent() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden text-white"
+                className="md:hidden text-slate-900"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -109,18 +109,18 @@ function AppContent() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="fixed inset-0 z-40 md:hidden" onClick={() => setIsMenuOpen(false)}>
-              <div className="fixed top-[60px] left-0 right-0 bg-black/90 backdrop-blur-md border-t border-white/10 p-6">
+              <div className="fixed top-[60px] left-0 right-0 bg-white shadow-lg border-t border-neutral-soft p-6">
                 <nav className="space-y-4">
                   <NavLink 
                     to="/requests" 
-                    className="block text-white font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                    className="block text-slate-900 font-medium py-3 px-4 rounded-lg hover:bg-primary/10 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Requests
                   </NavLink>
                   <NavLink 
                     to="/map" 
-                    className="block text-white font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                    className="block text-slate-900 font-medium py-3 px-4 rounded-lg hover:bg-primary/10 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Map
@@ -129,7 +129,7 @@ function AppContent() {
                     <>
                       <NavLink 
                         to="/post-request" 
-                        className="block text-white font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                        className="block text-white font-medium py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Post Request

@@ -167,7 +167,7 @@ function ViewRequests() {
             <img 
               alt="Community members helping each other" 
               className="w-full h-full object-cover" 
-              src="/request.jpeg"
+              src="/requests.jpeg"
             />
             <div className="absolute inset-0 bg-accent-teal/60 mix-blend-multiply"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-transparent"></div>
