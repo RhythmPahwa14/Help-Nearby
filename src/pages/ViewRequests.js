@@ -169,12 +169,11 @@ function ViewRequests() {
               className="w-full h-full object-cover" 
               src="/requests.jpeg"
             />
-            <div className="absolute inset-0 bg-accent-teal/60 mix-blend-multiply"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-transparent"></div>
           </div>
           <div className="relative z-10 text-center px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Help Needed in Your Community</h1>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto font-medium">Browse active requests and lend a hand to your neighbors. Every small act of kindness strengthens our community.</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight drop-shadow-lg">Help Needed in Your Community</h1>
+            <p className="text-lg text-white/95 max-w-2xl mx-auto font-medium drop-shadow-md">Browse active requests and lend a hand to your neighbors. Every small act of kindness strengthens our community.</p>
           </div>
         </section>
 
@@ -183,9 +182,9 @@ function ViewRequests() {
           <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-4 md:p-6 border border-neutral-soft dark:border-zinc-800">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
-                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400">search</span>
                 <input 
-                  className="w-full pl-12 pr-4 py-3 rounded-xl border-neutral-soft dark:border-zinc-800 bg-neutral-soft/50 dark:bg-zinc-800/50 focus:border-primary focus:ring-primary text-slate-900 dark:text-slate-100" 
+                  className="w-full pl-12 pr-4 py-3 rounded-xl border border-neutral-soft dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:border-primary focus:ring-2 focus:ring-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" 
                   placeholder="Search by keyword or category (e.g., Grocery, Tech)" 
                   type="text"
                   value={searchQuery}
@@ -199,8 +198,8 @@ function ViewRequests() {
                     onClick={() => setFilter(category.key)}
                     className={`flex items-center gap-2 px-4 py-3 rounded-xl font-semibold whitespace-nowrap transition-colors ${
                       filter === category.key
-                        ? 'bg-primary text-white'
-                        : 'bg-neutral-soft dark:bg-zinc-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10'
+                        ? 'bg-slate-800 dark:bg-slate-700 text-white'
+                        : 'bg-slate-100 dark:bg-zinc-800 text-slate-900 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-zinc-700'
                     }`}
                   >
                     <span className="material-symbols-outlined text-[18px]">{category.icon}</span> {category.label}

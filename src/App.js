@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from "react-router-dom";
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -33,6 +33,10 @@ function App() {
 function AppContent() {
   const { user: currentUser, logout, loading } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  // Check if we're on the requests page
+  const isRequestsPage = location.pathname === '/requests';
 
   const handleLogout = () => {
     logout();
@@ -49,25 +53,37 @@ function AppContent() {
 
   return (
       <div className="font-sans min-h-screen relative">
-          {/* White Navigation */}
-          <header className="sticky top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-neutral-soft">
+          {/* Conditional Navigation - White for Requests page, Transparent for others */}
+          <header className={`${isRequestsPage ? 'sticky bg-white/95 shadow-sm border-b border-neutral-soft' : 'absolute bg-transparent'} top-0 left-0 w-full z-50 backdrop-blur-sm`}>
             <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
               <NavLink to="/" className="flex items-center gap-3">
-                <div className="text-primary bg-primary/10 p-2 rounded-lg">
+                <div className={`${isRequestsPage ? 'text-primary bg-primary/10' : 'text-primary'} p-2 rounded-lg`}>
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                   </svg>
                 </div>
-                <h1 className="text-slate-900 text-xl font-bold tracking-tight">Help Nearby</h1>
+                <h1 className={`${isRequestsPage ? 'text-slate-900' : 'text-white'} text-xl font-bold tracking-tight`}>Help Nearby</h1>
               </NavLink>
               <div className="hidden md:flex items-center gap-8">
                 <div className="flex gap-6">
-                  <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/requests">Requests</NavLink>
-                  <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/map">Map</NavLink>
+                  <NavLink className={({ isActive }) => isRequestsPage 
+                    ? `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`
+                    : `${isActive ? 'text-primary font-bold' : 'text-white/90'} hover:text-primary text-sm font-medium transition-colors`
+                  } to="/requests">Requests</NavLink>
+                  <NavLink className={({ isActive }) => isRequestsPage 
+                    ? `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`
+                    : `${isActive ? 'text-primary font-bold' : 'text-white/90'} hover:text-primary text-sm font-medium transition-colors`
+                  } to="/map">Map</NavLink>
                   {!currentUser ? (
-                    <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/login">Login</NavLink>
+                    <NavLink className={({ isActive }) => isRequestsPage 
+                      ? `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`
+                      : `${isActive ? 'text-primary font-bold' : 'text-white/90'} hover:text-primary text-sm font-medium transition-colors`
+                    } to="/login">Login</NavLink>
                   ) : (
-                    <NavLink className={({ isActive }) => `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`} to="/contact">Contact</NavLink>
+                    <NavLink className={({ isActive }) => isRequestsPage 
+                      ? `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`
+                      : `${isActive ? 'text-primary font-bold' : 'text-white/90'} hover:text-primary text-sm font-medium transition-colors`
+                    } to="/contact">Contact</NavLink>
                   )}
                 </div>
                 {!currentUser ? (
@@ -97,7 +113,7 @@ function AppContent() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden text-slate-900"
+                className={`md:hidden ${isRequestsPage ? 'text-slate-900' : 'text-white'}`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
