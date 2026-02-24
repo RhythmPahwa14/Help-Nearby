@@ -160,13 +160,13 @@ function ViewRequests() {
 
   return (
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 min-h-screen">
-      <main className="w-full">
+      <main className="w-full pt-16">
         {/* Hero Section / Header */}
         <section className="relative h-[400px] w-full flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               alt="Community members helping each other" 
-              className="w-full h-full object-cover" 
+              className="w-full h-full object-cover object-center" 
               src="/requests.jpeg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-transparent"></div>
