@@ -162,7 +162,7 @@ function ViewRequests() {
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 min-h-screen">
       <main className="w-full">
         {/* Hero Section / Header */}
-        <section className="relative h-[300px] w-full flex items-center justify-center overflow-hidden">
+        <section className="relative h-[400px] w-full flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               alt="Community members helping each other" 
@@ -198,8 +198,8 @@ function ViewRequests() {
                     onClick={() => setFilter(category.key)}
                     className={`flex items-center gap-2 px-4 py-3 rounded-xl font-semibold whitespace-nowrap transition-colors ${
                       filter === category.key
-                        ? 'bg-slate-800 dark:bg-slate-700 text-white'
-                        : 'bg-slate-100 dark:bg-zinc-800 text-slate-900 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-zinc-700'
+                        ? 'bg-primary text-white'
+                        : 'bg-slate-100 dark:bg-zinc-800 text-slate-900 dark:text-slate-300 hover:bg-primary/20 hover:text-primary dark:hover:bg-primary/20'
                     }`}
                   >
                     <span className="material-symbols-outlined text-[18px]">{category.icon}</span> {category.label}

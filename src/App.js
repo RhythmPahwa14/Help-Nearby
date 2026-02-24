@@ -54,7 +54,7 @@ function AppContent() {
   return (
       <div className="font-sans min-h-screen relative">
           {/* Conditional Navigation - White for Requests page, Transparent for others */}
-          <header className={`${isRequestsPage ? 'sticky bg-white/95 shadow-sm border-b border-neutral-soft' : 'absolute bg-transparent'} top-0 left-0 w-full z-50 backdrop-blur-sm`}>
+          <header className={`${isRequestsPage ? 'sticky bg-white shadow-sm border-b border-neutral-soft' : 'absolute bg-transparent'} top-0 left-0 w-full z-50`}>
             <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-3">
               <NavLink to="/" className="flex items-center gap-3">
                 <div className={`${isRequestsPage ? 'text-primary bg-primary/10' : 'text-primary'} p-2 rounded-lg`}>

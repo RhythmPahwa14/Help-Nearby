@@ -55,3 +55,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Glass morphism effect for home page */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hero overlay gradient */
+.hero-overlay {
+  background: linear-gradient(rgba(44, 74, 68, 0.6), rgba(25, 27, 23, 0.8));
+}
