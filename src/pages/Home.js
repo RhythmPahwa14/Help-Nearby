@@ -14,13 +14,16 @@ function Home() {
   return (
     <div className="relative min-h-screen -mt-16">
       {/* Full Screen Background */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-top" 
-        style={{ 
-          backgroundImage: "url('/annie-spratt-9VpI3gQ1iUo-unsplash.jpg')" 
-        }}
-      >
-        <div className="w-full h-full hero-overlay"></div>
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <img 
+          src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
+          alt="" 
+          className="w-full h-full object-cover object-top" 
+          loading="eager" 
+          fetchPriority="high"
+          decoding="async"
+        />
+        <div className="absolute inset-0 w-full h-full hero-overlay"></div>
       </div>
       
       {/* Content Container */}
