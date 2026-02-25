@@ -164,14 +164,14 @@ function AppContent() {
                     <>
                       <NavLink 
                         to="/login" 
-                        className="block text-white font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                        className="block text-slate-900 font-medium py-3 px-4 rounded-lg hover:bg-primary/10 transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Login
                       </NavLink>
                       <NavLink 
                         to="/register" 
-                        className="block text-white font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                        className="block text-white font-medium py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Sign Up
