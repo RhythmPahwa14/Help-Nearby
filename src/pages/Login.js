@@ -38,8 +38,23 @@ function Login() {
       {/* Dark Overlay for better readability */}
       <div className="fixed inset-0 bg-black/40"></div>
 
-      {/* Login Form - Centered */}
-      <div className="w-full flex items-center justify-center px-6 pt-28 pb-12 relative z-10">
+      {/* Left Side - Content (Desktop Only) */}
+      <div className="hidden lg:flex lg:w-1/2 relative z-10">
+        <div className="relative flex flex-col justify-center px-12 py-16">
+          {/* Main Heading */}
+          <h1 className="font-bold mb-4 leading-tight" style={{ color: '#ffffff' }}>
+            <span className="text-4xl">Sign in to access </span><span className="text-4xl">help requests</span>
+          </h1>
+          
+          {/* Tagline */}
+          <p className="text-lg max-w-md leading-relaxed" style={{ color: 'rgba(255,255,255,0.9)' }}>
+            Connect with your community. View and respond to help requests in your area.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side - Login Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 pt-28 pb-12 relative z-10">
         <div className="w-full max-w-md">
           {/* Login Card */}
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
