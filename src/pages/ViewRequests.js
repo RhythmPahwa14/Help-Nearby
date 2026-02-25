@@ -325,7 +325,7 @@ function ViewRequests() {
               Post your request and connect with helpful neighbors in your community who are ready to assist.
             </p>
             <button
-              onClick={() => navigate('/help-request')}
+              onClick={() => navigate(currentUser ? '/post-request' : '/login')}
               className="px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-all shadow-sm inline-flex items-center gap-2"
             >
               <span className="material-symbols-outlined text-[20px]">add_circle</span>
