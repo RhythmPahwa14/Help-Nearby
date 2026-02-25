@@ -147,7 +147,7 @@ function MapView() {
   const getCategoryColor = (category) => {
     const colors = {
       General: "#3b82f6",
-      Groceries: "#4a7c59",
+      Groceries: "#a6b697",
       Medical: "#ef4444",
       Transport: "#f59e0b",
       Household: "#8b5cf6"
@@ -200,7 +200,7 @@ function MapView() {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-14 h-14 border-4 border-gray-200 border-t-[#4a7c59] rounded-full animate-spin mx-auto mb-5"></div>
+          <div className="w-14 h-14 border-4 border-gray-200 border-t-[#a6b697] rounded-full animate-spin mx-auto mb-5"></div>
           <p className="text-gray-600 text-lg font-medium">Loading Map...</p>
         </div>
       </div>
@@ -236,7 +236,7 @@ function MapView() {
               placeholder="Search address, shelter, or food..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4a7c59]/30 focus:border-[#4a7c59] transition-all"
+              className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#a6b697]/30 focus:border-[#a6b697] transition-all"
             />
             <button
               onClick={() => {
@@ -247,7 +247,7 @@ function MapView() {
               className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 bg-white hover:bg-gray-50 transition-colors"
               title="Go to my location"
             >
-              <svg className="w-4 h-4 text-[#4a7c59]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <svg className="w-4 h-4 text-[#a6b697]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <circle cx="12" cy="12" r="3" />
                 <path d="M12 2v4m0 12v4m10-10h-4M6 12H2" />
               </svg>
@@ -293,8 +293,8 @@ function MapView() {
                     onClick={() => setFilter(filter === category ? 'all' : category)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border ${
                       isActive
-                        ? 'bg-[#4a7c59] text-white border-[#4a7c59] shadow-md'
-                        : 'bg-white text-gray-600 border-gray-200 hover:border-[#4a7c59]/40 hover:bg-[#4a7c59]/5'
+                        ? 'bg-[#a6b697] text-white border-[#a6b697] shadow-md'
+                        : 'bg-white text-gray-600 border-gray-200 hover:border-[#a6b697]/40 hover:bg-[#a6b697]/5'
                     }`}
                   >
                     {iconMap[category] || null}
@@ -314,7 +314,7 @@ function MapView() {
               <h3 className="text-base font-bold text-gray-800">
                 Active Requests ({searchFilteredRequests.length})
               </h3>
-              <button onClick={() => navigate('/requests')} className="text-sm font-semibold text-[#4a7c59] hover:underline">
+              <button onClick={() => navigate('/requests')} className="text-sm font-semibold text-[#a6b697] hover:underline">
                 View All
               </button>
             </div>
@@ -328,7 +328,7 @@ function MapView() {
                   return (
                     <div
                       key={req._id || req.id}
-                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-[#4a7c59]/30 hover:shadow-sm transition-all cursor-pointer"
+                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-[#a6b697]/30 hover:shadow-sm transition-all cursor-pointer"
                       onClick={() => {
                         if (latlng) setMapCenter(latlng);
                       }}
@@ -358,7 +358,7 @@ function MapView() {
           <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5">Map Legend</h4>
           <div className="flex flex-wrap gap-x-4 gap-y-1.5">
             <span className="flex items-center gap-1.5 text-xs text-gray-600">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#4a7c59]"></span> Open Request
+              <span className="w-2.5 h-2.5 rounded-full bg-[#a6b697]"></span> Open Request
             </span>
             <span className="flex items-center gap-1.5 text-xs text-gray-600">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span> In Progress
@@ -398,7 +398,7 @@ function MapView() {
             <CircleMarker
               center={userLocation}
               radius={10}
-              pathOptions={{ color: '#4a7c59', fillColor: '#4a7c59', fillOpacity: 0.5, weight: 3 }}
+              pathOptions={{ color: '#a6b697', fillColor: '#a6b697', fillOpacity: 0.5, weight: 3 }}
             >
               <Popup>
                 <div className="text-center p-2 max-w-[250px]">
