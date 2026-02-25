@@ -160,7 +160,7 @@ function ViewRequests() {
 
   return (
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 min-h-screen">
-      <main className="w-full pt-16">
+      <main className="w-full">
         {/* Hero Section / Header */}
         <section className="relative h-[400px] w-full flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
