@@ -3,241 +3,182 @@ import { Link } from "react-router-dom";
 
 function TrustAndSafety() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-12 px-4 sm:px-6 lg:px-8 -mt-16 pt-24">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Trust &amp; Safety
-          </h1>
-          <p className="text-xl text-gray-300">
-            Community Guidelines for Academic Project
-          </p>
+    <div className="min-h-screen bg-white pt-16">
+      {/* Hero Banner */}
+      <div className="relative h-48 w-full overflow-hidden">
+        <img src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" alt="" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Trust &amp; Safety</h1>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Safety Notice */}
+        <div className="bg-red-50 border border-red-200 rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="font-bold text-red-800 text-sm mb-1">Not for Real Emergencies</h3>
+            <p className="text-red-700 text-sm leading-relaxed">This is an academic demonstration only. In a genuine emergency, call <strong>112</strong> (India) or your local emergency number immediately.</p>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl">
-          <div className="prose prose-invert max-w-none">
-            
-            {/* Academic Disclaimer */}
-            <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-xl p-6 mb-8">
-              <h2 className="text-2xl font-bold text-yellow-300 mb-3 flex items-center">
-                <svg className="w-8 h-8 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-                Critical Safety Notice
-              </h2>
-              <p className="text-yellow-100 text-lg leading-relaxed">
-                <strong>This is an academic demonstration project only.</strong> Do not use this platform for real emergencies or actual help requests. Always contact official emergency services for genuine assistance.
-              </p>
-            </div>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Community Safety Guidelines</h2>
+        <p className="text-gray-500 text-sm mb-10">Best practices for maintaining a safe, respectful community environment.</p>
 
-            {/* Introduction */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Our Commitment to Safety</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                While Help Nearby is an academic project created for educational purposes, we believe in demonstrating best practices for community safety and trust. These guidelines outline the principles that would govern a real-world help platform.
-              </p>
-            </section>
-
-            {/* Community Guidelines */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Community Guidelines</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                To maintain a respectful and safe environment, all users should:
-              </p>
-              
-              <div className="space-y-6 mt-6">
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-bold text-primary mb-3">1. Be Respectful</h3>
-                  <p className="text-gray-300">
-                    Treat all community members with respect and kindness. No harassment, hate speech, discrimination, or abusive behavior will be tolerated.
-                  </p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-bold text-primary mb-3">2. Be Honest</h3>
-                  <p className="text-gray-300">
-                    Provide accurate information in your profile and requests. Misrepresentation or deception undermines community trust.
-                  </p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-bold text-primary mb-3">3. Protect Privacy</h3>
-                  <p className="text-gray-300">
-                    Respect the privacy of others. Never share personal information of other users without their consent.
-                  </p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-bold text-primary mb-3">4. Stay Safe</h3>
-                  <p className="text-gray-300">
-                    Meet in public places, inform trusted contacts about your interactions, and trust your instincts. Remember: this is a demonstration project only.
-                  </p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-bold text-primary mb-3">5. Report Issues</h3>
-                  <p className="text-gray-300">
-                    If you encounter inappropriate behavior, suspicious activity, or safety concerns, report it immediately (in a real-world scenario).
-                  </p>
-                </div>
+        <div className="space-y-10">
+          {/* Community Guidelines */}
+          <section>
+            <h3 className="flex items-center gap-2 text-lg font-bold text-[#a6b697] mb-5">
+              <span className="w-8 h-8 rounded-full bg-[#a6b697]/10 flex items-center justify-center text-sm font-bold">1</span>
+              Community Principles
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">Every member of the Help Nearby community is expected to uphold these values:</p>
+            <div className="space-y-3">
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h4 className="font-bold text-[#a6b697] text-sm mb-1.5">Be Respectful</h4>
+                <p className="text-gray-500 text-sm">Treat all members with kindness. Zero tolerance for harassment, hate speech, or discrimination.</p>
               </div>
-            </section>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h4 className="font-bold text-[#a6b697] text-sm mb-1.5">Be Honest</h4>
+                <p className="text-gray-500 text-sm">Provide accurate information in your profile and requests. Misrepresentation erodes trust.</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h4 className="font-bold text-[#a6b697] text-sm mb-1.5">Protect Privacy</h4>
+                <p className="text-gray-500 text-sm">Never share another user's personal information without their explicit consent.</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h4 className="font-bold text-[#a6b697] text-sm mb-1.5">Report Concerns</h4>
+                <p className="text-gray-500 text-sm">If you see something wrong, flag it. Reports help keep the community safe for everyone.</p>
+              </div>
+            </div>
+            <p className="text-gray-500 text-sm mt-3">For the full list of prohibited activities, see our <Link to="/terms-of-service" className="text-[#a6b697] hover:underline font-medium">Terms of Service</Link>.</p>
+          </section>
 
-            {/* Safety Tips */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Safety Best Practices</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                In a real-world community help platform, users should follow these safety practices:
-              </p>
-              
-              <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-4">
-                <h3 className="text-xl font-bold text-blue-300 mb-3">Before Offering Help</h3>
-                <ul className="list-disc list-inside text-gray-300 text-lg space-y-2 ml-4">
-                  <li>Verify the legitimacy of the request</li>
-                  <li>Check the requester's profile and history</li>
-                  <li>Meet in well-lit, public locations</li>
-                  <li>Inform someone you trust about your plans</li>
-                  <li>Trust your instincts - if something feels wrong, decline</li>
+          {/* Safety Tips */}
+          <section>
+            <h3 className="flex items-center gap-2 text-lg font-bold text-[#a6b697] mb-5">
+              <span className="w-8 h-8 rounded-full bg-[#a6b697]/10 flex items-center justify-center text-sm font-bold">2</span>
+              Safety Best Practices
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">Practical safety tips for helpers and requesters:</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-[#f0f4ed] border border-[#a6b697]/20 rounded-xl p-5">
+                <h4 className="font-bold text-gray-800 text-sm mb-3">For Helpers</h4>
+                <ul className="space-y-2 ml-1">
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Verify the request before committing</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Meet in well-lit, public locations</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Tell a trusted person about your plans</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Trust your instincts &mdash; decline if unsure</li>
                 </ul>
               </div>
-
-              <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-blue-300 mb-3">When Requesting Help</h3>
-                <ul className="list-disc list-inside text-gray-300 text-lg space-y-2 ml-4">
-                  <li>Provide clear, honest information about your need</li>
-                  <li>Review the helper's profile and ratings</li>
-                  <li>Communicate through the platform when possible</li>
-                  <li>Meet in safe, public locations</li>
-                  <li>Have emergency contacts readily available</li>
+              <div className="bg-[#f0f4ed] border border-[#a6b697]/20 rounded-xl p-5">
+                <h4 className="font-bold text-gray-800 text-sm mb-3">For Requesters</h4>
+                <ul className="space-y-2 ml-1">
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Be clear and honest about your need</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Review the helper's profile first</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Use in-app communication when possible</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Keep emergency contacts on hand</li>
                 </ul>
               </div>
-            </section>
-
-            {/* Prohibited Content */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Prohibited Content &amp; Behavior</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                The following activities would be strictly prohibited on a real platform:
-              </p>
-              <ul className="list-disc list-inside text-gray-300 text-lg space-y-2 ml-4">
-                <li>Harassment, threats, or intimidation</li>
-                <li>Hate speech or discriminatory content</li>
-                <li>Fraudulent or deceptive requests</li>
-                <li>Requests for illegal activities</li>
-                <li>Sexual content or solicitation</li>
-                <li>Spam or commercial advertising</li>
-                <li>Impersonation of others</li>
-                <li>Sharing private information without consent</li>
-              </ul>
-            </section>
-
-            {/* Trust Features */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Building Trust in the Community</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                In a production platform, these features would help build trust:
-              </p>
-              
-              <div className="grid md:grid-cols-2 gap-6 mt-6">
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <div className="text-primary mb-3">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Verified Profiles</h3>
-                  <p className="text-gray-300">Identity verification for enhanced trust and accountability</p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <div className="text-primary mb-3">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Ratings &amp; Reviews</h3>
-                  <p className="text-gray-300">Community feedback system to build reputation</p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <div className="text-primary mb-3">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Secure Platform</h3>
-                  <p className="text-gray-300">Encryption and security measures to protect users</p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <div className="text-primary mb-3">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">24/7 Support</h3>
-                  <p className="text-gray-300">Dedicated team for safety concerns and disputes</p>
-                </div>
-              </div>
-            </section>
-
-            {/* Emergency Notice */}
-            <section className="mb-8">
-              <div className="bg-red-500/20 border-2 border-red-500 rounded-xl p-6">
-                <h2 className="text-2xl font-bold text-red-300 mb-3">Emergency Situations</h2>
-                <p className="text-red-100 text-lg leading-relaxed mb-4">
-                  <strong>IMPORTANT:</strong> This platform is NOT for emergencies! In case of actual emergencies, always contact official emergency services:
-                </p>
-                <ul className="list-disc list-inside text-red-100 text-lg space-y-2 ml-4">
-                  <li><strong>Emergency Services:</strong> 112 (India)</li>
-                  <li><strong>Police:</strong> 100</li>
-                  <li><strong>Ambulance:</strong> 102</li>
-                  <li><strong>Fire:</strong> 101</li>
-                  <li><strong>Women Helpline:</strong> 1091</li>
-                  <li><strong>Child Helpline:</strong> 1098</li>
-                </ul>
-              </div>
-            </section>
-
-            {/* Reporting */}
-            <section className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-4">Reporting Concerns</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                In a real-world platform, users would be able to report:
-              </p>
-              <ul className="list-disc list-inside text-gray-300 text-lg space-y-2 ml-4">
-                <li>Suspicious or fraudulent behavior</li>
-                <li>Harassment or threatening messages</li>
-                <li>Inappropriate content or requests</li>
-                <li>Safety concerns or violations</li>
-                <li>Technical issues affecting safety</li>
-              </ul>
-              <p className="text-gray-300 text-lg leading-relaxed mt-4">
-                Reports would be reviewed promptly, and appropriate action would be taken including warnings, suspensions, or permanent bans.
-              </p>
-            </section>
-
-            {/* Back Button */}
-            <div className="mt-12 pt-8 border-t border-white/20">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-full hover:bg-primary/90 transition-all duration-300"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Back to Home
-              </Link>
             </div>
+          </section>
 
-            {/* Footer */}
-            <div className="mt-8 text-center text-gray-400 text-sm">
-              <p>Last Updated: February 2026</p>
-              <p className="mt-2">Academic Project - Demonstrating Safety Best Practices</p>
+          {/* Trust Features */}
+          <section>
+            <h3 className="flex items-center gap-2 text-lg font-bold text-[#a6b697] mb-5">
+              <span className="w-8 h-8 rounded-full bg-[#a6b697]/10 flex items-center justify-center text-sm font-bold">3</span>
+              How We Build Trust
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">Features designed to foster confidence between community members:</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-[#a6b697]/10 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-[#a6b697]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-bold text-gray-800 text-sm mb-1">Verified Profiles</h4>
+                <p className="text-gray-500 text-sm">Identity verification adds accountability to every interaction.</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-[#a6b697]/10 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-[#a6b697]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                </div>
+                <h4 className="font-bold text-gray-800 text-sm mb-1">Ratings &amp; Reviews</h4>
+                <p className="text-gray-500 text-sm">Community feedback builds reputation over time.</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-[#a6b697]/10 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-[#a6b697]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-bold text-gray-800 text-sm mb-1">Encrypted Data</h4>
+                <p className="text-gray-500 text-sm">All communication and personal data is encrypted. See our <Link to="/privacy-policy" className="text-[#a6b697] hover:underline">Privacy Policy</Link>.</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-[#a6b697]/10 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-[#a6b697]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-bold text-gray-800 text-sm mb-1">Moderation</h4>
+                <p className="text-gray-500 text-sm">Reports are reviewed promptly with warnings, suspensions, or bans as needed.</p>
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* Emergency Numbers - canonical location */}
+          <section>
+            <h3 className="flex items-center gap-2 text-lg font-bold text-[#a6b697] mb-5">
+              <span className="w-8 h-8 rounded-full bg-[#a6b697]/10 flex items-center justify-center text-sm font-bold">4</span>
+              Emergency Contacts
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">If you or someone you know is in danger, contact the appropriate service below:</p>
+            <div className="bg-red-50 border border-red-200 rounded-xl p-5">
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Emergency Services:</strong> 112</div>
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Police:</strong> 100</div>
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Ambulance:</strong> 102</div>
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Fire:</strong> 101</div>
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Women Helpline:</strong> 1091</div>
+                <div className="flex items-center gap-2 text-gray-700 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-red-400"></span><strong>Child Helpline:</strong> 1098</div>
+              </div>
+            </div>
+          </section>
+
+          {/* Reporting */}
+          <section>
+            <h3 className="flex items-center gap-2 text-lg font-bold text-[#a6b697] mb-5">
+              <span className="w-8 h-8 rounded-full bg-[#a6b697]/10 flex items-center justify-center text-sm font-bold">5</span>
+              Reporting a Concern
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">If you witness behaviour that violates our guidelines, you can report:</p>
+            <ul className="space-y-2 ml-1">
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Suspicious or fraudulent behaviour</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Threatening or harassing messages</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Inappropriate or offensive content</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Technical issues that compromise safety</li>
+            </ul>
+            <p className="text-gray-500 text-sm mt-3">Send reports to the developer via our <Link to="/contact-us" className="text-[#a6b697] hover:underline font-medium">Contact Us</Link> page.</p>
+          </section>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#a6b697] text-white font-semibold rounded-xl hover:bg-[#8a9e7b] transition-colors">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            Back to Home
+          </Link>
+          <p className="text-gray-400 text-sm">
+            Also see: <Link to="/privacy-policy" className="text-[#a6b697] hover:underline">Privacy</Link> &middot; <Link to="/terms-of-service" className="text-[#a6b697] hover:underline">Terms</Link> &middot; <Link to="/contact-us" className="text-[#a6b697] hover:underline">Contact</Link>
+          </p>
         </div>
       </div>
     </div>
