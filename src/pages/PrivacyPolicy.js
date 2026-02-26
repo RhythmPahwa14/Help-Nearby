@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       {/* Hero Banner */}
       <div className="relative h-48 w-full overflow-hidden">
         <img src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" alt="" className="w-full h-full object-cover object-center" />
