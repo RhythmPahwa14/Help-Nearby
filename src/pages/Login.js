@@ -33,7 +33,7 @@ function Login() {
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url(/background.jpg)',
-          filter: 'blur(6px)',
+          filter: 'blur(4px)',
         }}
       ></div>
       {/* Dark Overlay for better readability */}
