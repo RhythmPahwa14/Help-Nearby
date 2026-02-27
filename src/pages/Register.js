@@ -120,7 +120,7 @@ function Register() {
                   style={{ '--tw-ring-color': '#a6b697' }}
                   onFocus={e => e.target.style.boxShadow = '0 0 0 2px #a6b69766'}
                   onBlur={e => e.target.style.boxShadow = ''}
-                  placeholder="John Doe"
+                  placeholder="Neighbor Name"
                   required
                 />
               </div>
@@ -142,7 +142,7 @@ function Register() {
                   className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200"
                   onFocus={e => e.target.style.boxShadow = '0 0 0 2px #a6b69766'}
                   onBlur={e => e.target.style.boxShadow = ''}
-                  placeholder="john@example.com"
+                  placeholder="neighbor@example.com"
                   required
                 />
               </div>
