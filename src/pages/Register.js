@@ -63,7 +63,7 @@ function Register() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
-          filter: 'blur(6px)',
+          filter: 'blur(5px)',
         }}
       ></div>
       {/* Dark overlay */}
