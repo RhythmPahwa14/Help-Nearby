@@ -57,7 +57,20 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-background-light flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen relative overflow-hidden -mt-16 pt-16">
+      {/* Background image with blur */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+          filter: 'blur(6px)',
+        }}
+      ></div>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-lg p-8 border border-muted-grey/40">
@@ -225,6 +238,7 @@ function Register() {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );
