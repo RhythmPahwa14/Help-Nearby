@@ -68,5 +68,6 @@ body {
 
 /* Hero overlay gradient */
 .hero-overlay {
-  background: linear-gradient(rgba(44, 74, 68, 0.6), rgba(25, 27, 23, 0.8));
+  /* softer, semi-transparent overlay so background image remains visible */
+  background: linear-gradient(rgba(3,6,4,0.45), rgba(3,6,4,0.25));
 }
