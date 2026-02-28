@@ -15,10 +15,13 @@ function Home() {
     <div className="relative min-h-screen -mt-16">
       {/* Full Screen Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="w-full h-full bg-center bg-no-repeat bg-contain"
-            style={{ backgroundImage: "url('/annie-spratt-9VpI3gQ1iUo-unsplash.jpg')" }}
+          <img
+            src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg"
+            alt=""
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 w-full h-full hero-overlay"></div>
         </div>
