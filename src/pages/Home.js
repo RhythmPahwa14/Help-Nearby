@@ -14,17 +14,17 @@ function Home() {
   return (
     <div className="relative min-h-screen -mt-16">
       {/* Full Screen Background */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <img
-            src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg"
-            alt=""
-            className="w-full h-full object-contain object-center filter blur-sm"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-0 w-full h-full hero-overlay"></div>
-        </div>
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <img 
+          src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
+          alt="" 
+          className="w-full h-full object-cover object-top" 
+          loading="eager" 
+          fetchPriority="high"
+          decoding="async"
+        />
+        <div className="absolute inset-0 w-full h-full hero-overlay"></div>
+      </div>
       
       {/* Content Container */}
       <div className="relative min-h-screen flex flex-col pt-24">
