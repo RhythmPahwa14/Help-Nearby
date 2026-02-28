@@ -184,11 +184,31 @@ function HelpRequest() {
   };
 
   const categories = [
-    { value: "General", icon: "🔧", color: "from-blue-500 to-purple-500" },
-    { value: "Groceries", icon: "🛒", color: "from-green-500 to-emerald-500" },
-    { value: "Medical", icon: "🏥", color: "from-red-500 to-pink-500" },
-    { value: "Transport", icon: "🚗", color: "from-yellow-500 to-orange-500" },
-    { value: "Household", icon: "🏠", color: "from-purple-500 to-indigo-500" }
+    { value: "General", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    )},
+    { value: "Groceries", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 006.55 17h11.9M7 13L5.4 5M17 17a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" />
+      </svg>
+    )},
+    { value: "Medical", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84 50.452 50.452 0 00-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+      </svg>
+    )},
+    { value: "Transport", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 4h8m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-1.105 1.789l-6 3a2 2 0 01-1.79 0l-6-3A2 2 0 013 19V5a2 2 0 012-2z" />
+      </svg>
+    )},
+    { value: "Household", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" />
+      </svg>
+    )}
   ];
 
   return (
@@ -198,7 +218,7 @@ function HelpRequest() {
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg mb-8">
           <div className="relative">
             <img
-              src="/requests.jpeg"
+              src="/post-request.jpg"
               alt="Post a Help Request"
               className="w-full h-44 object-cover object-center"
             />
@@ -224,10 +244,10 @@ function HelpRequest() {
                       key={cat.value}
                       type="button"
                       onClick={() => setCategory(cat.value)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-shadow border ${category === cat.value ? 'bg-emerald-100 text-emerald-800 border-emerald-200 shadow' : 'bg-slate-100 text-slate-700 border-slate-200 hover:shadow-sm'}`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-shadow border ${category === cat.value ? 'bg-primary text-white border-primary shadow' : 'bg-white text-slate-700 border-slate-200 hover:shadow-sm'}`}
                     >
-                      <span className="mr-2">{cat.icon}</span>
-                      {cat.value}
+                      <span className="mr-2 text-slate-700">{cat.icon}</span>
+                      <span className="align-middle">{cat.value}</span>
                     </button>
                   ))}
                 </div>
@@ -245,7 +265,7 @@ function HelpRequest() {
                     value={description.split('\n')[0] || ''}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="e.g. Need help moving a heavy sofa"
-                    className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+                    className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
 
@@ -256,7 +276,7 @@ function HelpRequest() {
                     onChange={(e) => setDescription(e.target.value)}
                     rows={6}
                     placeholder="Describe what you need help with. Include details like time, items needed, or specific instructions..."
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200 resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
                   />
                 </div>
 
@@ -265,7 +285,7 @@ function HelpRequest() {
                   <button
                     type="submit"
                     disabled={isLoading || (!location && !address)}
-                    className="inline-flex items-center gap-3 bg-emerald-300 text-emerald-900 px-6 py-3 rounded-full font-semibold hover:brightness-95 disabled:opacity-60"
+                    className="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full font-semibold disabled:opacity-60"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
@@ -300,10 +320,10 @@ function HelpRequest() {
                   <div className="h-40 bg-slate-50 flex items-center justify-center text-slate-500">No location yet</div>
                 )}
               </div>
-              <div className="text-sm text-slate-600">
+                <div className="text-sm text-slate-600">
                 <div className="font-medium text-slate-800">Current Location</div>
                 <div className="text-xs text-slate-500 truncate">{address || status}</div>
-                <button onClick={getCurrentLocation} className="mt-2 text-emerald-600 text-sm font-medium">Change Location</button>
+                <button onClick={getCurrentLocation} className="mt-2 text-primary text-sm font-medium">Change Location</button>
               </div>
             </div>
 
