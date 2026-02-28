@@ -84,7 +84,7 @@ function AppContent() {
                     <NavLink className={({ isActive }) => useLightNav 
                       ? `${isActive ? 'text-primary font-bold' : 'text-slate-600'} hover:text-primary text-sm font-medium transition-colors`
                       : `${isActive ? 'text-primary font-bold' : 'text-white/90'} hover:text-primary text-sm font-medium transition-colors`
-                    } to="/contact">Contact</NavLink>
+                    } to="/contact-us">Contact</NavLink>
                   )}
                 </div>
                 {!currentUser ? (
@@ -144,6 +144,13 @@ function AppContent() {
                   </NavLink>
                   {currentUser ? (
                     <>
+                      <NavLink 
+                        to="/contact-us" 
+                        className="block text-slate-900 font-medium py-3 px-4 rounded-lg hover:bg-primary/10 transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Contact
+                      </NavLink>
                       <NavLink 
                         to="/post-request" 
                         className="block text-white font-medium py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark transition-colors"
