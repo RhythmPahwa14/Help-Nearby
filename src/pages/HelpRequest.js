@@ -21,6 +21,7 @@ function HelpRequest() {
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState('Detecting your location...');
   const [isLoading, setIsLoading] = useState(false);
+  const [showManualLocation, setShowManualLocation] = useState(false);
 
   useEffect(() => {
     const locationOptions = {
@@ -218,7 +219,7 @@ function HelpRequest() {
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg mb-8">
           <div className="relative">
             <img
-              src="/post-request.jpg"
+              src="/post%20request.jpg"
               alt="Post a Help Request"
               className="w-full h-44 object-cover object-center"
             />
@@ -238,15 +239,15 @@ function HelpRequest() {
               {/* Category pills */}
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-slate-800 mb-3">What do you need help with?</h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex gap-3 overflow-x-auto pb-2">
                   {categories.map((cat) => (
                     <button
                       key={cat.value}
                       type="button"
                       onClick={() => setCategory(cat.value)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-shadow border ${category === cat.value ? 'bg-primary text-white border-primary shadow' : 'bg-white text-slate-700 border-slate-200 hover:shadow-sm'}`}
+                      className={`px-4 py-3 min-w-[150px] rounded-full text-sm font-medium flex items-center gap-2 justify-start transition-shadow border ${category === cat.value ? 'bg-primary text-white border-primary shadow' : 'bg-white text-slate-700 border-slate-200 hover:shadow-sm'}`}
                     >
-                      <span className="mr-2 text-slate-700">{cat.icon}</span>
+                      <span className={`${category === cat.value ? 'text-white' : 'text-slate-700'}`}>{cat.icon}</span>
                       <span className="align-middle">{cat.value}</span>
                     </button>
                   ))}
@@ -279,6 +280,53 @@ function HelpRequest() {
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
                   />
                 </div>
+
+                {/* Location status under description */}
+                <div className="mt-3 mb-1">
+                  <div className="bg-slate-50 border border-slate-100 rounded-lg p-3">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <div className="text-xs font-semibold text-slate-600">Your detected location</div>
+                        <div className="text-sm text-slate-700 truncate">{location ? (address || 'Location detected') : status}</div>
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <button type="button" onClick={getCurrentLocation} className="text-sm text-primary font-medium">Detect / Refresh</button>
+                        <button type="button" onClick={() => setShowManualLocation(prev => !prev)} className="text-sm text-slate-600 underline">Enter location manually</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {showManualLocation && (
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="number"
+                      step="any"
+                      placeholder="Latitude"
+                      className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-800"
+                      onChange={(e) => {
+                        const lat = parseFloat(e.target.value);
+                        if (!isNaN(lat)) {
+                          setLocation(prev => ({ ...prev, lat }));
+                          setAddress('Manual location set');
+                        }
+                      }}
+                    />
+                    <input
+                      type="number"
+                      step="any"
+                      placeholder="Longitude"
+                      className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white text-slate-800"
+                      onChange={(e) => {
+                        const lng = parseFloat(e.target.value);
+                        if (!isNaN(lng)) {
+                          setLocation(prev => ({ ...prev, lng }));
+                          setAddress('Manual location set');
+                        }
+                      }}
+                    />
+                  </div>
+                )}
 
                 {/* Buttons */}
                 <div className="flex items-center gap-4 mt-4">
