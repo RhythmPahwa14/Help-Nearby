@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { requestsAPI } from "../services/api";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 
 // Fix for default Leaflet marker icon
@@ -21,7 +21,6 @@ function HelpRequest() {
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState('Detecting your location...');
   const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const locationOptions = {
@@ -175,12 +174,9 @@ function HelpRequest() {
         location,
         address
       });
-      setShowSuccess(true);
       setStatus('Help request posted successfully!');
       setDescription("");
       setCategory("General");
-      // Hide success message after 5 seconds
-      setTimeout(() => setShowSuccess(false), 5000);
     } catch (error) { 
       setStatus('Failed to post request. Please try again.'); 
     }
