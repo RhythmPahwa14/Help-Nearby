@@ -36,7 +36,7 @@ function AppContent() {
   const location = useLocation();
   
   // Use light (white bg) navbar on pages with light backgrounds
-  const lightNavPages = ['/requests', '/map', '/privacy-policy', '/terms-of-service', '/trust-and-safety', '/contact-us'];
+  const lightNavPages = ['/requests', '/post-request', '/map', '/privacy-policy', '/terms-of-service', '/trust-and-safety', '/contact-us'];
   const useLightNav = lightNavPages.includes(location.pathname);
 
   const handleLogout = () => {
