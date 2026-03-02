@@ -78,8 +78,8 @@ function ContactUs() {
                   </svg>
                 </div>
                 <h4 className="font-bold text-gray-800 text-sm mb-1">Development Year</h4>
-                <p className="text-gray-600 text-sm">2026</p>
-                <p className="text-gray-400 text-xs mt-1">February</p>
+                <p className="text-gray-600 text-sm">2025</p>
+                <p className="text-gray-400 text-xs mt-1">July</p>
               </div>
             </div>
           </section>
