@@ -168,8 +168,8 @@ function Home() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-2 mb-6 text-white">
-                  <svg className="w-7 h-7 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1L8 5v6H5l3 4 4-1-1 1-1 1v7h2v-5l3-3h3v-2h-3l-2-2 2-1V5zm0 3.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                  <svg className="w-7 h-7 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                   </svg>
                   <span className="text-2xl font-bold tracking-tight">Help Nearby</span>
                 </div>
