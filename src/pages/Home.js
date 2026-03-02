@@ -12,25 +12,22 @@ function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen -mt-16">
-      {/* Full Screen Background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <div className="-mt-16">
+      {/* Hero Section - Full Screen Background */}
+      <div className="relative h-screen overflow-hidden">
         <img 
           src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
           alt="" 
-          className="w-full h-full object-cover object-top" 
+          className="absolute inset-0 w-full h-full object-cover object-top" 
           loading="eager" 
           fetchPriority="high"
           decoding="async"
         />
-        <div className="absolute inset-0 w-full h-full hero-overlay"></div>
-      </div>
-      
-      {/* Content Container */}
-      <div className="relative min-h-screen flex flex-col pt-24">
+        <div className="absolute inset-0 hero-overlay"></div>
 
-        {/* Main Content Area */}
-        <main className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pb-24">
+        {/* Hero Content */}
+        <div className="relative z-10 h-full flex flex-col pt-24">
+          <main className="flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pb-24">
           {/* Hero Content */}
           <div className={`max-w-3xl mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
@@ -122,9 +119,11 @@ function Home() {
             </div>
           </div>
         </main>
+        </div>
+      </div>
 
-        {/* Sub-content / Map Section */}
-        <section className="relative z-10 bg-background-light dark:bg-background-dark py-24 px-6 lg:px-20 border-t border-muted-grey/10">
+      {/* Sub-content / Map Section */}
+      <section className="relative z-10 bg-background-light dark:bg-background-dark py-24 px-6 lg:px-20 border-t border-muted-grey/10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="text-primary font-bold uppercase tracking-widest text-sm">How it works</span>
@@ -221,8 +220,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </footer>
-      </div>
+      </footer>
     </div>
   );
 }
