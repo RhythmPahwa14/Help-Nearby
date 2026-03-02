@@ -18,7 +18,7 @@ function Home() {
         <img 
           src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
           alt="" 
-          className="absolute inset-0 w-full h-full object-cover object-top" 
+          className="absolute inset-0 w-full h-full object-cover object-center scale-105 blur-sm" 
           loading="eager" 
           fetchPriority="high"
           decoding="async"
