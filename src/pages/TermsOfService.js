@@ -55,9 +55,9 @@ function TermsOfService() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">Help Nearby is a prototype developed at Chandigarh University. It demonstrates the concept of community-based assistance but is not a production-ready or commercially available service.</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Intended solely as a technology demonstration</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Not designed for actual emergency or real-world use</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>May contain incomplete features or known limitations</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Intended solely as a technology demonstration.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Not designed for actual emergency or real-world use.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>May contain incomplete features or known limitations.</li>
             </ul>
           </section>
 
@@ -68,11 +68,11 @@ function TermsOfService() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">By using Help Nearby you agree to:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Provide accurate information when creating an account</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Refrain from posting real emergency or time-sensitive requests</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Use respectful language in all interactions</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Maintain the security of your account credentials</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Comply with the <Link to="/trust-and-safety" className="text-[#a6b697] hover:underline font-medium">Community Guidelines</Link></li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Provide accurate information when creating an account.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Refrain from posting real emergency or time-sensitive requests.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Use respectful language in all interactions.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Maintain the security of your account credentials.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Comply with the <Link to="/trust-and-safety" className="text-[#a6b697] hover:underline font-medium">Community Guidelines</Link>.</li>
             </ul>
           </section>
 
@@ -83,11 +83,11 @@ function TermsOfService() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">The following are grounds for immediate account suspension:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Posting false, misleading, or fraudulent requests</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Attempting to exploit or reverse-engineer the platform</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Scraping or collecting other users' data</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Using the platform for any commercial purpose</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Circumventing any access controls or security measures</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Posting false, misleading, or fraudulent requests.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Attempting to exploit or reverse-engineer the platform.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Scraping or collecting other users' data.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Using the platform for any commercial purpose.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Circumventing any access controls or security measures.</li>
             </ul>
           </section>
 
