@@ -16,7 +16,7 @@ function HelpRequest() {
   // const { user } = useAuth(); // Commented out as not used currently
 
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("General");
+  const [category, setCategory] = useState("Groceries");
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState('Detecting your location...');
@@ -185,30 +185,34 @@ function HelpRequest() {
   };
 
   const categories = [
-    { value: "General", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    )},
     { value: "Groceries", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 006.55 17h11.9M7 13L5.4 5M17 17a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     )},
-    { value: "Medical", icon: (
+    { value: "Pets", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84 50.452 50.452 0 00
-        -2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4 0-7-3.5-7-7 0-2 1-4 3-5 .5-.25 1-.5 1.5-.5s1 .5 2.5.5 2-.5 2.5-.5 1 .25 1.5.5c2 1 3 3 3 5 0 3.5-3 7-7 7zM7.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM16.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM10 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM14 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
       </svg>
     )},
-    { value: "Transport", icon: (
+    { value: "Elderly Care", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 4h8m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-1.105 1.789l-6 3a2 2 0 01-1.79 0l-6-3A2 2 0 013 19V5a2 2 0 012-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM6 20v-2a4 4 0 014-4h1m3 6v-2a4 4 0 00-1-2.7M18 20l2-2-2-2" />
+      </svg>
+    )},
+    { value: "Tech Support", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     )},
     { value: "Household", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" />
+      </svg>
+    )},
+    { value: "Transport", icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 4h8m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-1.105 1.789l-6 3a2 2 0 01-1.79 0l-6-3A2 2 0 013 19V5a2 2 0 012-2z" />
       </svg>
     )}
   ];
@@ -343,7 +347,7 @@ function HelpRequest() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => { setDescription(''); setCategory('General'); }}
+                    onClick={() => { setDescription(''); setCategory('Groceries'); }}
                     className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full border border-slate-200"
                   >
                     Cancel
