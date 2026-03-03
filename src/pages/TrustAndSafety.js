@@ -70,19 +70,19 @@ function TrustAndSafety() {
               <div className="bg-[#f0f4ed] border border-[#a6b697]/20 rounded-xl p-5">
                 <h4 className="font-bold text-gray-800 text-sm mb-3">For Helpers</h4>
                 <ul className="space-y-2 ml-1">
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Verify the request before committing</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Meet in well-lit, public locations</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Tell a trusted person about your plans</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Trust your instincts &mdash; decline if unsure</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Verify the request before committing.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Meet in well-lit, public locations.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Tell a trusted person about your plans.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Trust your instincts - decline if unsure.</li>
                 </ul>
               </div>
               <div className="bg-[#f0f4ed] border border-[#a6b697]/20 rounded-xl p-5">
                 <h4 className="font-bold text-gray-800 text-sm mb-3">For Requesters</h4>
                 <ul className="space-y-2 ml-1">
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Be clear and honest about your need</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Review the helper's profile first</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Use in-app communication when possible</li>
-                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Keep emergency contacts on hand</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Be clear and honest about your need.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Review the helper's profile first.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Use in-app communication when possible.</li>
+                  <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Keep emergency contacts on hand.</li>
                 </ul>
               </div>
             </div>
@@ -162,10 +162,10 @@ function TrustAndSafety() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">If you witness behaviour that violates our guidelines, you can report:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Suspicious or fraudulent behaviour</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Threatening or harassing messages</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Inappropriate or offensive content</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Technical issues that compromise safety</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Suspicious or fraudulent behaviour.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Threatening or harassing messages.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Inappropriate or offensive content.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Technical issues that compromise safety.</li>
             </ul>
             <p className="text-gray-500 text-sm mt-3">Send reports to the developer via our <Link to="/contact-us" className="text-[#a6b697] hover:underline font-medium">Contact Us</Link> page.</p>
           </section>
