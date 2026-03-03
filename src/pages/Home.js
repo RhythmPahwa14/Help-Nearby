@@ -22,7 +22,7 @@ function Home() {
   return (
     <div className="-mt-16">
       {/* Hero Section - Full Screen Background */}
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative min-h-screen md:h-screen overflow-hidden">
         <img 
           src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
           alt="" 
@@ -34,10 +34,10 @@ function Home() {
         <div className="absolute inset-0 hero-overlay"></div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full flex flex-col pt-24">
-          <main className="flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full pb-24">
+        <div className="relative z-10 min-h-screen flex flex-col pt-24">
+          <main className="flex-1 flex flex-col justify-center px-6 lg:px-20 max-w-7xl mx-auto w-full py-12 pb-16">
           {/* Hero Content */}
-          <div className={`max-w-3xl mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className={`max-w-3xl mb-10 md:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
               Help Nearby
             </h2>
