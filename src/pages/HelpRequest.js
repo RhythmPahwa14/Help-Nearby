@@ -185,36 +185,12 @@ function HelpRequest() {
   };
 
   const categories = [
-    { value: "Groceries", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 006.55 17h11.9M7 13L5.4 5M17 17a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" />
-      </svg>
-    )},
-    { value: "Pets", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4 0-7-3.5-7-7 0-2 1-4 3-5 .5-.25 1-.5 1.5-.5s1 .5 2.5.5 2-.5 2.5-.5 1 .25 1.5.5c2 1 3 3 3 5 0 3.5-3 7-7 7zM7.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM16.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM10 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM14 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-      </svg>
-    )},
-    { value: "Elderly Care", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM6 20v-2a4 4 0 014-4h1m3 6v-2a4 4 0 00-1-2.7M18 20l2-2-2-2" />
-      </svg>
-    )},
-    { value: "Tech Support", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    )},
-    { value: "Household", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" />
-      </svg>
-    )},
-    { value: "Transport", icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 4h8m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-1.105 1.789l-6 3a2 2 0 01-1.79 0l-6-3A2 2 0 013 19V5a2 2 0 012-2z" />
-      </svg>
-    )}
+    { value: "Groceries", label: "Grocery", icon: "shopping_basket" },
+    { value: "Pets", label: "Pets", icon: "pets" },
+    { value: "Elderly Care", label: "Elderly Care", icon: "elderly" },
+    { value: "Tech Support", label: "Tech Support", icon: "devices" },
+    { value: "Household", label: "Home Repair", icon: "home_repair_service" },
+    { value: "Transport", label: "Transportation", icon: "directions_car" }
   ];
 
   return (
@@ -252,8 +228,8 @@ function HelpRequest() {
                       onClick={() => setCategory(cat.value)}
                       className={`px-4 py-3 min-w-[150px] rounded-full text-sm font-medium flex items-center gap-2 justify-start transition-shadow border ${category === cat.value ? 'bg-primary text-white border-primary shadow' : 'bg-white text-slate-700 border-slate-200 hover:shadow-sm'}`}
                     >
-                      <span className={`${category === cat.value ? 'text-white' : 'text-slate-700'}`}>{cat.icon}</span>
-                      <span className="align-middle">{cat.value}</span>
+                      <span className={`material-symbols-outlined text-[18px] ${category === cat.value ? 'text-white' : 'text-slate-700'}`}>{cat.icon}</span>
+                      <span className="align-middle">{cat.label}</span>
                     </button>
                   ))}
                 </div>
