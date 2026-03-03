@@ -47,10 +47,10 @@ function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">We collect information that you provide directly when you create an account, request help, or offer services:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Account credentials (name, email, password hash)</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Geolocation data to find nearby assistance</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Help request details and categories</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Device information and browser type</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Account credentials (name, email, password hash).</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Geolocation data to find nearby assistance.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Help request details and categories.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Device information and browser type.</li>
             </ul>
           </section>
 
@@ -79,10 +79,10 @@ function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">We implement the following measures to protect your information:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Passwords are hashed using bcrypt before storage</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>All data is transmitted over HTTPS encryption</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>JWT tokens are used for secure session management</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Database access is restricted to authorized personnel only</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Passwords are hashed using bcrypt before storage.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>All data is transmitted over HTTPS encryption.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>JWT tokens are used for secure session management.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Database access is restricted to authorized personnel only.</li>
             </ul>
           </section>
 
@@ -93,10 +93,10 @@ function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">This application relies on the following external services, each with their own privacy policies:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Vercel</strong> &mdash; Application hosting and deployment</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>MongoDB Atlas</strong> &mdash; Cloud database storage</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>OpenStreetMap / Nominatim</strong> &mdash; Geocoding and map tiles</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Leaflet</strong> &mdash; Interactive map rendering</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Vercel</strong> - Application hosting and deployment.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>MongoDB Atlas</strong> - Cloud database storage.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>OpenStreetMap / Nominatim</strong> - Geocoding and map tiles.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Leaflet</strong> - Interactive map rendering.</li>
             </ul>
           </section>
 
@@ -107,9 +107,9 @@ function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">Your data is retained only for the duration of the academic study. Upon project completion:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>All personally identifiable data will be anonymized or deleted</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Aggregated research data may be retained for the thesis</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>You can request early deletion at any time via email</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>All personally identifiable data will be anonymized or deleted.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Aggregated research data may be retained for the thesis.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>You can request early deletion at any time via email.</li>
             </ul>
           </section>
 
@@ -120,10 +120,10 @@ function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">You have the right to:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Access and view the personal data we store about you</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Request correction of inaccurate data</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Request complete deletion of your account and data</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Withdraw consent and stop using the service at any time</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Access and view the personal data we store about you.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Request correction of inaccurate data.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Request complete deletion of your account and data.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Withdraw consent and stop using the service at any time.</li>
             </ul>
             <p className="text-gray-500 text-sm mt-4">To exercise any of these rights, reach out via our <Link to="/contact-us" className="text-[#a6b697] hover:underline font-medium">Contact Us</Link> page.</p>
           </section>
