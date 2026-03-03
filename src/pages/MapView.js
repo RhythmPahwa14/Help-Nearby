@@ -130,27 +130,29 @@ function MapView() {
     fetchRequests();
   }, []);
 
-  const categories = ['all', 'General', 'Groceries', 'Medical', 'Transport', 'Household'];
+  const categories = ['all', 'Groceries', 'Pets', 'Elderly Care', 'Tech Support', 'Household', 'Transport'];
   const filteredRequests = filter === 'all' ? requests : requests.filter(req => req.category === filter);
 
   const getCategoryIcon = (category) => {
     const icons = {
-      General: "🔧",
       Groceries: "🛒",
-      Medical: "🏥",
-      Transport: "🚗",
-      Household: "🏠"
+      Pets: "🐾",
+      "Elderly Care": "🧓",
+      "Tech Support": "💻",
+      Household: "🏠",
+      Transport: "🚗"
     };
     return icons[category] || "📝";
   };
 
   const getCategoryColor = (category) => {
     const colors = {
-      General: "#3b82f6",
       Groceries: "#a6b697",
-      Medical: "#ef4444",
-      Transport: "#f59e0b",
-      Household: "#8b5cf6"
+      Pets: "#f59e0b",
+      "Elderly Care": "#8b5cf6",
+      "Tech Support": "#3b82f6",
+      Household: "#10b981",
+      Transport: "#ef4444"
     };
     return colors[category] || "#6b7280";
   };
@@ -224,7 +226,19 @@ function MapView() {
 
       {/* Sidebar Panel */}
       <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 absolute md:relative z-[1050] md:z-auto top-16 md:top-0 left-0 h-[calc(100vh-4rem)] md:h-screen w-[340px] md:w-[360px] bg-gray-50 border-r border-gray-200 flex flex-col shadow-xl md:shadow-none`}>
-        <div className="flex-1 overflow-y-auto px-5 pt-6 pb-4 space-y-6">
+        {/* Go Back Button */}
+        <div className="px-5 pt-4 pb-2 border-b border-gray-200">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#a6b697] transition-colors group"
+          >
+            <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Go Back
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-5 pt-5 pb-4 space-y-6">
 
           {/* Search Bar */}
           <div className="relative">
@@ -266,9 +280,19 @@ function MapView() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 006.55 17h11.9M7 13L5.4 5M17 17a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" />
                     </svg>
                   ),
-                  Medical: (
+                  Pets: (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84 50.452 50.452 0 00-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4 0-7-3.5-7-7 0-2 1-4 3-5 .5-.25 1-.5 1.5-.5s1 .5 2.5.5 2-.5 2.5-.5 1 .25 1.5.5c2 1 3 3 3 5 0 3.5-3 7-7 7zM7.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM16.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM10 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM14 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                  ),
+                  "Elderly Care": (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM6 20v-2a4 4 0 014-4h1m3 6v-2a4 4 0 00-1-2.7M18 20l2-2-2-2" />
+                    </svg>
+                  ),
+                  "Tech Support": (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   ),
                   Household: (
@@ -279,11 +303,6 @@ function MapView() {
                   Transport: (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 4h8m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-1.105 1.789l-6 3a2 2 0 01-1.79 0l-6-3A2 2 0 013 19V5a2 2 0 012-2z" />
-                    </svg>
-                  ),
-                  General: (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   ),
                 };
