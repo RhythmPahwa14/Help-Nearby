@@ -93,12 +93,12 @@ function ContactUs() {
             <p className="text-gray-600 leading-relaxed mb-4">Built with modern web technologies:</p>
             <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
               <ul className="grid md:grid-cols-2 gap-3">
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Frontend:</strong> React.js</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Styling:</strong> Tailwind CSS</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Routing:</strong> React Router</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Authentication:</strong> JWT</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Maps:</strong> Leaflet / OpenStreetMap</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Backend:</strong> Node.js / Express</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Frontend:</strong> React.js.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Styling:</strong> Tailwind CSS.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Routing:</strong> React Router.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Authentication:</strong> JWT.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Maps:</strong> Leaflet / OpenStreetMap.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span><strong>Backend:</strong> Node.js / Express.</li>
               </ul>
             </div>
           </section>
@@ -111,12 +111,12 @@ function ContactUs() {
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4">This academic project aims to demonstrate:</p>
             <ul className="space-y-2 ml-1">
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Full-stack web application development</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>User authentication and authorization</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Real-time geolocation and mapping features</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Responsive and modern UI/UX design</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>RESTful API design and implementation</li>
-              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Database management and queries</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Full-stack web application development.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>User authentication and authorization.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Real-time geolocation and mapping features.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Responsive and modern UI/UX design.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>RESTful API design and implementation.</li>
+              <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Database management and queries.</li>
             </ul>
           </section>
 
@@ -129,10 +129,10 @@ function ContactUs() {
             <p className="text-gray-600 leading-relaxed mb-4">Feedback helps improve the project. Areas we'd love input on:</p>
             <div className="bg-[#f0f4ed] border border-[#a6b697]/20 rounded-xl p-5">
               <ul className="space-y-2 ml-1">
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>User interface and experience</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Feature suggestions</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Code quality and architecture</li>
-                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Performance and accessibility</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>User interface and experience.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Feature suggestions.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Code quality and architecture.</li>
+                <li className="flex items-center gap-2 text-gray-600 text-sm"><span className="w-1.5 h-1.5 rounded-full bg-[#a6b697]"></span>Performance and accessibility.</li>
               </ul>
             </div>
           </section>
