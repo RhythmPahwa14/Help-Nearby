@@ -15,8 +15,9 @@ L.Icon.Default.mergeOptions({
 function HelpRequest() {
   // const { user } = useAuth(); // Commented out as not used currently
 
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("Groceries");
+  const [category, setCategory] = useState("groceries");
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState('Detecting your location...');
@@ -170,27 +171,33 @@ function HelpRequest() {
     setStatus('Submitting your request...');
     try {
       await requestsAPI.createRequest({
+        title,
         description,
         category,
-        location,
-        address
+        location: {
+          type: 'Point',
+          coordinates: [location.lng, location.lat],
+          address: address
+        }
       });
       setStatus('Help request posted successfully!');
+      setTitle("");
       setDescription("");
-      setCategory("General");
-    } catch (error) { 
-      setStatus('Failed to post request. Please try again.'); 
+      setCategory("groceries");
+    } catch (error) {
+      console.error('Request failed:', error);
+      setStatus('Failed to post request: ' + error.message);
     }
     setIsLoading(false);
   };
 
   const categories = [
-    { value: "Groceries", label: "Grocery", icon: "shopping_basket" },
-    { value: "Pets", label: "Pets", icon: "pets" },
-    { value: "Elderly Care", label: "Elderly Care", icon: "elderly" },
-    { value: "Tech Support", label: "Tech Support", icon: "devices" },
-    { value: "Household", label: "Home Repair", icon: "home_repair_service" },
-    { value: "Transport", label: "Transportation", icon: "directions_car" }
+    { value: "groceries", label: "Grocery", icon: "shopping_basket" },
+    { value: "pets", label: "Pets", icon: "pets" },
+    { value: "elderly-care", label: "Elderly Care", icon: "elderly" },
+    { value: "tech-support", label: "Tech Support", icon: "devices" },
+    { value: "household", label: "Home Repair", icon: "home_repair_service" },
+    { value: "transport", label: "Transportation", icon: "directions_car" }
   ];
 
   return (
@@ -244,9 +251,10 @@ function HelpRequest() {
                   <label className="block text-sm font-medium text-slate-700 mb-2">Title</label>
                   <input
                     type="text"
-                    value={description.split('\n')[0] || ''}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Need help moving a heavy sofa"
+                    required
                     className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
@@ -323,7 +331,7 @@ function HelpRequest() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => { setDescription(''); setCategory('Groceries'); }}
+                    onClick={() => { setTitle(''); setDescription(''); setCategory('groceries'); }}
                     className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full border border-slate-200"
                   >
                     Cancel
