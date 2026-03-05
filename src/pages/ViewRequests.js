@@ -96,12 +96,12 @@ function ViewRequests() {
 
   const categories = [
     { key: 'all', label: 'All Categories', icon: 'apps' },
-    { key: 'Groceries', label: 'Grocery', icon: 'shopping_basket' },
-    { key: 'Pets', label: 'Pets', icon: 'pets' },
-    { key: 'Elderly Care', label: 'Elderly Care', icon: 'elderly' },
-    { key: 'Tech Support', label: 'Tech Support', icon: 'devices' },
-    { key: 'Household', label: 'Home Repair', icon: 'home_repair_service' },
-    { key: 'Transport', label: 'Transportation', icon: 'directions_car' }
+    { key: 'groceries', label: 'Grocery', icon: 'shopping_basket' },
+    { key: 'pets', label: 'Pets', icon: 'pets' },
+    { key: 'elderly-care', label: 'Elderly Care', icon: 'elderly' },
+    { key: 'tech-support', label: 'Tech Support', icon: 'devices' },
+    { key: 'household', label: 'Home Repair', icon: 'home_repair_service' },
+    { key: 'transport', label: 'Transportation', icon: 'directions_car' }
   ];
 
   const getCategoryLabel = (categoryKey) => {
