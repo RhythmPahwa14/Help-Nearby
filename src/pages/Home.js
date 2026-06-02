@@ -22,7 +22,10 @@ function Home() {
   return (
     <div className="-mt-16">
       {/* Hero Section - Full Screen Background */}
-      <div className="relative min-h-screen md:h-screen overflow-hidden">
+      {/* min-h-screen (not a fixed h-screen) so the hero grows with its content
+          on shorter viewports instead of clipping the feature cards at the
+          section's bottom edge. overflow-hidden still contains the scaled bg. */}
+      <div className="relative min-h-screen overflow-hidden">
         <img 
           src="/annie-spratt-9VpI3gQ1iUo-unsplash.jpg" 
           alt="" 
